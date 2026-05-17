@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Teboa is the AI-powered Shopify platform that guides eCommerce businesses through setting up their store, automations, and customer support from one unified dashboard.">
+<meta name="description" content="Teboa is the AI-powered Shopify operations platform. Automate your store, manage customers, and grow revenue with four AI agents. Trusted by Shopify store owners globally.">
 <meta name="color-scheme" content="light only">
 <meta name="supported-color-schemes" content="light">
 <meta name="theme-color" content="#EEEAE6">
@@ -63,6 +63,19 @@
 .sound-btn{position:absolute;bottom:14px;right:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(10,10,10,0.72);color:#fff;border:none;border-radius:100px;padding:7px 14px;font-size:12px;font-weight:500;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);letter-spacing:0.3px;z-index:10;transition:opacity .25s,transform .2s;font-family:var(--sans)}
 .sound-btn:hover{opacity:.88;transform:scale(1.04)}
 .sound-btn.hidden{opacity:0;pointer-events:none;visibility:hidden}
+/* ── Site Navigation ── */
+.site-nav{position:sticky;top:0;z-index:999;background:#EEEAE6;border-bottom:1px solid var(--border);padding:0 40px;height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.site-nav-logo{font-family:var(--serif);font-size:20px;font-weight:900;color:var(--black);text-decoration:none;flex-shrink:0}
+.site-nav-links{display:flex;align-items:center;gap:28px;flex:1;justify-content:center}
+.site-nav-links a{font-size:13px;font-weight:500;color:var(--mid);text-decoration:none;transition:color .15s;white-space:nowrap}
+.site-nav-links a:hover{color:var(--black)}
+.site-nav-cta{flex-shrink:0;background:var(--black);color:var(--white);font-size:13px;font-weight:600;padding:8px 18px;border-radius:8px;text-decoration:none;transition:opacity .15s}
+.site-nav-cta:hover{opacity:0.85}
+@media(max-width:768px){
+  .site-nav{padding:0 20px}
+  .site-nav-links{display:none}
+  .site-nav-cta{font-size:12px;padding:7px 14px}
+}
 /* ── Product showcase: agent cards ── */
 .product-showcase-section{padding:80px 40px;content-visibility:auto;contain-intrinsic-size:0 600px}
 .agent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px;margin:0 auto}
@@ -160,6 +173,16 @@
   .showcase-img-3d{transform:perspective(800px) rotateX(3deg) scale(0.98)}
 }
 </style>
+<!-- Google Search: Structured data for sitelinks, knowledge panel and keyword ranking -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"TeboaTech","alternateName":["Teboa","Teboa AI","TeboaTech AI"],"url":"https://www.teboatech.com","logo":"https://www.teboatech.com/assets/images/teboa-logo.png","description":"TeboaTech builds Teboa, an AI-powered eCommerce operating system for Shopify store owners. Automate operations, manage customers, and grow revenue with four specialist AI agents.","foundingDate":"2025","founders":[{"@type":"Person","name":"Xabiso Ngece","jobTitle":"Technical Director and Co-Founder"},{"@type":"Person","name":"Latita Benya","jobTitle":"Marketing Director and Co-Founder"}],"contactPoint":{"@type":"ContactPoint","email":"hello@teboatech.com","contactType":"customer support","availableLanguage":"English"},"sameAs":["https://linkedin.com/in/xabiso-ngece","https://linkedin.com/in/latita-benya"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Teboa","url":"https://www.teboatech.com","description":"AI-powered Shopify automation and eCommerce operating system","publisher":{"@type":"Organization","name":"TeboaTech"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Teboa","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://app.teboatech.com","description":"AI-powered eCommerce operating system for Shopify store owners. Automate operations, manage support, and grow revenue with four specialist AI agents.","offers":[{"@type":"Offer","name":"Starter Plan","price":"19","priceCurrency":"USD"},{"@type":"Offer","name":"Growth Plan","price":"49","priceCurrency":"USD"},{"@type":"Offer","name":"Scale Plan","price":"99","priceCurrency":"USD"},{"@type":"Offer","name":"Founders Plan","price":"5","priceCurrency":"USD"}],"screenshot":"https://www.teboatech.com/assets/images/dashboard-preview.png","featureList":["AI Store Manager Agent","Shopify Automation Workflows","AI Customer Support Inbox","Growth and OKR Tracking","Shopify Store Integration","Abandoned Cart Recovery","Order Confirmation Automation","Win-back Campaign Automation"]}
+</script>
 <!-- Google Search: Organization structured data -->
 <script type="application/ld+json">
 {
@@ -188,6 +211,18 @@
 </script>
 </head>
 <body>
+<!-- SITE NAVIGATION — used by Google for sitelinks -->
+<header class="site-nav" id="site-nav">
+  <a href="/" class="site-nav-logo">Teboa</a>
+  <nav class="site-nav-links" aria-label="Main navigation">
+    <a href="#services">Features</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#packages">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+  </nav>
+  <a href="https://app.teboatech.com" class="site-nav-cta" target="_blank" rel="noopener">Login / Sign Up</a>
+</header>
 
 <!-- TICKER -->
 
