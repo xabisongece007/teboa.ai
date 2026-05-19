@@ -70,9 +70,9 @@
 .btick-dot{color:#1D7A4F;margin-left:20px}
 @keyframes blackTicker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 /* ── Site Navigation ── */
-.site-nav{position:sticky;top:0;z-index:999;background:#EEEAE6;border-bottom:1px solid var(--border);padding:0 40px;height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.site-nav{position:sticky;top:0;z-index:999;background:#EEEAE6;border-bottom:1px solid var(--border);padding:0 40px;height:58px;display:flex;align-items:center;justify-content:center;gap:24px}
 .site-nav-logo{font-family:var(--serif);font-size:20px;font-weight:900;color:var(--black);text-decoration:none;flex-shrink:0}
-.site-nav-links{display:flex;align-items:center;gap:28px;flex:1;justify-content:center}
+.site-nav-links{display:flex;align-items:center;gap:28px;justify-content:center}
 .site-nav-links a{font-size:13px;font-weight:500;color:var(--mid);text-decoration:none;transition:color .15s;white-space:nowrap}
 .site-nav-links a:hover{color:var(--black)}
 .site-nav-cta{flex-shrink:0;background:var(--black);color:var(--white);font-size:13px;font-weight:600;padding:8px 18px;border-radius:8px;text-decoration:none;transition:opacity .15s}
@@ -229,7 +229,7 @@
 <body>
 <!-- SITE NAVIGATION — used by Google for sitelinks -->
 <header class="site-nav" id="site-nav">
-  <a href="/" class="site-nav-logo">Teboa</a>
+  
   <nav class="site-nav-links" aria-label="Main navigation">
     <a href="#services">Features</a>
     <a href="#how-it-works">How It Works</a>
