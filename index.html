@@ -63,6 +63,12 @@
 .sound-btn{position:absolute;bottom:14px;right:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(10,10,10,0.72);color:#fff;border:none;border-radius:100px;padding:7px 14px;font-size:12px;font-weight:500;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);letter-spacing:0.3px;z-index:10;transition:opacity .25s,transform .2s;font-family:var(--sans)}
 .sound-btn:hover{opacity:.88;transform:scale(1.04)}
 .sound-btn.hidden{opacity:0;pointer-events:none;visibility:hidden}
+/* ── Black ticker strip ── */
+.black-ticker{background:var(--black);overflow:hidden;width:100%;height:40px;display:flex;align-items:center}
+.black-ticker-track{display:flex;align-items:center;width:max-content;animation:blackTicker 30s linear infinite;white-space:nowrap}
+.btick-item{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#fff;padding:0 20px;flex-shrink:0}
+.btick-dot{color:#1D7A4F;margin-left:20px}
+@keyframes blackTicker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 /* ── Site Navigation ── */
 .site-nav{position:sticky;top:0;z-index:999;background:#EEEAE6;border-bottom:1px solid var(--border);padding:0 40px;height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .site-nav-logo{font-family:var(--serif);font-size:20px;font-weight:900;color:var(--black);text-decoration:none;flex-shrink:0}
@@ -223,7 +229,7 @@
 <body>
 <!-- SITE NAVIGATION — used by Google for sitelinks -->
 <header class="site-nav" id="site-nav">
-  <a href="/" class="site-nav-logo"><img src="/assets/images/teboa-logo-nav.png" alt="Teboa" class="nav-logo-img"></a>
+  <a href="/" class="site-nav-logo">Teboa</a>
   <nav class="site-nav-links" aria-label="Main navigation">
     <a href="#services">Features</a>
     <a href="#how-it-works">How It Works</a>
@@ -231,11 +237,24 @@
     <a href="#faq">FAQ</a>
     <a href="/privacy-policy">Privacy Policy</a>
   </nav>
-  <a href="https://app.teboatech.com" class="site-nav-cta" target="_blank" rel="noopener">Login / Sign Up</a>
+  
 </header>
 
 <!-- TICKER -->
-
+<div class="black-ticker">
+  <div class="black-ticker-track">
+    <span class="btick-item">Early Access for Shopify Store Owners <span class="btick-dot">★</span></span>
+    <span class="btick-item">Limited Spots Available <span class="btick-dot">★</span></span>
+    <span class="btick-item">Lock In $5/Month Forever <span class="btick-dot">★</span></span>
+    <span class="btick-item">AI-Powered Shopify Automation <span class="btick-dot">★</span></span>
+    <span class="btick-item">Four AI Agents. One Dashboard. <span class="btick-dot">★</span></span>
+    <span class="btick-item">Early Access for Shopify Store Owners <span class="btick-dot">★</span></span>
+    <span class="btick-item">Limited Spots Available <span class="btick-dot">★</span></span>
+    <span class="btick-item">Lock In $5/Month Forever <span class="btick-dot">★</span></span>
+    <span class="btick-item">AI-Powered Shopify Automation <span class="btick-dot">★</span></span>
+    <span class="btick-item">Four AI Agents. One Dashboard. <span class="btick-dot">★</span></span>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero fade">
