@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation | Teboa — AI-Powered Shopify eCommerce Platform</title>
+<meta name="description" content="Full documentation for Teboa. Learn how the platform works, meet the AI agents, understand the technical architecture, and get started with your Shopify store.">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="/assets/images/teboa-logo.png">
+<link rel="apple-touch-icon" href="/assets/images/teboa-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --black:#0A0A0A;--white:#EEEAE6;--off:#F7F6F3;--grey:#F0EEE9;
+    --mid:#6B6865;--border:#E5E3DE;--green:#1D7A4F;--green-bg:#EAF5EF;
+    --serif:'Playfair Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
+  }
+  html{scroll-behavior:smooth}
+  body{background:#EEEAE6;color:#0A0A0A;font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden}
+  a{color:var(--green);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* NAV */
+  .nav{background:#EEEAE6;border-bottom:1px solid var(--border);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+  .nav-logo{font-family:var(--serif);font-size:22px;font-weight:900;color:var(--black);text-decoration:none}
+  .nav-logo img{height:36px;width:auto;display:block}
+  .nav-right{display:flex;align-items:center;gap:20px}
+  .nav-back{font-size:13px;font-weight:500;color:var(--mid);text-decoration:none;transition:color .2s}
+  .nav-back:hover{color:var(--black);text-decoration:none}
+  .nav-cta{background:var(--black);color:var(--white);font-size:13px;font-weight:600;padding:8px 18px;border-radius:8px;text-decoration:none;transition:opacity .15s}
+  .nav-cta:hover{opacity:0.85;text-decoration:none}
+
+  /* LAYOUT */
+  .docs-layout{display:grid;grid-template-columns:260px 1fr;max-width:1200px;margin:0 auto;padding:0 40px;gap:60px;align-items:start}
+
+  /* SIDEBAR */
+  .docs-sidebar{position:sticky;top:80px;padding:40px 0 100px}
+  .sidebar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin:24px 0 8px;display:block}
+  .sidebar-label:first-child{margin-top:0}
+  .sidebar-nav{list-style:none}
+  .sidebar-nav li a{display:block;font-size:13px;color:var(--mid);padding:5px 0;transition:color .15s;border-left:2px solid transparent;padding-left:12px;margin-left:-12px}
+  .sidebar-nav li a:hover{color:var(--black);text-decoration:none;border-left-color:var(--green)}
+  .sidebar-nav li a.active{color:var(--green);border-left-color:var(--green);font-weight:600}
+
+  /* PAGE HERO */
+  .docs-hero{padding:60px 0 48px;border-bottom:1px solid var(--border);margin-bottom:56px;grid-column:1/-1}
+  .page-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:16px;display:block}
+  .docs-hero h1{font-family:var(--serif);font-size:clamp(36px,4vw,60px);font-weight:900;line-height:1.05;letter-spacing:-2px;color:var(--black);margin-bottom:20px}
+  .docs-hero p{font-size:17px;color:var(--mid);line-height:1.75;max-width:640px}
+  .docs-meta{margin-top:24px;display:flex;gap:16px;flex-wrap:wrap}
+  .docs-meta span{font-size:12px;color:var(--mid);background:var(--off);border:1px solid var(--border);padding:4px 12px;border-radius:20px;font-weight:500}
+
+  /* CONTENT */
+  .docs-content{padding:40px 0 100px}
+  .doc-section{margin-bottom:64px;scroll-margin-top:90px}
+  .doc-section h2{font-family:var(--serif);font-size:clamp(24px,2.8vw,34px);font-weight:800;color:var(--black);margin-bottom:20px;letter-spacing:-1px;padding-bottom:14px;border-bottom:2px solid var(--border)}
+  .doc-section h3{font-size:17px;font-weight:700;color:var(--black);margin:32px 0 12px}
+  .doc-section h4{font-size:14px;font-weight:700;color:var(--black);margin:20px 0 8px;text-transform:uppercase;letter-spacing:0.5px}
+  .doc-section p{font-size:15px;color:#3A3835;line-height:1.85;margin-bottom:16px}
+  .doc-section ul,.doc-section ol{padding-left:22px;margin-bottom:16px}
+  .doc-section li{font-size:15px;color:#3A3835;line-height:1.8;margin-bottom:8px}
+
+  /* CARDS */
+  .agent-doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+  .agent-doc-card{background:#fff;border-radius:12px;padding:24px;border-left:4px solid var(--green);box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+  .agent-doc-card h4{font-size:15px;font-weight:700;color:var(--black);margin-bottom:4px}
+  .agent-doc-card .agent-role-tag{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);display:block;margin-bottom:10px}
+  .agent-doc-card p{font-size:13px;color:var(--mid);line-height:1.7;margin:0}
+
+  .tech-stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}
+  .tech-card{background:#fff;border-radius:10px;padding:20px;border:1px solid var(--border);text-align:center}
+  .tech-card h4{font-size:14px;font-weight:700;color:var(--black);margin-bottom:6px}
+  .tech-card p{font-size:12px;color:var(--mid);line-height:1.6;margin:0}
+  .tech-badge{display:inline-block;background:var(--green-bg);color:var(--green);font-size:10px;font-weight:700;letter-spacing:0.5px;padding:2px 8px;border-radius:4px;margin-bottom:10px}
+
+  .step-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0}
+  .step-card{background:#fff;border-radius:10px;padding:20px;border:1px solid var(--border)}
+  .step-num{font-family:var(--serif);font-size:40px;font-weight:900;color:var(--border);line-height:1;margin-bottom:12px}
+  .step-card h4{font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px}
+  .step-card p{font-size:13px;color:var(--mid);line-height:1.65;margin:0}
+
+  .highlight-box{background:var(--green-bg);border:1px solid #B8DFC9;border-radius:12px;padding:20px 24px;margin:24px 0}
+  .highlight-box p{margin-bottom:0;color:var(--green);font-weight:500;font-size:14px}
+
+  .dark-box{background:var(--black);border-radius:12px;padding:28px 32px;margin:24px 0}
+  .dark-box h4{font-size:16px;font-weight:700;color:#fff;margin-bottom:12px}
+  .dark-box p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:10px}
+  .dark-box p:last-child{margin-bottom:0}
+
+  .pricing-doc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}
+  .pricing-doc-card{background:#fff;border-radius:10px;padding:18px;border:1px solid var(--border)}
+  .pricing-doc-card.featured{border-color:var(--green);background:var(--green-bg)}
+  .pricing-doc-card h4{font-size:14px;font-weight:700;color:var(--black);margin-bottom:4px}
+  .pricing-doc-card .price{font-size:22px;font-weight:900;color:var(--black);margin:8px 0}
+  .pricing-doc-card .price span{font-size:13px;font-weight:400;color:var(--mid)}
+  .pricing-doc-card p{font-size:12px;color:var(--mid);line-height:1.6;margin:0}
+
+  code{background:var(--off);border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:13px;font-family:monospace;color:var(--black)}
+
+  /* FOOTER */
+  .page-footer{background:var(--black);padding:32px 40px;text-align:center}
+  .page-footer p{font-size:12px;color:rgba(255,255,255,0.3)}
+  .page-footer a{color:rgba(255,255,255,0.4);margin:0 10px;font-size:12px}
+  .page-footer a:hover{color:rgba(255,255,255,0.7);text-decoration:none}
+
+  @media(max-width:900px){
+    .docs-layout{grid-template-columns:1fr;padding:0 20px}
+    .docs-sidebar{display:none}
+    .agent-doc-grid,.step-grid,.tech-stack-grid,.pricing-doc-grid{grid-template-columns:1fr 1fr}
+    .docs-hero{grid-column:1}
+  }
+  @media(max-width:560px){
+    .agent-doc-grid,.step-grid,.tech-stack-grid,.pricing-doc-grid{grid-template-columns:1fr}
+    .nav{padding:16px 20px}
+  }
+  .nav-logo-img{height:40px;width:auto;display:block}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo"><img src="/assets/images/teboa-logo-nav.png" alt="Teboa" class="nav-logo-img"></a>
+  <div class="nav-right">
+    <a href="/" class="nav-back">← Back to teboatech.com</a>
+    <a href="https://app.teboatech.com" class="nav-cta" target="_blank" rel="noopener">Login / Sign Up</a>
+  </div>
+</nav>
+
+<div class="docs-layout">
+
+  <!-- HERO (full width) -->
+  <div class="docs-hero">
+    <span class="page-eyebrow">Documentation</span>
+    <h1>How Teboa Works</h1>
+    <p>Everything you need to understand the Teboa platform. From the product vision and AI agents to the technical architecture and how to get started with your Shopify store.</p>
+    <div class="docs-meta">
+      <span>Version 1.0 — MVP</span>
+      <span>Last Updated: May 2026</span>
+      <span>TeboaTech (Pty) Ltd</span>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="docs-sidebar">
+    <span class="sidebar-label">Overview</span>
+    <ul class="sidebar-nav">
+      <li><a href="#what-is-teboa">What is Teboa?</a></li>
+      <li><a href="#value-proposition">Value Proposition</a></li>
+      <li><a href="#who-its-for">Who It Is For</a></li>
+    </ul>
+    <span class="sidebar-label">The Platform</span>
+    <ul class="sidebar-nav">
+      <li><a href="#ai-agents">The Four AI Agents</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#automations">Automations</a></li>
+      <li><a href="#support-inbox">Support Inbox</a></li>
+      <li><a href="#okr-tracking">OKR and Growth Tracking</a></li>
+    </ul>
+    <span class="sidebar-label">Getting Started</span>
+    <ul class="sidebar-nav">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#shopify-integration">Shopify Integration</a></li>
+    </ul>
+    <span class="sidebar-label">Technical</span>
+    <ul class="sidebar-nav">
+      <li><a href="#tech-stack">Tech Stack</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#security">Security and Data</a></li>
+    </ul>
+    <span class="sidebar-label">Plans</span>
+    <ul class="sidebar-nav">
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="docs-content">
+
+    <div class="doc-section" id="what-is-teboa">
+      <h2>What is Teboa?</h2>
+      <p>Teboa is an AI-powered eCommerce operating system built for Shopify store owners. It replaces the fragmented stack of tools most online store owners rely on — separate analytics dashboards, automation tools, helpdesks, and spreadsheets — with a single intelligent platform.</p>
+      <p>At its core, Teboa gives you four specialist AI agents, a unified dashboard, and a set of automation tools that run your store operations while you focus on growing the business.</p>
+      <div class="highlight-box">
+        <p>Teboa is built by TeboaTech (Pty) Ltd, a South African technology company. Registration No: 2025/516299/07. The platform is currently in active MVP development with early users onboarding now.</p>
+      </div>
+      <p>The name Teboa comes from the Setswana word meaning "to be heard" — a reflection of the core mission: giving every eCommerce business owner the kind of intelligent support that was previously only available to large enterprises with full operations teams.</p>
+    </div>
+
+    <div class="doc-section" id="value-proposition">
+      <h2>Value Proposition</h2>
+      <p>Most Shopify store owners spend a significant portion of their day on operational tasks that do not directly generate revenue. Switching between tools, manually checking metrics, responding to support tickets, and managing automations all consume time that should be spent on product, marketing, and growth.</p>
+      <h3>The Problem Teboa Solves</h3>
+      <ul>
+        <li>Store owners use 5 to 8 separate tools that do not connect or share data cleanly</li>
+        <li>Automation setup requires technical knowledge most store owners do not have</li>
+        <li>Customer support is handled reactively and inconsistently</li>
+        <li>Performance data exists but is hard to turn into clear decisions</li>
+        <li>Growth goals are set but rarely tracked with meaningful structure</li>
+      </ul>
+      <h3>What Teboa Delivers</h3>
+      <ul>
+        <li><strong>One dashboard</strong> that shows everything happening in your store</li>
+        <li><strong>Four AI agents</strong> that each own a specific operational area</li>
+        <li><strong>Automated workflows</strong> that run without manual input once set up</li>
+        <li><strong>A support inbox</strong> where AI drafts replies before you even read the ticket</li>
+        <li><strong>OKR and KPI tracking</strong> so goals stay visible and progress is measurable</li>
+      </ul>
+      <div class="dark-box">
+        <h4>The Core Promise</h4>
+        <p>Every Shopify store owner deserves the same operational advantage that enterprise retailers have with full teams. Teboa gives you that advantage at a fraction of the cost, powered by AI that learns your store and works around the clock.</p>
+      </div>
+    </div>
+
+    <div class="doc-section" id="who-its-for">
+      <h2>Who Teboa Is For</h2>
+      <p>Teboa is designed specifically for:</p>
+      <ul>
+        <li><strong>Independent Shopify store owners</strong> running their store solo or with a small team</li>
+        <li><strong>Small eCommerce businesses</strong> that have outgrown spreadsheets but cannot afford enterprise tools</li>
+        <li><strong>Growing brands</strong> that need automation and structure without hiring additional operations staff</li>
+        <li><strong>Entrepreneurs</strong> launching a Shopify store who want to start with the right infrastructure from day one</li>
+      </ul>
+      <p>Teboa is not a fit for large enterprise retailers with dedicated operations teams, or for stores not built on Shopify.</p>
+    </div>
+
+    <div class="doc-section" id="ai-agents">
+      <h2>The Four AI Agents</h2>
+      <p>Each AI agent in Teboa owns a specific domain of your store operations. They run continuously, surface insights, and take or draft actions on your behalf. All agents are powered by Claude AI from Anthropic.</p>
+      <div class="agent-doc-grid">
+        <div class="agent-doc-card">
+          <h4>Amy</h4>
+          <span class="agent-role-tag">Store Manager</span>
+          <p>Amy monitors your store's day-to-day operations. She tracks revenue, order volume, fulfilment status, and conversion rates. She surfaces revenue leaks, flags underperforming products, and gives you a daily summary of what needs your attention. Think of Amy as your operations manager — always watching, always ready to brief you.</p>
+        </div>
+        <div class="agent-doc-card">
+          <h4>Sino</h4>
+          <span class="agent-role-tag">Automations</span>
+          <p>Sino builds and manages your automation workflows. He sets up abandoned cart recovery sequences, order confirmation emails, win-back campaigns, and custom trigger-based flows. Once configured, Sino's automations run without intervention. He also monitors automation performance and recommends improvements based on your store's data.</p>
+        </div>
+        <div class="agent-doc-card">
+          <h4>Sessy</h4>
+          <span class="agent-role-tag">Support Agent</span>
+          <p>Sessy manages your customer support inbox. She reads incoming tickets, categorises them, drafts a reply for each one, and presents them to you for approval before sending. She handles refund queries, order status questions, product questions, and escalation routing — dramatically reducing the time you spend on support while improving response quality.</p>
+        </div>
+        <div class="agent-doc-card">
+          <h4>JJ</h4>
+          <span class="agent-role-tag">Growth Agent</span>
+          <p>JJ tracks your business goals, OKRs, and KPIs. He monitors progress against targets, identifies which metrics are off track, and tells you what to prioritise each week. JJ turns your growth strategy from a document you wrote once into a live, active system that guides daily decisions. He is the agent that keeps your ambition accountable.</p>
+        </div>
+      </div>
+      <h3>How AI Agents Work</h3>
+      <p>Each agent operates within your isolated workspace. They process data from your connected Shopify store, your automation rules, your support inbox, and your defined OKRs. Agent responses are generated via the Claude AI API and are contextualised to your specific store data — not generic advice.</p>
+      <p>You interact with agents through the platform's chat interface. Each agent maintains context about your store across conversations, so you do not need to re-explain your situation each time. You can also ask Amy, Sino, Sessy, or JJ questions at any time through the "Ask AI" button in your dashboard.</p>
+    </div>
+
+    <div class="doc-section" id="dashboard">
+      <h2>Dashboard</h2>
+      <p>The Teboa dashboard is your central command centre. It is the first screen you see when you log in, and it is designed to give you a complete picture of your store's health in under 60 seconds.</p>
+      <h3>What the Dashboard Shows</h3>
+      <ul>
+        <li><strong>Revenue (MTD)</strong> — Month-to-date revenue with comparison to the previous period</li>
+        <li><strong>Total Orders</strong> — Order count with fulfilment status breakdown</li>
+        <li><strong>Conversion Rate</strong> — Store conversion rate versus your target</li>
+        <li><strong>Average Order Value</strong> — AOV tracking with trend direction</li>
+        <li><strong>Revenue Overview Chart</strong> — 6-month bar chart showing revenue trends</li>
+        <li><strong>OKR Progress</strong> — Live progress bars for your active quarterly goals</li>
+        <li><strong>Recent Orders</strong> — Latest order feed with status and amount</li>
+        <li><strong>Automation Status</strong> — Live status of your active automation workflows</li>
+      </ul>
+      <p>The dashboard updates in real time as your store data syncs from Shopify. No manual refreshing or data imports needed.</p>
+    </div>
+
+    <div class="doc-section" id="automations">
+      <h2>Automations</h2>
+      <p>Teboa's automation engine lets you build trigger-based workflows that run automatically when specific events happen in your store. No coding required.</p>
+      <h3>Automation Types</h3>
+      <ul>
+        <li><strong>Abandoned Cart Recovery</strong> — Automatically sends a recovery email sequence when a customer adds to cart but does not complete purchase</li>
+        <li><strong>Order Confirmation</strong> — Sends a branded order confirmation with relevant upsell or cross-sell content</li>
+        <li><strong>Win-Back Campaigns</strong> — Re-engages customers who have not purchased in a defined number of days</li>
+        <li><strong>Custom Triggers</strong> — Build your own workflow based on order events, customer tags, product purchases, and more</li>
+      </ul>
+      <h3>How Automations Are Built</h3>
+      <p>Sino, your Automations agent, walks you through setting up each workflow inside the platform. You define the trigger condition, the action to take, and any delay or condition rules. Sino handles the configuration and monitors performance once the automation is live.</p>
+      <p>All automations are visible from the Automation Status widget on your dashboard, showing which are live, how many times they have triggered, and whether any have errors.</p>
+    </div>
+
+    <div class="doc-section" id="support-inbox">
+      <h2>Support Inbox</h2>
+      <p>The support inbox consolidates all incoming customer messages into one interface. Every ticket is read by Sessy, your Support agent, who drafts a reply and presents it to you for review before anything is sent.</p>
+      <h3>Inbox Features</h3>
+      <ul>
+        <li>Unified inbox for all customer support messages</li>
+        <li>AI-drafted replies for every ticket — you review, edit if needed, and approve</li>
+        <li>Ticket categorisation — orders, refunds, products, general enquiries</li>
+        <li>Escalation routing for complex or high-value cases</li>
+        <li>Response time tracking</li>
+      </ul>
+      <p>The inbox is designed so that you can process your entire support queue in minutes rather than hours. Sessy does the reading, categorising, and drafting. You stay in control of what goes out.</p>
+    </div>
+
+    <div class="doc-section" id="okr-tracking">
+      <h2>OKR and Growth Tracking</h2>
+      <p>Teboa includes a built-in OKR (Objectives and Key Results) framework managed by JJ, your Growth agent. You define your quarterly objectives and the measurable key results that indicate progress.</p>
+      <h3>How It Works</h3>
+      <ul>
+        <li>Set quarterly objectives (e.g. "Grow Monthly Revenue to R100,000")</li>
+        <li>Define up to 3 key results per objective with numerical targets</li>
+        <li>JJ monitors your store metrics and maps them against your key results automatically</li>
+        <li>Progress bars update in real time on your dashboard</li>
+        <li>JJ surfaces a weekly priority — the one thing most likely to move your most lagging metric</li>
+      </ul>
+    </div>
+
+    <div class="doc-section" id="how-it-works">
+      <h2>How It Works — Getting Started</h2>
+      <p>Getting started with Teboa takes less than 10 minutes. Here is the full process from signup to a running store.</p>
+      <div class="step-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h4>Create Your Account</h4>
+          <p>Sign up at app.teboatech.com. Your secure workspace is created instantly. No setup calls or IT required.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h4>Connect Your Store</h4>
+          <p>Connect your Shopify store via OAuth in one click. Orders, products, customers, and metrics sync automatically.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h4>Meet Your AI Team</h4>
+          <p>Amy, Sino, Sessy, and JJ introduce themselves and walk you through setting up your first automations and OKRs.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <h4>Run Your Store</h4>
+          <p>Your dashboard is live. Automations are running. Support inbox is active. You focus on growth.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-section" id="shopify-integration">
+      <h2>Shopify Integration</h2>
+      <p>Teboa connects to your Shopify store via Shopify's official OAuth 2.0 integration. This is a read-and-write API integration that gives Teboa access to your store data within the permissions you grant during the connection flow.</p>
+      <h3>What Data Syncs</h3>
+      <ul>
+        <li>Orders — IDs, amounts, statuses, customer details, fulfilment information</li>
+        <li>Products — names, SKUs, inventory levels, pricing, collections</li>
+        <li>Customers — names, email addresses, order history, tags</li>
+        <li>Analytics — revenue, conversion rate, sessions, AOV</li>
+        <li>Abandoned checkouts — for automation trigger purposes</li>
+      </ul>
+      <h3>Permissions Required</h3>
+      <p>During the Shopify OAuth flow, Teboa requests the following permission scopes:</p>
+      <ul>
+        <li><code>read_orders</code> — to display and analyse your orders</li>
+        <li><code>read_products</code> — to display and analyse your products</li>
+        <li><code>read_customers</code> — to display customer data in the inbox</li>
+        <li><code>read_analytics</code> — to power the dashboard metrics</li>
+        <li><code>write_script_tags</code> — to enable automation triggers on your storefront</li>
+      </ul>
+      <p>You can revoke Teboa's access to your store at any time from your Shopify admin under Apps. Revoking access will immediately stop all syncing and automations.</p>
+    </div>
+
+    <div class="doc-section" id="tech-stack">
+      <h2>Tech Stack</h2>
+      <p>Teboa is built on a modern cloud-native stack designed to scale with your business. Every component is chosen for reliability, performance, and developer velocity.</p>
+      <div class="tech-stack-grid">
+        <div class="tech-card">
+          <div class="tech-badge">Frontend</div>
+          <h4>Next.js</h4>
+          <p>React framework for the web application. Server-side rendering for performance and SEO. Hosted on Vercel's edge network.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-badge">Hosting</div>
+          <h4>Vercel</h4>
+          <p>Global edge deployment. Automatic scaling. Zero-downtime deploys. Marketing site and app both hosted on Vercel.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-badge">Database</div>
+          <h4>Firebase</h4>
+          <p>Firestore for real-time database. Firebase Auth for user authentication. Firebase Storage for file assets. Google Cloud infrastructure.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-badge">AI</div>
+          <h4>Claude AI by Anthropic</h4>
+          <p>Powers all four AI agents. Claude processes store data, generates insights, drafts support replies, and runs the conversational interfaces.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-badge">Integration</div>
+          <h4>Shopify API</h4>
+          <p>Official Shopify Partner integration via OAuth 2.0. REST and GraphQL APIs used for store data sync and automation triggers.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-badge">Payments</div>
+          <h4>Billing Provider</h4>
+          <p>Subscription billing handled through a PCI-compliant provider. Card details are never stored on Teboa infrastructure.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-section" id="architecture">
+      <h2>Architecture Overview</h2>
+      <p>Teboa follows a multi-tenant SaaS architecture where each business account operates in complete isolation. No business can access or see the data of any other business on the platform.</p>
+      <h3>Workspace Isolation</h3>
+      <p>When you create a Teboa account, a dedicated workspace document is created in Firestore under a unique workspace ID. All your data — store metrics, orders, automations, conversations with AI agents, OKRs — lives under this workspace and is accessible only to users you have granted access to.</p>
+      <h3>Data Flow</h3>
+      <ul>
+        <li><strong>Shopify to Teboa</strong> — Store data is synced via webhook listeners and scheduled API pulls. Data is normalised and written to your Firestore workspace.</li>
+        <li><strong>User to AI Agent</strong> — When you send a message to an agent, the query plus relevant store context is sent to the Claude API. The response is streamed back to your interface.</li>
+        <li><strong>Automation Triggers</strong> — Trigger conditions are evaluated against incoming Shopify webhook events. When a condition is met, the automation action is executed.</li>
+        <li><strong>Dashboard</strong> — Dashboard metrics are computed from your workspace data and served in real time to the Next.js frontend via Firestore listeners.</li>
+      </ul>
+      <div class="dark-box">
+        <h4>AI Context Management</h4>
+        <p>Each AI agent maintains a context window that includes your store's recent metrics, active automations, open support tickets, and defined OKRs. This context is passed with every query so agents give relevant, store-specific answers rather than generic responses.</p>
+        <p>Context is scoped to your workspace and is never shared with other users or used to train models.</p>
+      </div>
+    </div>
+
+    <div class="doc-section" id="security">
+      <h2>Security and Data</h2>
+      <h3>Data Encryption</h3>
+      <ul>
+        <li>All data in transit is encrypted via TLS 1.2 or higher</li>
+        <li>All data at rest is encrypted by Firebase's default AES-256 encryption</li>
+        <li>Authentication tokens are short-lived and refreshed automatically</li>
+      </ul>
+      <h3>Access Controls</h3>
+      <ul>
+        <li>Firestore security rules enforce workspace-level access controls</li>
+        <li>No cross-workspace data access is possible at the database layer</li>
+        <li>TeboaTech staff access to production data is role-gated and audited</li>
+      </ul>
+      <h3>Compliance</h3>
+      <ul>
+        <li>POPIA compliant (Protection of Personal Information Act, South Africa)</li>
+        <li>GDPR-ready (General Data Protection Regulation, EU)</li>
+        <li>CIPC registered — TeboaTech (Pty) Ltd, Reg No: 2025/516299/07</li>
+      </ul>
+      <p>For full details, see our <a href="/privacy-policy">Privacy Policy</a> and <a href="/popia-compliance">POPIA Compliance</a> pages.</p>
+    </div>
+
+    <div class="doc-section" id="pricing">
+      <h2>Pricing</h2>
+      <p>Teboa offers four subscription plans. All plans include a 14-day free trial on the Founders Plan. No credit card required to start.</p>
+      <div class="pricing-doc-grid">
+        <div class="pricing-doc-card">
+          <h4>Starter</h4>
+          <div class="price">$19 <span>/month</span></div>
+          <p>Up to 500 orders/month. Amy and Sino. Basic automations. Email support.</p>
+        </div>
+        <div class="pricing-doc-card featured">
+          <h4>Growth</h4>
+          <div class="price">$49 <span>/month</span></div>
+          <p>Up to 2,000 orders/month. All 4 agents. Full automation suite. Priority support.</p>
+        </div>
+        <div class="pricing-doc-card">
+          <h4>Scale</h4>
+          <div class="price">$99 <span>/month</span></div>
+          <p>Unlimited orders. All 4 agents. Custom automations. Shopify OAuth. Dedicated support.</p>
+        </div>
+        <div class="pricing-doc-card">
+          <h4>Founders Plan</h4>
+          <div class="price">$5 <span>/month</span></div>
+          <p>Lifetime price. All Growth features. First 10 customers only. Never increases.</p>
+        </div>
+      </div>
+      <p>View full plan details at <a href="/pricing">teboatech.com/pricing</a>.</p>
+    </div>
+
+    <div class="doc-section" id="roadmap">
+      <h2>Roadmap</h2>
+      <p>Teboa is in active MVP development. The following features are currently live, in development, or planned:</p>
+      <h3>Currently Live (MVP)</h3>
+      <ul>
+        <li>Dashboard with real-time store metrics</li>
+        <li>Four AI agents with chat interface</li>
+        <li>OKR and KPI tracking</li>
+        <li>Automation workflow builder</li>
+        <li>Support inbox with AI-drafted replies</li>
+        <li>User authentication and workspace management</li>
+      </ul>
+      <h3>In Development</h3>
+      <ul>
+        <li>Full Shopify OAuth store connection</li>
+        <li>Live data sync from Shopify stores</li>
+        <li>Automation email sending engine</li>
+        <li>Mobile-optimised dashboard view</li>
+      </ul>
+      <h3>Planned</h3>
+      <ul>
+        <li>Multi-store support</li>
+        <li>Advanced analytics and custom reporting</li>
+        <li>Team collaboration features</li>
+        <li>API access for custom integrations</li>
+        <li>WhatsApp support channel integration</li>
+      </ul>
+      <div class="highlight-box">
+        <p>Founders Plan members get early access to every new feature before general release and have direct input into what we build next. Join at $5/month before the 10 spots close.</p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer class="page-footer">
+  <p>
+    <a href="/">Home</a>
+    <a href="/docs">Documentation</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+    <a href="/terms-of-service">Terms of Service</a>
+    <a href="/popia-compliance">POPIA Compliance</a>
+  </p>
+  <p style="margin-top:12px">© 2026 TeboaTech (Pty) Ltd. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
