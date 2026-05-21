@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GDPR Compliance | Teboa by TeboaTech</title>
+<meta name="description" content="GDPR Compliance Notice for Teboa and TeboaTech (Pty) Ltd. How we meet General Data Protection Regulation requirements for users in the EU and globally.">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="/assets/images/teboa-logo.png">
+<link rel="apple-touch-icon" href="/assets/images/teboa-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --black:#0A0A0A;--white:#EEEAE6;--off:#F7F6F3;--grey:#F0EEE9;
+    --mid:#6B6865;--border:#E5E3DE;--green:#1D7A4F;--green-bg:#EAF5EF;
+    --serif:'Playfair Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
+  }
+  html{scroll-behavior:smooth}
+  body{background:#EEEAE6;color:#0A0A0A;font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden}
+  a{color:var(--green);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .nav{background:#EEEAE6;border-bottom:1px solid var(--border);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+  .nav-logo{font-family:var(--serif);font-size:22px;font-weight:900;color:var(--black);text-decoration:none}
+  .nav-back{font-size:13px;font-weight:500;color:var(--mid);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+  .nav-back:hover{color:var(--black);text-decoration:none}
+  .nav-logo-img{height:40px;width:auto;display:block}
+  .page-hero{padding:80px 40px 60px;max-width:800px;margin:0 auto;border-bottom:1px solid var(--border)}
+  .page-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:20px;display:block}
+  .page-hero h1{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.05;letter-spacing:-2px;color:var(--black);margin-bottom:24px}
+  .page-hero p{font-size:16px;color:var(--mid);line-height:1.75;max-width:600px}
+  .page-meta{margin-top:28px;display:flex;gap:24px;flex-wrap:wrap}
+  .page-meta span{font-size:12px;color:var(--mid);background:var(--off);border:1px solid var(--border);padding:4px 12px;border-radius:20px;font-weight:500}
+  .page-content{max-width:800px;margin:0 auto;padding:60px 40px 100px}
+  .section{margin-bottom:56px}
+  .section h2{font-family:var(--serif);font-size:clamp(22px,3vw,30px);font-weight:800;color:var(--black);margin-bottom:16px;letter-spacing:-0.5px;padding-top:8px;border-top:2px solid var(--green);display:inline-block}
+  .section h3{font-size:16px;font-weight:700;color:var(--black);margin:24px 0 10px}
+  .section p{font-size:15px;color:#3A3835;line-height:1.8;margin-bottom:14px}
+  .section ul,.section ol{padding-left:22px;margin-bottom:14px}
+  .section li{font-size:15px;color:#3A3835;line-height:1.8;margin-bottom:6px}
+  .highlight-box{background:var(--green-bg);border:1px solid #B8DFC9;border-radius:12px;padding:20px 24px;margin:24px 0}
+  .highlight-box p{margin-bottom:0;color:var(--green);font-weight:500;font-size:14px}
+  .rights-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+  .right-item{background:var(--off);border:1px solid var(--border);border-radius:8px;padding:16px 18px}
+  .right-item strong{display:block;font-size:13px;color:var(--black);margin-bottom:4px}
+  .right-item span{font-size:13px;color:var(--mid)}
+  .lawful-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+  .lawful-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 20px;border-left:3px solid var(--green)}
+  .lawful-card h4{font-size:13px;font-weight:700;color:var(--black);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+  .lawful-card p{font-size:13px;color:var(--mid);line-height:1.6;margin:0}
+  .contact-box{background:var(--off);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin-top:48px}
+  .contact-box h3{font-family:var(--serif);font-size:20px;font-weight:800;margin-bottom:12px}
+  .contact-box p{font-size:14px;color:var(--mid);margin-bottom:8px}
+  .contact-box a{color:var(--green);font-weight:600}
+  .dpo-box{background:var(--black);color:var(--white);border-radius:14px;padding:36px;margin:32px 0}
+  .dpo-box h3{font-family:var(--serif);font-size:22px;font-weight:800;color:var(--white);margin-bottom:20px}
+  .dpo-row{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+  .dpo-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4);min-width:120px;padding-top:2px}
+  .dpo-value{font-size:14px;color:rgba(255,255,255,0.85)}
+  .dpo-value a{color:#C8FF00}
+  .page-footer{background:var(--black);padding:32px 40px;text-align:center}
+  .page-footer p{font-size:12px;color:rgba(255,255,255,0.3)}
+  .page-footer a{color:rgba(255,255,255,0.4);margin:0 10px;font-size:12px}
+  .page-footer a:hover{color:rgba(255,255,255,0.7);text-decoration:none}
+  @media(max-width:600px){
+    .nav{padding:16px 20px}
+    .page-hero{padding:48px 20px 40px}
+    .page-content{padding:40px 20px 80px}
+    .rights-grid,.lawful-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo"><img src="/assets/images/teboa-logo-nav.png" alt="Teboa" class="nav-logo-img"></a>
+  <a href="/" class="nav-back">← Back to teboatech.com</a>
+</nav>
+
+<div class="page-hero">
+  <span class="page-eyebrow">Legal</span>
+  <h1>GDPR Compliance</h1>
+  <p>TeboaTech (Pty) Ltd is committed to meeting the requirements of the General Data Protection Regulation (GDPR) for all users in the European Union and beyond. This notice explains exactly how we meet those obligations.</p>
+  <div class="page-meta">
+    <span>Effective Date: 21 May 2026</span>
+    <span>Last Updated: 21 May 2026</span>
+    <span>TeboaTech (Pty) Ltd</span>
+  </div>
+</div>
+
+<div class="page-content">
+
+  <div class="highlight-box">
+    <p>The GDPR applies to any organisation that processes personal data of individuals in the European Union, regardless of where the organisation is based. As a South African company with global users, TeboaTech takes GDPR compliance seriously and has built its platform with privacy as a foundation, not an afterthought.</p>
+  </div>
+
+  <div class="section">
+    <h2>1. What is the GDPR?</h2>
+    <p>The General Data Protection Regulation (EU) 2016/679 is the world's most comprehensive data protection law. It came into effect on 25 May 2018 and sets out strict rules for how organisations collect, use, store, and share personal data belonging to individuals in the European Union.</p>
+    <p>Key principles under the GDPR include lawfulness and transparency in processing, data minimisation, accuracy, storage limitation, integrity and confidentiality, and accountability. TeboaTech operates according to all of these principles.</p>
+    <p>Non-compliance with the GDPR can result in fines of up to 20 million euros or 4% of global annual turnover, whichever is higher. We take our obligations seriously.</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Our Role Under the GDPR</h2>
+    <p>Under the GDPR, the entity that determines the purposes and means of processing personal data is called the <strong>Data Controller</strong>. The entity that processes data on behalf of a controller is called the <strong>Data Processor</strong>.</p>
+    <h3>TeboaTech as Data Controller</h3>
+    <p>TeboaTech (Pty) Ltd acts as a Data Controller for the personal information of:</p>
+    <ul>
+      <li>Teboa platform users and account holders</li>
+      <li>Visitors to teboatech.com who submit contact forms</li>
+      <li>Individuals who communicate with us directly</li>
+    </ul>
+    <h3>TeboaTech as Data Processor</h3>
+    <p>When you connect your Shopify store to Teboa, we process personal data about your customers (names, email addresses, order history) on your behalf. In this relationship, you are the Data Controller and TeboaTech is the Data Processor. You are responsible for ensuring you have the lawful basis to share your customers' data with our platform.</p>
+  </div>
+
+  <div class="section">
+    <h2>3. Lawful Basis for Processing</h2>
+    <p>The GDPR requires every act of processing personal data to have a valid lawful basis. TeboaTech processes personal data under the following legal grounds:</p>
+    <div class="lawful-grid">
+      <div class="lawful-card">
+        <h4>Contract Performance</h4>
+        <p>Processing necessary to deliver the Teboa platform to subscribed users, including account creation, billing, and service delivery.</p>
+      </div>
+      <div class="lawful-card">
+        <h4>Consent</h4>
+        <p>Where you have explicitly agreed to processing, such as signing up for marketing communications or enabling optional analytics features.</p>
+      </div>
+      <div class="lawful-card">
+        <h4>Legitimate Interests</h4>
+        <p>Processing for platform security, fraud prevention, abuse detection, and service improvement, where our interests do not override your rights.</p>
+      </div>
+      <div class="lawful-card">
+        <h4>Legal Obligation</h4>
+        <p>Processing required to meet our obligations under applicable law, including tax, financial reporting, and regulatory requirements.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. Your Rights Under the GDPR</h2>
+    <p>If you are located in the European Union, you have the following rights regarding your personal data. We will respond to all requests within 30 days at no charge.</p>
+    <div class="rights-grid">
+      <div class="right-item">
+        <strong>Right of Access (Article 15)</strong>
+        <span>Request a copy of all personal data we hold about you and information about how it is used.</span>
+      </div>
+      <div class="right-item">
+        <strong>Right to Rectification (Article 16)</strong>
+        <span>Ask us to correct inaccurate or incomplete personal data without undue delay.</span>
+      </div>
+      <div class="right-item">
+        <strong>Right to Erasure (Article 17)</strong>
+        <span>Request deletion of your personal data where there is no longer a legitimate reason to retain it.</span>
+      </div>
+      <div class="right-item">
+        <strong>Right to Restriction (Article 18)</strong>
+        <span>Ask us to restrict how we process your data in certain circumstances, such as while a dispute is resolved.</span>
+      </div>
+      <div class="right-item">
+        <strong>Right to Data Portability (Article 20)</strong>
+        <span>Receive your data in a structured, machine-readable format and transfer it to another controller.</span>
+      </div>
+      <div class="right-item">
+        <strong>Right to Object (Article 21)</strong>
+        <span>Object to processing based on legitimate interests or for direct marketing purposes at any time.</span>
+      </div>
+      <div class="right-item">
+        <strong>Right to Withdraw Consent (Article 7)</strong>
+        <span>Withdraw consent at any time where processing is based on consent, without affecting prior lawful processing.</span>
+      </div>
+      <div class="right-item">
+        <strong>Right Not to be Subject to Automated Decisions (Article 22)</strong>
+        <span>Not to be subject to decisions based solely on automated processing that significantly affects you.</span>
+      </div>
+    </div>
+    <p>To exercise any of these rights, email us at <a href="mailto:privacy@teboatech.com">privacy@teboatech.com</a>. We will acknowledge your request within 3 business days and respond in full within 30 days.</p>
+  </div>
+
+  <div class="section">
+    <h2>5. Data We Collect and Why</h2>
+    <h3>Account and Platform Data</h3>
+    <ul>
+      <li><strong>Name and email address</strong> — to create and manage your account</li>
+      <li><strong>Business name and Shopify store URL</strong> — to connect your store and deliver the service</li>
+      <li><strong>Billing information</strong> — processed through our payment provider for subscription management</li>
+      <li><strong>Usage data and logs</strong> — to improve platform performance and resolve technical issues</li>
+    </ul>
+    <h3>Shopify Store Data (Processed on Your Behalf)</h3>
+    <ul>
+      <li>Order data, customer names and email addresses, product data, and store metrics</li>
+      <li>This data is processed solely to deliver the Teboa service to you</li>
+      <li>It is never used for our own marketing, shared with third parties, or used to train AI models</li>
+    </ul>
+    <h3>Website Analytics</h3>
+    <ul>
+      <li>Anonymised traffic data collected via Google Analytics</li>
+      <li>Session recordings and heatmaps via Microsoft Clarity (anonymised)</li>
+      <li>You can opt out of analytics at any time</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. International Data Transfers</h2>
+    <p>TeboaTech is a South African company. When we use services from providers based outside South Africa or the EU, personal data may be transferred internationally. We use the following safeguards to ensure these transfers comply with GDPR Article 46:</p>
+    <ul>
+      <li><strong>Standard Contractual Clauses (SCCs)</strong> approved by the European Commission with each relevant provider</li>
+      <li><strong>Data Processing Agreements (DPAs)</strong> with Firebase (Google), Vercel, Anthropic, and other processors</li>
+      <li><strong>Adequacy decisions</strong> where applicable to the destination country</li>
+    </ul>
+    <h3>Our Key Processors and Their Locations</h3>
+    <ul>
+      <li><strong>Firebase (Google LLC)</strong> — United States. DPA and SCCs in place. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
+      <li><strong>Anthropic (Claude AI)</strong> — United States. DPA in place. <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener">Anthropic Privacy Policy</a></li>
+      <li><strong>Vercel Inc.</strong> — United States. DPA and SCCs in place. <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel Privacy Policy</a></li>
+      <li><strong>Shopify Inc.</strong> — Canada (adequacy decision). <a href="https://www.shopify.com/legal/privacy" target="_blank" rel="noopener">Shopify Privacy Policy</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>7. Data Retention</h2>
+    <p>We keep personal data only for as long as necessary for the purpose it was collected or as required by applicable law:</p>
+    <ul>
+      <li><strong>Active account data</strong> — retained for the duration of your subscription</li>
+      <li><strong>Cancelled account data</strong> — retained for 30 days after cancellation to allow recovery, then permanently deleted</li>
+      <li><strong>Shopify store data</strong> — deleted within 30 days of disconnecting your store</li>
+      <li><strong>Contact and support data</strong> — retained for up to 12 months</li>
+      <li><strong>Financial records</strong> — retained for 7 years as required by applicable tax law</li>
+    </ul>
+    <p>When data reaches the end of its retention period, it is securely and permanently deleted from our systems and from all third-party processors who hold it on our behalf.</p>
+  </div>
+
+  <div class="section">
+    <h2>8. Security Measures</h2>
+    <p>We implement appropriate technical and organisational measures as required by GDPR Article 32 to ensure a level of security appropriate to the risk:</p>
+    <ul>
+      <li>TLS 1.2 or higher encryption for all data in transit</li>
+      <li>AES-256 encryption for all data at rest via Firebase</li>
+      <li>Complete workspace isolation at the database layer</li>
+      <li>Role-based access controls limiting internal access to production data</li>
+      <li>Regular security reviews and incident response procedures</li>
+    </ul>
+    <h3>Data Breach Notification</h3>
+    <p>In the event of a personal data breach that is likely to result in a risk to the rights and freedoms of individuals, we will notify the relevant supervisory authority within 72 hours of becoming aware of the breach, as required by GDPR Article 33. Affected individuals will be notified without undue delay where the breach is likely to result in a high risk to their rights.</p>
+  </div>
+
+  <div class="section">
+    <h2>9. Cookies and Tracking</h2>
+    <p>Our website uses the following technologies that may involve processing personal data:</p>
+    <ul>
+      <li><strong>Essential cookies</strong> — strictly necessary for the platform to function. No consent required.</li>
+      <li><strong>Analytics (Google Analytics)</strong> — used with your consent. You can opt out at any time using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Add-on</a>.</li>
+      <li><strong>Session recording (Microsoft Clarity)</strong> — anonymised heatmaps and session data. No personally identifiable information is recorded.</li>
+    </ul>
+    <p>We do not use advertising cookies, retargeting pixels, or any tracking technology that profiles you for third-party advertising purposes.</p>
+  </div>
+
+  <div class="section">
+    <h2>10. Data Protection Officer</h2>
+    <p>While TeboaTech is not legally required to appoint a formal Data Protection Officer under the GDPR at this stage of our scale, we have designated a responsible person to handle all data protection matters and ensure GDPR compliance across the organisation.</p>
+
+    <div class="dpo-box">
+      <h3>Data Protection Contact</h3>
+      <div class="dpo-row">
+        <span class="dpo-label">Name</span>
+        <span class="dpo-value">Xabiso Ngece</span>
+      </div>
+      <div class="dpo-row">
+        <span class="dpo-label">Title</span>
+        <span class="dpo-value">Technical Director and Co-Founder</span>
+      </div>
+      <div class="dpo-row">
+        <span class="dpo-label">Email</span>
+        <span class="dpo-value"><a href="mailto:privacy@teboatech.com">privacy@teboatech.com</a></span>
+      </div>
+      <div class="dpo-row">
+        <span class="dpo-label">Company</span>
+        <span class="dpo-value">TeboaTech (Pty) Ltd, Reg No: 2025/516299/07</span>
+      </div>
+      <div class="dpo-row">
+        <span class="dpo-label">Country</span>
+        <span class="dpo-value">Republic of South Africa</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>11. Supervisory Authority</h2>
+    <p>If you are located in the European Union and believe we have not handled your personal data in accordance with the GDPR, you have the right to lodge a complaint with your local data protection supervisory authority.</p>
+    <p>You can find your national supervisory authority through the European Data Protection Board: <a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en" target="_blank" rel="noopener">edpb.europa.eu</a></p>
+    <p>We always encourage you to contact us directly first at <a href="mailto:privacy@teboatech.com">privacy@teboatech.com</a> so we have the opportunity to resolve your concern. We respond to all privacy queries within 3 business days.</p>
+  </div>
+
+  <div class="section">
+    <h2>12. Changes to This Notice</h2>
+    <p>We may update this GDPR Compliance notice from time to time as our platform evolves or as legal requirements change. When we make material changes, we will update the date at the top of this page and notify active users by email at least 14 days before changes take effect.</p>
+  </div>
+
+  <div class="contact-box">
+    <h3>GDPR Queries and Requests</h3>
+    <p>For any GDPR-related questions, data subject requests, or concerns, contact us directly.</p>
+    <p>Email: <a href="mailto:privacy@teboatech.com">privacy@teboatech.com</a></p>
+    <p>Company: TeboaTech (Pty) Ltd, Reg No: 2025/516299/07</p>
+    <p>We will acknowledge within 3 business days and respond in full within 30 days.</p>
+  </div>
+
+</div>
+
+<footer class="page-footer">
+  <p>
+    <a href="/">Home</a>
+    <a href="/docs">Documentation</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+    <a href="/terms-of-service">Terms of Service</a>
+    <a href="/popia-compliance">POPIA Compliance</a>
+    <a href="/gdpr-compliance">GDPR Compliance</a>
+  </p>
+  <p style="margin-top:12px">© 2026 TeboaTech (Pty) Ltd. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
