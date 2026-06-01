@@ -126,24 +126,31 @@
 
 /* ── Founders urgency badge ── */
 .pkg-urgency-badge{display:inline-block;background:#FF6B35;color:#fff;font-size:11px;font-weight:700;letter-spacing:0.5px;border-radius:6px;padding:5px 12px;margin-bottom:12px;text-transform:uppercase}
-/* 3D Explore Demo CTA button */
+/* Hero demo CTA button */
 .btn-explore-demo{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  background:#8A8A8A;color:#fff;
-  font-family:var(--serif);font-size:32px;font-weight:900;letter-spacing:2px;
-  padding:22px 52px;border-radius:14px;text-decoration:none;
-  box-shadow:0 8px 0 #555, 0 12px 28px rgba(0,0,0,0.25);
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:142px;
+  background:linear-gradient(135deg,rgba(28,166,105,0.58),rgba(78,206,143,0.28));
+  color:#fff;
+  font-family:var(--sans);font-size:15px;font-weight:700;letter-spacing:0;
+  line-height:1;
+  padding:13px 24px;border-radius:999px;text-decoration:none;
+  border:1px solid rgba(255,255,255,0.38);
+  box-shadow:0 14px 30px rgba(21,128,84,0.22), inset 0 1px 0 rgba(255,255,255,0.42);
+  backdrop-filter:blur(14px) saturate(150%);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
   transform:translateY(0);
-  transition:transform .15s ease,box-shadow .15s ease;
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
   position:relative;margin-top:8px;
 }
 .btn-explore-demo:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 0 #555, 0 20px 40px rgba(0,0,0,0.3);
+  transform:translateY(-2px);
+  background:linear-gradient(135deg,rgba(32,181,113,0.68),rgba(98,220,157,0.36));
+  box-shadow:0 18px 36px rgba(21,128,84,0.28), inset 0 1px 0 rgba(255,255,255,0.5);
 }
 .btn-explore-demo:active{
-  transform:translateY(4px);
-  box-shadow:0 4px 0 #555, 0 6px 16px rgba(0,0,0,0.2);
+  transform:translateY(0);
+  box-shadow:0 10px 22px rgba(21,128,84,0.2), inset 0 1px 0 rgba(255,255,255,0.36);
 }
 /* ── Showcase sections ── */
 .showcase-section{padding:80px 40px;text-align:center;overflow:hidden;content-visibility:auto;contain-intrinsic-size:0 600px}
@@ -290,7 +297,7 @@
   </div>
 
   <div class="hero-cta-group">
-    <a href="https://app.teboatech.com" class="btn-explore-demo" target="_blank" rel="noopener">TRY TEBOA →</a>
+    <a href="https://app.teboatech.com" class="btn-explore-demo" target="_blank" rel="noopener">Try Teboa</a>
   </div>
   <p style="font-size:13px;color:var(--mid);margin-top:14px;letter-spacing:0.2px">Currently onboarding early users. Join the waitlist now.</p>
 </section>
