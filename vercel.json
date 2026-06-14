@@ -1,4 +1,21 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/sitemaps.xml",
+      "destination": "/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions",
+      "destination": "/terms-of-service",
+      "permanent": true
+    },
+    {
+      "source": "/shopify-order-confirmation-automation",
+      "destination": "/shopify-customer-retention-automation",
+      "permanent": true
+    }
+  ]
 }

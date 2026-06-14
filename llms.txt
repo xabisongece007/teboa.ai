@@ -1,0 +1,25 @@
+# Teboa
+
+> Teboa is an AI-powered eCommerce operations platform built by TeboaTech for Shopify store owners.
+
+## Primary pages
+
+- [Homepage](https://teboatech.com/): Overview of Teboa, its AI agents, platform features, pricing, and early access.
+- [About Teboa](https://teboatech.com/about): Why Teboa exists, who built it, and how it helps Shopify store owners.
+- [Pricing](https://teboatech.com/pricing): Teboa pricing plans and early-access options.
+- [Contact Us](https://teboatech.com/contact): Support, early-access, partnership, and general contact information.
+- [Documentation](https://teboatech.com/docs): Detailed Teboa documentation, platform architecture, AI agents, workflows, and getting-started information.
+- [Help Center](https://teboatech.com/help): Searchable practical answers for connecting Shopify, using Teboa AI agents, automations, support tickets, orders, customers, goals, and settings.
+- [Shopify Automation Guide](https://teboatech.com/shopify-automation): Practical guidance for automating repetitive Shopify store operations.
+- [Shopify Automation vs Multiple Apps](https://teboatech.com/shopify-automation-vs-apps): Explains how Teboa adds an AI-powered operational layer on top of Shopify and specialist apps.
+- [AI Customer Support Routing](https://teboatech.com/shopify-customer-support-automation): Guidance for understanding, routing, and escalating Shopify support requests using store context.
+- [Shopify Customer Retention Automation](https://teboatech.com/shopify-customer-retention-automation): Behavior-aware retention, win-back, and customer follow-up guidance.
+- [Privacy Policy](https://teboatech.com/privacy-policy): Teboa privacy information.
+
+## Company
+
+- Teboa is built by TeboaTech (Pty) Ltd.
+- Website: https://teboatech.com/
+- Support: support@teboatech.com
+- LinkedIn: https://www.linkedin.com/company/teboatech
+- Facebook: https://www.facebook.com/teboatech

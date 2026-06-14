@@ -1,0 +1,14 @@
+.shopify-link{
+  color:#178653!important;
+  font:inherit;
+  font-weight:inherit;
+  text-decoration:none;
+  transition:color .16s ease,text-decoration-color .16s ease;
+}
+.shopify-link:hover{
+  color:#0d6f42!important;
+  text-decoration:underline;
+  text-decoration-thickness:.08em;
+  text-underline-offset:.12em;
+}
+.shopify-store-word{color:#178653}
