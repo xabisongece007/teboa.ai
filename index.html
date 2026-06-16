@@ -1562,15 +1562,23 @@ async function sendEmailNotification(data){
 
 async function sendAutoReply(data){
   if(EMAILJS_PUBLIC_KEY === 'YOUR_EMAILJS_PUBLIC_KEY') return;
+  const fullName = `${data.firstName} ${data.lastName}`.trim();
   await emailjs.send(
     EMAILJS_SERVICE_ID,
     EMAILJS_AUTOREPLY_ID,
     {
+      to_email:      data.email,
+      email:         data.email,
+      user_email:    data.email,
+      from_email:    data.email,
+      from_name:     fullName,
+      name:          fullName,
       first_name:    data.firstName,
       reply_to:      data.email,
       plan:          data.plan,
       business_name: data.businessName,
-      platform:      data.platform
+      platform:      data.platform,
+      submitted_at:  data.submittedAt
     },
     { publicKey: EMAILJS_PUBLIC_KEY }
   );
