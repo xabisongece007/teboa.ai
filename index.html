@@ -110,6 +110,37 @@
 @media(max-width:800px){.agent-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.agent-grid{grid-template-columns:1fr}}
 
+.trusted-stack{
+  margin:18px auto -70px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  text-align:center;
+}
+.trusted-label{
+  font-family:var(--serif);
+  font-size:12px;
+  font-weight:800;
+  color:var(--mid);
+  line-height:1;
+  margin:0;
+}
+.trusted-logo{
+  height:auto;
+  display:block;
+  object-fit:contain;
+  opacity:.82;
+}
+.trusted-logo-google{width:min(260px,64vw)}
+.trusted-logo-mongodb{width:min(230px,58vw);margin-top:-2px}
+@media(max-width:720px){
+  .trusted-stack{margin:16px auto -44px;gap:8px}
+  .trusted-logo-google{width:min(220px,70vw)}
+  .trusted-logo-mongodb{width:min(200px,66vw)}
+}
+
 /* -- Team section -- */
 .team-section{padding:80px 40px;content-visibility:auto;contain-intrinsic-size:0 500px}
 .team-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:760px;margin:0 auto}
@@ -350,10 +381,10 @@
   <div class="hero-cta-group">
     <a href="https://app.teboatech.com" class="btn-explore-demo" target="_blank" rel="noopener">Try Teboa</a>
   </div>
-  <div style="margin:24px auto -88px;text-align:center;display:flex;align-items:center;justify-content:center;gap:22px 30px;flex-wrap:wrap">
-    <p style="font-family:var(--serif);font-size:12px;font-weight:800;color:var(--mid);line-height:1;margin:0;text-align:center">Trusted by</p>
-    <img src="assets/images/Google_for_Startups_logo.png" alt="Google for Startups" style="width:min(260px,65vw);height:auto;display:block;margin:0" loading="lazy" decoding="async">
-    <img src="assets/images/mongodb-startups-trimmed.png" alt="MongoDB for Startups" style="width:min(220px,58vw);height:auto;display:block;margin:0" loading="lazy" decoding="async">
+  <div class="trusted-stack" aria-label="Trusted by">
+    <p class="trusted-label">Trusted By</p>
+    <img class="trusted-logo trusted-logo-google" src="assets/images/Google_for_Startups_logo.png" alt="Google for Startups" loading="lazy" decoding="async">
+    <img class="trusted-logo trusted-logo-mongodb" src="assets/images/mongodb-startups-trimmed.png" alt="MongoDB for Startups" loading="lazy" decoding="async">
   </div>
 </section>
 
@@ -1067,43 +1098,6 @@
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section class="team-section fade" id="team" style="background:var(--off)">
-  <div class="inner" style="text-align:center">
-    <span class="section-eyebrow">Who We Are</span>
-    <h2 style="font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;color:var(--black);margin:16px auto 16px;max-width:660px">The Team Behind Teboa</h2>
-    <p style="font-size:16px;color:var(--mid);line-height:1.75;max-width:540px;margin:0 auto 48px;font-weight:300">Two founders. One mission. Give every eCommerce business an unfair advantage.</p>
-    <div class="team-grid">
-      <a href="https://linkedin.com/in/xabiso-ngece" target="_blank" rel="noopener" class="team-card team-card-link">
-        <img src="assets/images/Xabiso-Ngece.png" alt="Xabiso Ngece" class="team-avatar-photo" loading="lazy" decoding="async">
-        <div class="team-info">
-          <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:6px">
-            <h4 class="team-name">Xabiso Ngece</h4>
-            <span class="team-linkedin" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </span>
-          </div>
-          <span class="team-role">Technical Director &amp; Co-Founder</span>
-          <p class="team-desc">Builds the systems that power Teboa. His focus: AI, automation, and infrastructure that scales without breaking.</p>
-        </div>
-      </a>
-      <a href="https://linkedin.com/in/latita-benya" target="_blank" rel="noopener" class="team-card team-card-link">
-        <img src="assets/images/Latita-Benya.jpg" alt="Latita Benya" class="team-avatar-photo" loading="lazy" decoding="async">
-        <div class="team-info">
-          <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:6px">
-            <h4 class="team-name">Latita Benya</h4>
-            <span class="team-linkedin" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </span>
-          </div>
-          <span class="team-role">Marketing Director &amp; Co-Founder</span>
-          <p class="team-desc">Drives the growth strategy and brand. Her focus: making sure the right store owners find Teboa and never look back.</p>
-        </div>
-      </a>
     </div>
   </div>
 </section>
