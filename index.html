@@ -162,8 +162,16 @@
 .review-note{font-size:13px;color:var(--mid);line-height:1.6}
 .google-review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .google-review-card{background:rgba(255,255,255,.88);border:1px solid var(--border);border-radius:16px;padding:20px;min-height:178px;display:flex;flex-direction:column;justify-content:space-between}
+.google-review-card.actual{justify-content:flex-start}
 .google-review-card h3{font-family:var(--serif);font-size:20px;line-height:1.2;margin-bottom:10px}
 .google-review-card p{font-size:13px;color:var(--mid);line-height:1.65}
+.google-review-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.google-review-avatar{width:38px;height:38px;border-radius:50%;object-fit:cover;background:var(--off);border:1px solid var(--border)}
+.google-review-avatar-fallback{width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--green-bg);color:var(--green);font-weight:800;border:1px solid #B8DFC9}
+.google-review-person strong{display:block;font-size:14px;color:var(--black)}
+.google-review-person span{display:block;font-size:12px;color:var(--mid);margin-top:2px}
+.google-review-rating{color:#fbbc04;font-size:13px;letter-spacing:1px;margin-bottom:10px}
+.google-review-text{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
 .review-source{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green)}
 .google-reviews-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px;color:var(--mid);font-size:12px}
 .google-reviews-footer a{display:inline-flex;align-items:center;gap:8px;background:var(--black);color:var(--white);border-radius:999px;padding:11px 18px;font-size:13px;font-weight:700;text-decoration:none}
@@ -439,34 +447,34 @@
 </section>
 
 <!-- AUTO-SYNCING REVIEWS -->
-<section class="auto-syncing-reviews-section fade" id="google-reviews">
+<section class="auto-syncing-reviews-section fade" id="google-reviews" data-google-reviews-section>
   <div class="inner">
     <span class="section-eyebrow">Live Google Reviews</span>
     <h2>Fresh feedback from Google Reviews.</h2>
     <p class="auto-syncing-reviews-sub">Published Google reviews can auto-sync here once connected, so visitors see fresh proof without manual website updates.</p>
 
-    <div class="google-reviews-shell" aria-label="Auto-syncing Google reviews preview">
+    <div class="google-reviews-shell" aria-label="Auto-syncing Google reviews">
       <div class="google-reviews-header">
         <div class="google-title">
           <span class="google-mark" aria-label="Google"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></span>
           <div class="google-title-meta">
-            <strong>Reviews for TeboaTech</strong>
-            <span>Auto-syncing published reviews</span>
+            <strong data-google-reviews-name>Reviews for TeboaTech</strong>
+            <span data-google-reviews-meta>Auto-syncing published reviews</span>
           </div>
         </div>
         <span class="review-sync-pill">Auto-syncing reviews</span>
       </div>
 
       <div class="google-score-card">
-        <div class="google-score-number">Live</div>
+        <div class="google-score-number" data-google-reviews-rating>Live</div>
         <div>
-          <div class="review-stars" aria-label="Review stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="review-status">Ready for published reviews</p>
-          <p class="review-note">This section is designed to show approved Google reviews automatically after they are published and the review feed is connected.</p>
+          <div class="review-stars" aria-label="Review stars" data-google-reviews-stars>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-status" data-google-reviews-status>Ready for published reviews</p>
+          <p class="review-note" data-google-reviews-note>This section is designed to show approved Google reviews automatically after they are published and the review feed is connected.</p>
         </div>
       </div>
 
-      <div class="google-review-grid">
+      <div class="google-review-grid" data-google-reviews-grid>
         <article class="google-review-card">
           <div>
             <h3>Review stream ready</h3>
@@ -491,8 +499,8 @@
       </div>
 
       <div class="google-reviews-footer">
-        <a href="https://www.google.com/search?q=TeboaTech+reviews" target="_blank" rel="noopener">Open Google Reviews &rarr;</a>
-        <span>New reviews appear after they are published on Google and the feed is connected.</span>
+        <a href="https://www.google.com/search?q=TeboaTech+reviews" target="_blank" rel="noopener" data-google-reviews-link>Open Google Reviews &rarr;</a>
+        <span data-google-reviews-footer-note>New reviews appear after they are published on Google and the feed is connected.</span>
       </div>
     </div>
   </div>
@@ -1725,7 +1733,100 @@ async function submitForm(){
   }
 }
 
+function escapeGoogleReviewHtml(value) {
+  return String(value || "").replace(/[&<>"']/g, function(char) {
+    return ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[char];
+  });
+}
+
+function renderGoogleReviewStars(rating) {
+  const safeRating = Number(rating) || 0;
+  const rounded = Math.max(0, Math.min(5, Math.round(safeRating)));
+  return "&#9733;".repeat(rounded) + "&#9734;".repeat(5 - rounded);
+}
+
+function getGoogleReviewInitial(name) {
+  return String(name || "G").trim().slice(0, 1).toUpperCase() || "G";
+}
+
+function createGoogleReviewCard(review) {
+  const author = escapeGoogleReviewHtml(review.authorName || "Google reviewer");
+  const date = escapeGoogleReviewHtml(review.relativeTimeDescription || "Published on Google");
+  const text = escapeGoogleReviewHtml(review.text || "Published Google review.");
+  const rating = review.rating || 5;
+  const stars = renderGoogleReviewStars(rating);
+  const avatar = review.profilePhotoUrl
+    ? '<img class="google-review-avatar" src="' + escapeGoogleReviewHtml(review.profilePhotoUrl) + '" alt="' + author + ' Google review photo" loading="lazy">'
+    : '<span class="google-review-avatar-fallback" aria-hidden="true">' + escapeGoogleReviewHtml(getGoogleReviewInitial(author)) + '</span>';
+
+  return '<article class="google-review-card actual">' +
+    '<div class="google-review-meta">' + avatar +
+    '<div class="google-review-person"><strong>' + author + '</strong><span>' + date + '</span></div></div>' +
+    '<div class="google-review-rating" aria-label="' + escapeGoogleReviewHtml(String(rating)) + ' star Google review">' + stars + '</div>' +
+    '<p class="google-review-text">' + text + '</p>' +
+    '<div class="review-source"><span>Published on Google</span><span>' + stars + '</span></div>' +
+    '</article>';
+}
+
+async function initGoogleReviews() {
+  const section = document.querySelector("[data-google-reviews-section]");
+  if (!section || !window.fetch) return;
+
+  const nameEl = section.querySelector("[data-google-reviews-name]");
+  const metaEl = section.querySelector("[data-google-reviews-meta]");
+  const ratingEl = section.querySelector("[data-google-reviews-rating]");
+  const starsEl = section.querySelector("[data-google-reviews-stars]");
+  const statusEl = section.querySelector("[data-google-reviews-status]");
+  const noteEl = section.querySelector("[data-google-reviews-note]");
+  const gridEl = section.querySelector("[data-google-reviews-grid]");
+  const linkEl = section.querySelector("[data-google-reviews-link]");
+  const footerNoteEl = section.querySelector("[data-google-reviews-footer-note]");
+
+  try {
+    const response = await fetch("/api/google-reviews");
+    const data = await response.json();
+
+    if (data.url && linkEl) linkEl.href = data.url;
+    if (!response.ok) throw new Error(data.message || "Google reviews unavailable");
+
+    if (!data.configured) {
+      if (statusEl) statusEl.textContent = "Feed waiting for connection";
+      if (noteEl) noteEl.textContent = "Add the Google Places API key and TeboaTech Place ID in Vercel to display published Business Profile reviews here.";
+      if (footerNoteEl) footerNoteEl.textContent = "The layout is ready. Reviews will auto-sync after the Google feed is connected.";
+      return;
+    }
+
+    const businessName = data.name || "TeboaTech";
+    const rating = Number(data.rating) || 0;
+    const totalReviews = data.totalReviews || 0;
+    const starText = renderGoogleReviewStars(rating);
+
+    if (nameEl) nameEl.textContent = "Reviews for " + businessName;
+    if (metaEl) metaEl.textContent = totalReviews ? rating.toFixed(1) + " rating from " + totalReviews + " Google reviews" : "Published Google reviews";
+    if (ratingEl) ratingEl.textContent = rating ? rating.toFixed(1) : "Live";
+    if (starsEl) starsEl.innerHTML = starText;
+    if (statusEl) statusEl.textContent = totalReviews ? totalReviews + " published Google reviews" : "Published Google reviews";
+    if (noteEl) noteEl.textContent = "Showing TeboaTech Business Profile reviews published on Google.";
+    if (footerNoteEl) footerNoteEl.textContent = "Reviews auto-sync from Google after publication.";
+
+    if (gridEl && Array.isArray(data.reviews) && data.reviews.length) {
+      gridEl.innerHTML = data.reviews.slice(0, 3).map(createGoogleReviewCard).join("");
+    }
+  } catch (error) {
+    if (statusEl) statusEl.textContent = "Google reviews feed unavailable right now";
+    if (noteEl) noteEl.textContent = "The reviews section is still live, but Google did not return the Business Profile feed on this request.";
+    if (footerNoteEl) footerNoteEl.textContent = "Try again later or check the Google Places configuration.";
+  }
+}
+
 initCookieConsent();
+initGoogleReviews();
 
 document.querySelectorAll('.btn-black,.btn-outline,.btn-white,.btn-ghost-w,.btn-black-full,.btn-outline-full,.form-submit,.wa-float').forEach(el => {
   el.addEventListener('click', () => trackEvent('CTA_Click'));
