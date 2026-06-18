@@ -1797,7 +1797,7 @@ async function initGoogleReviews() {
 
     if (!data.configured) {
       if (statusEl) statusEl.textContent = "Feed waiting for connection";
-      if (noteEl) noteEl.textContent = "Add the Google Places API key and TeboaTech Place ID in Vercel to display published Business Profile reviews here.";
+      if (noteEl) noteEl.textContent = "Add Google Business Profile OAuth credentials in Vercel to display TeboaTech's published Business Profile reviews here. The older Places API fallback also works if you add a Place ID.";
       if (footerNoteEl) footerNoteEl.textContent = "The layout is ready. Reviews will auto-sync after the Google feed is connected.";
       return;
     }
@@ -1821,7 +1821,7 @@ async function initGoogleReviews() {
   } catch (error) {
     if (statusEl) statusEl.textContent = "Google reviews feed unavailable right now";
     if (noteEl) noteEl.textContent = "The reviews section is still live, but Google did not return the Business Profile feed on this request.";
-    if (footerNoteEl) footerNoteEl.textContent = "Try again later or check the Google Places configuration.";
+    if (footerNoteEl) footerNoteEl.textContent = "Try again later or check the Google reviews API configuration.";
   }
 }
 
