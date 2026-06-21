@@ -110,35 +110,62 @@
 @media(max-width:800px){.agent-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.agent-grid{grid-template-columns:1fr}}
 
-.trusted-stack{
-  margin:18px auto -42px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:22px;
+.backed-strip{
+  margin:22px auto -42px;
+  width:min(100%,960px);
   text-align:center;
 }
-.trusted-label{
-  font-family:var(--serif);
-  font-size:12px;
-  font-weight:800;
+.backed-strip-label{
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
   color:var(--mid);
-  line-height:1;
-  margin:0;
+  margin:0 0 18px;
 }
-.trusted-logo{
-  height:auto;
+.backed-strip-wrap{
+  overflow:hidden;
+  width:100%;
+  -webkit-mask:linear-gradient(90deg,transparent,#fff 10%,#fff 90%,transparent);
+  mask:linear-gradient(90deg,transparent,#fff 10%,#fff 90%,transparent);
+}
+.backed-strip-track{
+  display:flex;
+  align-items:center;
+  width:max-content;
+  animation:backedScroll 24s linear infinite;
+  will-change:transform;
+}
+.backed-strip-track:hover{animation-play-state:paused}
+.backed-strip-item{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 72px;
+  flex-shrink:0;
+  height:112px;
+}
+.backed-strip-logo{
   display:block;
+  width:auto;
   object-fit:contain;
-  opacity:.82;
+  opacity:.72;
+  filter:grayscale(1);
+  transition:opacity .2s,filter .2s;
 }
-.trusted-logo-google{width:min(260px,64vw)}
-.trusted-logo-mongodb{width:min(230px,58vw);margin-top:0}
+.backed-strip-item:hover .backed-strip-logo{
+  opacity:1;
+  filter:grayscale(0);
+}
+.backed-strip-logo.google{height:54px}
+.backed-strip-logo.mongodb{height:78px}
+@keyframes backedScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(max-width:720px){
-  .trusted-stack{margin:16px auto -28px;gap:16px}
-  .trusted-logo-google{width:min(220px,70vw)}
-  .trusted-logo-mongodb{width:min(200px,66vw)}
+  .backed-strip{margin:18px auto -28px}
+  .backed-strip-label{font-size:10px;margin-bottom:14px}
+  .backed-strip-item{padding:0 38px;height:88px}
+  .backed-strip-logo.google{height:40px}
+  .backed-strip-logo.mongodb{height:58px}
 }
 
 /* -- Auto-syncing Google reviews -- */
@@ -400,10 +427,16 @@
   <div class="hero-cta-group">
     <a href="https://app.teboatech.com" class="btn-explore-demo" target="_blank" rel="noopener">Try Teboa</a>
   </div>
-  <div class="trusted-stack" aria-label="Trusted by">
-    <p class="trusted-label">Trusted By</p>
-    <img class="trusted-logo trusted-logo-google" src="assets/images/Google_for_Startups_logo.png" alt="Google for Startups" loading="lazy" decoding="async">
-    <img class="trusted-logo trusted-logo-mongodb" src="assets/images/mongodb-startups-trimmed.png" alt="MongoDB for Startups" loading="lazy" decoding="async">
+  <div class="backed-strip" aria-label="Backed by leading startup programs">
+    <p class="backed-strip-label">Backed by leading startup programs</p>
+    <div class="backed-strip-wrap">
+      <div class="backed-strip-track">
+        <div class="backed-strip-item"><img class="backed-strip-logo google" src="assets/images/Google_for_Startups_logo.png" alt="Google for Startups" loading="lazy" decoding="async"></div>
+        <div class="backed-strip-item"><img class="backed-strip-logo mongodb" src="assets/images/mongodb-startups-trimmed.png" alt="MongoDB for Startups" loading="lazy" decoding="async"></div>
+        <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo google" src="assets/images/Google_for_Startups_logo.png" alt="Startup program logo" loading="lazy" decoding="async"></div>
+        <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo mongodb" src="assets/images/mongodb-startups-trimmed.png" alt="Startup program logo" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
   </div>
 </section>
 
