@@ -1168,8 +1168,8 @@
 <section class="auto-syncing-reviews-section fade" id="google-reviews" data-google-reviews-section>
   <div class="inner">
     <span class="section-eyebrow">Live Google Reviews</span>
-    <h2>Fresh feedback from Google Reviews.</h2>
-    <p class="auto-syncing-reviews-sub">Published Google reviews can auto-sync here once connected, so visitors see fresh proof without manual website updates.</p>
+    <h2>See what clients say on Google.</h2>
+    <p class="auto-syncing-reviews-sub">Open TeboaTech's Google reviews to see recent client feedback and public ratings.</p>
 
     <div class="google-reviews-shell" aria-label="Auto-syncing Google reviews">
       <div class="google-reviews-header">
@@ -1177,7 +1177,7 @@
           <span class="google-mark" aria-label="Google"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></span>
           <div class="google-title-meta">
             <strong data-google-reviews-name>Reviews for TeboaTech</strong>
-            <span data-google-reviews-meta>Auto-syncing published reviews</span>
+            <span data-google-reviews-meta>Public Google reviews</span>
           </div>
         </div>
         <span class="review-sync-pill">Auto-syncing reviews</span>
@@ -1187,30 +1187,30 @@
         <div class="google-score-number" data-google-reviews-rating>Live</div>
         <div>
           <div class="review-stars" aria-label="Review stars" data-google-reviews-stars>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="review-status" data-google-reviews-status>Ready for published reviews</p>
-          <p class="review-note" data-google-reviews-note>This section is designed to show approved Google reviews automatically after they are published and the review feed is connected.</p>
+          <p class="review-status" data-google-reviews-status>Open our Google reviews</p>
+          <p class="review-note" data-google-reviews-note">Click below to view TeboaTech's public Google reviews and recent client feedback.</p>
         </div>
       </div>
 
       <div class="google-review-grid" data-google-reviews-grid>
         <article class="google-review-card">
           <div>
-            <h3>Review stream ready</h3>
-            <p>New published Google reviews can appear here automatically, giving visitors fresh proof without manual website edits.</p>
+            <h3>Read verified reviews</h3>
+            <p>Open TeboaTech's Google review page to see public feedback from real clients.</p>
           </div>
           <div class="review-source"><span>Google Reviews</span><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
         </article>
         <article class="google-review-card">
           <div>
-            <h3>Verified customer feedback</h3>
-            <p>The section is built around published reviews only, keeping Teboa's social proof clean, current, and trustworthy.</p>
+            <h3>See public ratings</h3>
+            <p>Check our Google profile for live ratings and published customer comments.</p>
           </div>
           <div class="review-source"><span>Auto-syncing reviews</span><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
         </article>
         <article class="google-review-card">
           <div>
-            <h3>Fresh social proof</h3>
-            <p>As Teboa collects reviews, visitors will see recent feedback in a premium review layout that matches the site.</p>
+            <h3>View the full profile</h3>
+            <p>Visit Google directly to browse TeboaTech reviews, ratings, and profile details.</p>
           </div>
           <div class="review-source"><span>Published on Google</span><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
         </article>
@@ -1218,7 +1218,7 @@
 
       <div class="google-reviews-footer">
         <a href="https://www.google.com/search?q=TeboaTech+reviews" target="_blank" rel="noopener" data-google-reviews-link>Open Google Reviews &rarr;</a>
-        <span data-google-reviews-footer-note>New reviews appear after they are published on Google and the feed is connected.</span>
+        <span data-google-reviews-footer-note>Click through to Google to view TeboaTech's reviews.</span>
       </div>
     </div>
   </div>
@@ -1839,9 +1839,9 @@ async function initGoogleReviews() {
     if (!response.ok) throw new Error(data.message || "Google reviews unavailable");
 
     if (!data.configured) {
-      if (statusEl) statusEl.textContent = "Feed waiting for connection";
-      if (noteEl) noteEl.textContent = "Add Google Business Profile OAuth credentials in Vercel to display TeboaTech's published Business Profile reviews here. The older Places API fallback also works if you add a Place ID.";
-      if (footerNoteEl) footerNoteEl.textContent = "The layout is ready. Reviews will auto-sync after the Google feed is connected.";
+      if (statusEl) statusEl.textContent = "Open our Google reviews";
+      if (noteEl) noteEl.textContent = "Click below to view TeboaTech's public Google reviews and client feedback.";
+      if (footerNoteEl) footerNoteEl.textContent = "Use the button below to open TeboaTech's Google reviews.";
       return;
     }
 
@@ -1851,20 +1851,20 @@ async function initGoogleReviews() {
     const starText = renderGoogleReviewStars(rating);
 
     if (nameEl) nameEl.textContent = "Reviews for " + businessName;
-    if (metaEl) metaEl.textContent = totalReviews ? rating.toFixed(1) + " rating from " + totalReviews + " Google reviews" : "Published Google reviews";
+    if (metaEl) metaEl.textContent = totalReviews ? rating.toFixed(1) + " rating from " + totalReviews + " Google reviews" : "Public Google reviews";
     if (ratingEl) ratingEl.textContent = rating ? rating.toFixed(1) : "Live";
     if (starsEl) starsEl.innerHTML = starText;
-    if (statusEl) statusEl.textContent = totalReviews ? totalReviews + " published Google reviews" : "Published Google reviews";
-    if (noteEl) noteEl.textContent = "Showing TeboaTech Business Profile reviews published on Google.";
-    if (footerNoteEl) footerNoteEl.textContent = "Reviews auto-sync from Google after publication.";
+    if (statusEl) statusEl.textContent = totalReviews ? "Read " + totalReviews + " Google reviews" : "Open our Google reviews";
+    if (noteEl) noteEl.textContent = "Open Google to read TeboaTech's public reviews and ratings.";
+    if (footerNoteEl) footerNoteEl.textContent = "Click through to Google to read TeboaTech reviews.";
 
     if (gridEl && Array.isArray(data.reviews) && data.reviews.length) {
       gridEl.innerHTML = data.reviews.slice(0, 3).map(createGoogleReviewCard).join("");
     }
   } catch (error) {
-    if (statusEl) statusEl.textContent = "Google reviews feed unavailable right now";
-    if (noteEl) noteEl.textContent = "The reviews section is still live, but Google did not return the Business Profile feed on this request.";
-    if (footerNoteEl) footerNoteEl.textContent = "Try again later or check the Google reviews API configuration.";
+    if (statusEl) statusEl.textContent = "Open our Google reviews";
+    if (noteEl) noteEl.textContent = "Google's live feed is unavailable right now, but you can still open TeboaTech's public reviews below.";
+    if (footerNoteEl) footerNoteEl.textContent = "Use the button below to open TeboaTech's Google reviews.";
   }
 }
 
