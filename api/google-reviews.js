@@ -18,6 +18,14 @@ function json(res, statusCode, body) {
   res.end(JSON.stringify(body));
 }
 
+function normalizeResourceId(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return raw;
+
+  const parts = raw.split("/").filter(Boolean);
+  return parts[parts.length - 1] || raw;
+}
+
 function normalizeReview(review) {
   return {
     authorName: review.author_name || "Google reviewer",
@@ -83,8 +91,8 @@ async function loadBusinessProfileReviews({
     refreshToken,
   });
 
-  const account = encodeURIComponent(accountId);
-  const location = encodeURIComponent(locationId);
+  const account = encodeURIComponent(normalizeResourceId(accountId));
+  const location = encodeURIComponent(normalizeResourceId(locationId));
   const params = new URLSearchParams({
     pageSize: "10",
     orderBy: "updateTime desc",
@@ -168,7 +176,17 @@ module.exports = async function handler(req, res) {
     clientSecret: process.env.GOOGLE_BUSINESS_CLIENT_SECRET,
     refreshToken: process.env.GOOGLE_BUSINESS_REFRESH_TOKEN,
   };
-  const hasBusinessProfileConfig = Object.values(businessProfileConfig).every(Boolean);
+  const businessProfileRequired = [
+    ["accountId", "GOOGLE_BUSINESS_ACCOUNT_ID"],
+    ["locationId", "GOOGLE_BUSINESS_LOCATION_ID"],
+    ["clientId", "GOOGLE_BUSINESS_CLIENT_ID"],
+    ["clientSecret", "GOOGLE_BUSINESS_CLIENT_SECRET"],
+    ["refreshToken", "GOOGLE_BUSINESS_REFRESH_TOKEN"],
+  ];
+  const missingBusinessProfileEnv = businessProfileRequired
+    .filter(([key]) => !businessProfileConfig[key])
+    .map(([, name]) => name);
+  const hasBusinessProfileConfig = missingBusinessProfileEnv.length === 0;
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   const placeId = process.env.GOOGLE_PLACE_ID;
 
@@ -203,7 +221,8 @@ module.exports = async function handler(req, res) {
     name: "TeboaTech",
     url: fallbackProfileUrl,
     reviews: [],
-    message:
-      "Add Google Business Profile OAuth credentials or Google Places API credentials.",
+    message: missingBusinessProfileEnv.length
+      ? `Google reviews feed is waiting for: ${missingBusinessProfileEnv.join(", ")}.`
+      : "Add Google Business Profile OAuth credentials or Google Places API credentials.",
   });
 };
