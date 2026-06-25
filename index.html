@@ -174,42 +174,6 @@
   .backed-strip-logo.miro{height:34px}
 }
 
-/* -- Auto-syncing Google reviews -- */
-.auto-syncing-reviews-section{padding:88px 40px;background:linear-gradient(180deg,var(--white) 0%,var(--off) 100%);border-bottom:1px solid var(--border);content-visibility:auto;contain-intrinsic-size:0 680px}
-.auto-syncing-reviews-section .inner{max-width:980px;margin:0 auto}
-.auto-syncing-reviews-section h2{font-family:var(--serif);font-size:clamp(34px,5vw,58px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;text-align:center;margin:0 auto 14px;max-width:760px}
-.auto-syncing-reviews-sub{max-width:660px;margin:0 auto 38px;text-align:center;color:var(--mid);font-size:16px;line-height:1.7}
-.google-reviews-shell{border:1px solid rgba(255,255,255,.78);background:rgba(255,255,255,.72);box-shadow:0 22px 70px rgba(15,15,15,.10);border-radius:24px;padding:24px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-.google-reviews-header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;flex-wrap:wrap}
-.google-title{display:flex;align-items:center;gap:14px}
-.google-title-meta strong{display:block;font-size:18px;color:var(--black);margin-bottom:3px}
-.google-title-meta span{display:block;font-size:13px;color:var(--mid)}
-.google-mark{font-size:26px;font-weight:800;letter-spacing:-1px;font-family:Arial,sans-serif;line-height:1}
-.google-mark span:nth-child(1){color:#4285f4}.google-mark span:nth-child(2){color:#ea4335}.google-mark span:nth-child(3){color:#fbbc04}.google-mark span:nth-child(4){color:#4285f4}.google-mark span:nth-child(5){color:#34a853}.google-mark span:nth-child(6){color:#ea4335}
-.review-sync-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #B8DFC9;background:var(--green-bg);color:var(--green);border-radius:999px;padding:8px 14px;font-size:12px;font-weight:700;letter-spacing:.3px}
-.review-sync-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(29,122,79,.12)}
-.google-score-card{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;border:1px solid var(--border);background:rgba(255,255,255,.86);border-radius:18px;padding:22px;margin-bottom:18px}
-.google-score-number{font-family:var(--serif);font-size:42px;font-weight:900;line-height:1;color:var(--black)}
-.review-stars{color:#fbbc04;font-size:18px;letter-spacing:1px;margin-bottom:8px}
-.review-status{font-size:15px;font-weight:700;color:var(--black);margin-bottom:5px}
-.review-note{font-size:13px;color:var(--mid);line-height:1.6}
-.google-review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.google-review-card{background:rgba(255,255,255,.88);border:1px solid var(--border);border-radius:16px;padding:20px;min-height:178px;display:flex;flex-direction:column;justify-content:space-between}
-.google-review-card.actual{justify-content:flex-start}
-.google-review-card h3{font-family:var(--serif);font-size:20px;line-height:1.2;margin-bottom:10px}
-.google-review-card p{font-size:13px;color:var(--mid);line-height:1.65}
-.google-review-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.google-review-avatar{width:38px;height:38px;border-radius:50%;object-fit:cover;background:var(--off);border:1px solid var(--border)}
-.google-review-avatar-fallback{width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--green-bg);color:var(--green);font-weight:800;border:1px solid #B8DFC9}
-.google-review-person strong{display:block;font-size:14px;color:var(--black)}
-.google-review-person span{display:block;font-size:12px;color:var(--mid);margin-top:2px}
-.google-review-rating{color:#fbbc04;font-size:13px;letter-spacing:1px;margin-bottom:10px}
-.google-review-text{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
-.review-source{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green)}
-.google-reviews-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px;color:var(--mid);font-size:12px}
-.google-reviews-footer a{display:inline-flex;align-items:center;gap:8px;background:var(--black);color:var(--white);border-radius:999px;padding:11px 18px;font-size:13px;font-weight:700;text-decoration:none}
-@media(max-width:760px){.auto-syncing-reviews-section{padding:56px 20px}.google-reviews-shell{padding:18px;border-radius:18px}.google-score-card{grid-template-columns:1fr}.google-review-grid{grid-template-columns:1fr}.google-reviews-footer{align-items:flex-start;flex-direction:column}.google-reviews-footer a{width:100%;justify-content:center}}
-
 /* Footer social links */
 .footer-socials{display:flex;align-items:center;gap:10px;margin-top:18px}
 .footer-social-link{width:38px;height:38px;border:1px solid rgba(255,255,255,0.14);border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.06);transition:background .18s ease,border-color .18s ease,transform .18s ease}
@@ -1164,66 +1128,6 @@
   </div>
 </section>
 
-<!-- AUTO-SYNCING REVIEWS -->
-<section class="auto-syncing-reviews-section fade" id="google-reviews" data-google-reviews-section>
-  <div class="inner">
-    <span class="section-eyebrow">Live Google Reviews</span>
-    <h2>See what clients say on Google.</h2>
-    <p class="auto-syncing-reviews-sub">Open TeboaTech's Google reviews to see recent client feedback and public ratings.</p>
-
-    <div class="google-reviews-shell" aria-label="Auto-syncing Google reviews">
-      <div class="google-reviews-header">
-        <div class="google-title">
-          <span class="google-mark" aria-label="Google"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></span>
-          <div class="google-title-meta">
-            <strong data-google-reviews-name>Reviews for TeboaTech</strong>
-            <span data-google-reviews-meta>Public Google reviews</span>
-          </div>
-        </div>
-        <span class="review-sync-pill">Auto-syncing reviews</span>
-      </div>
-
-      <div class="google-score-card">
-        <div class="google-score-number" data-google-reviews-rating>Live</div>
-        <div>
-          <div class="review-stars" aria-label="Review stars" data-google-reviews-stars>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="review-status" data-google-reviews-status>Open our Google reviews</p>
-          <p class="review-note" data-google-reviews-note">Click below to view TeboaTech's public Google reviews and recent client feedback.</p>
-        </div>
-      </div>
-
-      <div class="google-review-grid" data-google-reviews-grid>
-        <article class="google-review-card">
-          <div>
-            <h3>Read verified reviews</h3>
-            <p>Open TeboaTech's Google review page to see public feedback from real clients.</p>
-          </div>
-          <div class="review-source"><span>Google Reviews</span><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-        </article>
-        <article class="google-review-card">
-          <div>
-            <h3>See public ratings</h3>
-            <p>Check our Google profile for live ratings and published customer comments.</p>
-          </div>
-          <div class="review-source"><span>Auto-syncing reviews</span><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-        </article>
-        <article class="google-review-card">
-          <div>
-            <h3>View the full profile</h3>
-            <p>Visit Google directly to browse TeboaTech reviews, ratings, and profile details.</p>
-          </div>
-          <div class="review-source"><span>Published on Google</span><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-        </article>
-      </div>
-
-      <div class="google-reviews-footer">
-        <a href="https://www.google.com/search?q=TeboaTech+reviews" target="_blank" rel="noopener" data-google-reviews-link>Open Google Reviews &rarr;</a>
-        <span data-google-reviews-footer-note>Click through to Google to view TeboaTech's reviews.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- RESOURCES -->
 <section class="resources-section fade" id="resources">
   <div class="resources-inner">
@@ -1776,100 +1680,7 @@ async function submitForm(){
   }
 }
 
-function escapeGoogleReviewHtml(value) {
-  return String(value || "").replace(/[&<>"']/g, function(char) {
-    return ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    })[char];
-  });
-}
-
-function renderGoogleReviewStars(rating) {
-  const safeRating = Number(rating) || 0;
-  const rounded = Math.max(0, Math.min(5, Math.round(safeRating)));
-  return "&#9733;".repeat(rounded) + "&#9734;".repeat(5 - rounded);
-}
-
-function getGoogleReviewInitial(name) {
-  return String(name || "G").trim().slice(0, 1).toUpperCase() || "G";
-}
-
-function createGoogleReviewCard(review) {
-  const author = escapeGoogleReviewHtml(review.authorName || "Google reviewer");
-  const date = escapeGoogleReviewHtml(review.relativeTimeDescription || "Published on Google");
-  const text = escapeGoogleReviewHtml(review.text || "Published Google review.");
-  const rating = review.rating || 5;
-  const stars = renderGoogleReviewStars(rating);
-  const avatar = review.profilePhotoUrl
-    ? '<img class="google-review-avatar" src="' + escapeGoogleReviewHtml(review.profilePhotoUrl) + '" alt="' + author + ' Google review photo" loading="lazy">'
-    : '<span class="google-review-avatar-fallback" aria-hidden="true">' + escapeGoogleReviewHtml(getGoogleReviewInitial(author)) + '</span>';
-
-  return '<article class="google-review-card actual">' +
-    '<div class="google-review-meta">' + avatar +
-    '<div class="google-review-person"><strong>' + author + '</strong><span>' + date + '</span></div></div>' +
-    '<div class="google-review-rating" aria-label="' + escapeGoogleReviewHtml(String(rating)) + ' star Google review">' + stars + '</div>' +
-    '<p class="google-review-text">' + text + '</p>' +
-    '<div class="review-source"><span>Published on Google</span><span>' + stars + '</span></div>' +
-    '</article>';
-}
-
-async function initGoogleReviews() {
-  const section = document.querySelector("[data-google-reviews-section]");
-  if (!section || !window.fetch) return;
-
-  const nameEl = section.querySelector("[data-google-reviews-name]");
-  const metaEl = section.querySelector("[data-google-reviews-meta]");
-  const ratingEl = section.querySelector("[data-google-reviews-rating]");
-  const starsEl = section.querySelector("[data-google-reviews-stars]");
-  const statusEl = section.querySelector("[data-google-reviews-status]");
-  const noteEl = section.querySelector("[data-google-reviews-note]");
-  const gridEl = section.querySelector("[data-google-reviews-grid]");
-  const linkEl = section.querySelector("[data-google-reviews-link]");
-  const footerNoteEl = section.querySelector("[data-google-reviews-footer-note]");
-
-  try {
-    const response = await fetch("/api/google-reviews");
-    const data = await response.json();
-
-    if (data.url && linkEl) linkEl.href = data.url;
-    if (!response.ok) throw new Error(data.message || "Google reviews unavailable");
-
-    if (!data.configured) {
-      if (statusEl) statusEl.textContent = "Open our Google reviews";
-      if (noteEl) noteEl.textContent = "Click below to view TeboaTech's public Google reviews and client feedback.";
-      if (footerNoteEl) footerNoteEl.textContent = "Use the button below to open TeboaTech's Google reviews.";
-      return;
-    }
-
-    const businessName = data.name || "TeboaTech";
-    const rating = Number(data.rating) || 0;
-    const totalReviews = data.totalReviews || 0;
-    const starText = renderGoogleReviewStars(rating);
-
-    if (nameEl) nameEl.textContent = "Reviews for " + businessName;
-    if (metaEl) metaEl.textContent = totalReviews ? rating.toFixed(1) + " rating from " + totalReviews + " Google reviews" : "Public Google reviews";
-    if (ratingEl) ratingEl.textContent = rating ? rating.toFixed(1) : "Live";
-    if (starsEl) starsEl.innerHTML = starText;
-    if (statusEl) statusEl.textContent = totalReviews ? "Read " + totalReviews + " Google reviews" : "Open our Google reviews";
-    if (noteEl) noteEl.textContent = "Open Google to read TeboaTech's public reviews and ratings.";
-    if (footerNoteEl) footerNoteEl.textContent = "Click through to Google to read TeboaTech reviews.";
-
-    if (gridEl && Array.isArray(data.reviews) && data.reviews.length) {
-      gridEl.innerHTML = data.reviews.slice(0, 3).map(createGoogleReviewCard).join("");
-    }
-  } catch (error) {
-    if (statusEl) statusEl.textContent = "Open our Google reviews";
-    if (noteEl) noteEl.textContent = "Google's live feed is unavailable right now, but you can still open TeboaTech's public reviews below.";
-    if (footerNoteEl) footerNoteEl.textContent = "Use the button below to open TeboaTech's Google reviews.";
-  }
-}
-
 initCookieConsent();
-initGoogleReviews();
 
 document.querySelectorAll('.btn-black,.btn-outline,.btn-white,.btn-ghost-w,.btn-black-full,.btn-outline-full,.form-submit,.wa-float').forEach(el => {
   el.addEventListener('click', () => trackEvent('CTA_Click'));
