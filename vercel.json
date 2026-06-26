@@ -16,6 +16,16 @@
       "source": "/shopify-order-confirmation-automation",
       "destination": "/shopify-customer-retention-automation",
       "permanent": true
+    },
+    {
+      "source": "/popia-compliance-checklist",
+      "destination": "/customer-data-compliance-checklist",
+      "permanent": true
+    },
+    {
+      "source": "/south-africa-ecommerce-growth",
+      "destination": "/ecommerce-growth-context",
+      "permanent": true
     }
   ]
 }
