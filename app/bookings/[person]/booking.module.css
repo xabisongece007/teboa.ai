@@ -1,0 +1,363 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+.page {
+  min-height: 100vh;
+  background: #eeeae6;
+  color: #0a0a0a;
+  padding: 40px 20px 72px;
+}
+
+.wrap {
+  margin: 0 auto;
+  max-width: 1120px;
+}
+
+.brand {
+  align-items: center;
+  display: inline-flex;
+  gap: 14px;
+  margin-bottom: 28px;
+  text-decoration: none;
+}
+
+.brand img {
+  display: block;
+  height: 52px;
+  width: 52px;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brandTitle {
+  color: #0a0a0a;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.brandSub {
+  color: #6b6865;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e6e1da;
+  border-radius: 24px;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
+  display: grid;
+  gap: 0;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.personPanel {
+  background:
+    radial-gradient(circle at top left, rgba(29, 122, 79, 0.22), transparent 34%),
+    linear-gradient(180deg, #faf9f6 0%, #f4f1ec 100%);
+  border-right: 1px solid #ece7df;
+  padding: 36px 32px;
+}
+
+.eyebrow {
+  color: #1d7a4f;
+  display: inline-block;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.personAvatar {
+  border: 3px solid rgba(29, 122, 79, 0.12);
+  border-radius: 18px;
+  display: block;
+  height: auto;
+  margin-bottom: 20px;
+  width: 136px;
+}
+
+.personPanel h1 {
+  color: #0a0a0a;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  line-height: 1.02;
+  margin: 0 0 8px;
+}
+
+.personRole {
+  color: #1d7a4f;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+.personCopy {
+  color: #6b6865;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  margin: 0 0 24px;
+}
+
+.personMeta {
+  display: grid;
+  gap: 14px;
+}
+
+.metaItem {
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid #e6e1da;
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.metaLabel {
+  color: #6b6865;
+  display: block;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.metaValue {
+  color: #0a0a0a;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.formPanel {
+  padding: 36px 32px 40px;
+}
+
+.formHeader {
+  margin-bottom: 24px;
+}
+
+.formHeader h2 {
+  color: #0a0a0a;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.9px;
+  margin: 0 0 10px;
+}
+
+.formHeader p {
+  color: #6b6865;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.alertError,
+.alertSuccess,
+.alertInfo {
+  border-radius: 14px;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+}
+
+.alertError {
+  background: #fff1f1;
+  border: 1px solid #f1c7c7;
+  color: #9b2020;
+}
+
+.alertSuccess {
+  background: #edf8f2;
+  border: 1px solid #bedfc9;
+  color: #135c3b;
+}
+
+.alertInfo {
+  background: #f7f6f3;
+  border: 1px solid #e6e1da;
+  color: #6b6865;
+}
+
+.formGrid {
+  display: grid;
+  gap: 18px;
+}
+
+.rowTwo {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field label,
+.slotHeader {
+  color: #0a0a0a;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.field input,
+.field select,
+.field textarea {
+  appearance: none;
+  background: #fcfbf9;
+  border: 1px solid #ddd5ca;
+  border-radius: 12px;
+  color: #0a0a0a;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 15px;
+  min-height: 52px;
+  outline: none;
+  padding: 14px 16px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.field textarea {
+  min-height: 132px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #1d7a4f;
+  box-shadow: 0 0 0 4px rgba(29, 122, 79, 0.12);
+}
+
+.slotHeader {
+  margin-bottom: 12px;
+}
+
+.slotGrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.slotButton {
+  background: #ffffff;
+  border: 1px solid #ddd5ca;
+  border-radius: 12px;
+  color: #0a0a0a;
+  cursor: pointer;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 48px;
+  padding: 10px 12px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.slotButton:hover:not(:disabled) {
+  border-color: #1d7a4f;
+  box-shadow: 0 10px 20px rgba(29, 122, 79, 0.12);
+  transform: translateY(-1px);
+}
+
+.slotButtonSelected {
+  background: #1d7a4f;
+  border-color: #1d7a4f;
+  color: #ffffff;
+}
+
+.slotButtonDisabled {
+  background: #f5f2ee;
+  border-color: #ece5db;
+  color: #aea59a;
+  cursor: not-allowed;
+}
+
+.submit {
+  align-items: center;
+  background: #0a0a0a;
+  border: 0;
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  justify-content: center;
+  margin-top: 8px;
+  min-height: 54px;
+  padding: 16px 22px;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.submit:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.supportText {
+  color: #6b6865;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 14px 0 0;
+}
+
+.supportText a {
+  color: #1d7a4f;
+}
+
+@media (max-width: 940px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .personPanel {
+    border-right: 0;
+    border-bottom: 1px solid #ece7df;
+  }
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding: 24px 14px 48px;
+  }
+
+  .personPanel,
+  .formPanel {
+    padding: 28px 20px;
+  }
+
+  .rowTwo {
+    grid-template-columns: 1fr;
+  }
+
+  .slotGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
