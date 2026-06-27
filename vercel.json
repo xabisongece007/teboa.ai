@@ -1,31 +1,4 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/sitemaps.xml",
-      "destination": "/sitemap.xml",
-      "permanent": true
-    },
-    {
-      "source": "/terms-and-conditions",
-      "destination": "/terms-of-service",
-      "permanent": true
-    },
-    {
-      "source": "/shopify-order-confirmation-automation",
-      "destination": "/shopify-customer-retention-automation",
-      "permanent": true
-    },
-    {
-      "source": "/popia-compliance-checklist",
-      "destination": "/customer-data-compliance-checklist",
-      "permanent": true
-    },
-    {
-      "source": "/south-africa-ecommerce-growth",
-      "destination": "/ecommerce-growth-context",
-      "permanent": true
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs"
 }
