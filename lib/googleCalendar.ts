@@ -1,4 +1,4 @@
-import { google, calendar_v3 } from "googleapis";
+import { google } from "googleapis";
 import {
   addMinutesToTime,
   BOOKING_TIME_ZONE,
@@ -125,9 +125,11 @@ export async function createBookingEvent(input: CreateBookingEventInput) {
 
   const details = [
     `Client: ${input.clientName}`,
+    `Email: ${input.clientEmail}`,
     `Phone: ${input.phoneNumber}`,
     input.companyName ? `Company: ${input.companyName}` : null,
     input.message ? `Message: ${input.message}` : null,
+    `Assigned Teboa host: ${input.personName} (${input.personEmail})`,
   ]
     .filter(Boolean)
     .join("\n");
@@ -135,9 +137,8 @@ export async function createBookingEvent(input: CreateBookingEventInput) {
   const response = await calendar.events.insert({
     calendarId: input.calendarId,
     conferenceDataVersion: 1,
-    sendUpdates: "all",
     requestBody: {
-      summary: `${input.meetingType} with ${input.clientName} — TeboaTech`,
+      summary: `${input.meetingType} with ${input.clientName} - TeboaTech`,
       description: details,
       start: {
         dateTime: startDate.toISOString(),
@@ -147,10 +148,6 @@ export async function createBookingEvent(input: CreateBookingEventInput) {
         dateTime: endDate.toISOString(),
         timeZone: BOOKING_TIME_ZONE,
       },
-      attendees: [
-        { email: input.clientEmail, displayName: input.clientName },
-        { email: input.personEmail, displayName: input.personName },
-      ],
       conferenceData: {
         createRequest: {
           requestId: `teboatech-${input.calendarId}-${input.date}-${input.time}`.replace(

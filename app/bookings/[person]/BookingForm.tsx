@@ -189,8 +189,9 @@ export default function BookingForm({ person, personSlug, todayInSast }: Booking
       <div className={styles.formHeader}>
         <h2>Book a meeting</h2>
         <p>
-          Pick a weekday slot between 09:00 and 17:00 SAST. Once confirmed, both of
-          you will receive a Google Calendar invite with a Google Meet link.
+          Pick a weekday slot between 09:00 and 17:00 SAST. Once confirmed, the
+          meeting is booked on the TeboaTech calendar and your Google Meet details are
+          sent by email.
         </p>
       </div>
 
