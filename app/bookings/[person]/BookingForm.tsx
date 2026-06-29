@@ -290,23 +290,25 @@ export default function BookingForm({ person, personSlug, todayInSast }: Booking
         <div className={styles.rowTwo}>
           <div className={styles.field}>
             <label htmlFor="booking-meeting-type">Meeting type</label>
-            <select
-              id="booking-meeting-type"
-              value={meetingType}
-              onChange={(event) =>
-                setMeetingType(event.target.value as (typeof MEETING_TYPES)[number])
-              }
-            >
-              {MEETING_TYPES.map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
+            <div className={styles.selectWrap}>
+              <select
+                id="booking-meeting-type"
+                value={meetingType}
+                onChange={(event) =>
+                  setMeetingType(event.target.value as (typeof MEETING_TYPES)[number])
+                }
+              >
+                {MEETING_TYPES.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="booking-date">Date</label>
+            <label htmlFor="booking-date">Meeting date</label>
             <input
               id="booking-date"
               min={todayInSast}
@@ -374,7 +376,7 @@ export default function BookingForm({ person, personSlug, todayInSast }: Booking
 
         <p className={styles.supportText}>
           {person.meetingDuration}-minute meeting with {person.name}. Need help instead? Email{" "}
-          <a href="mailto:support.team@teboatech.com">support.team@teboatech.com</a>.
+          <a href="mailto:support@teboatech.com">support@teboatech.com</a>.
         </p>
       </form>
     </div>

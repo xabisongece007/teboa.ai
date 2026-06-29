@@ -237,6 +237,27 @@
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
+.selectWrap {
+  position: relative;
+}
+
+.selectWrap::after {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #6b6865;
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.selectWrap select {
+  padding-right: 40px;
+  width: 100%;
+}
+
 .field textarea {
   min-height: 112px;
   resize: vertical;
