@@ -24,6 +24,11 @@ type BookingFormProps = {
 
 type BookingResponse = {
   eventId: string;
+  emailjs?: {
+    publicKey: string;
+    serviceId: string;
+    templateId: string;
+  };
   meetLink: string;
   person: {
     name: string;
@@ -47,6 +52,59 @@ function isWeekday(date: string) {
   const [year, month, day] = date.split("-").map(Number);
   const weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
   return weekday >= 1 && weekday <= 5;
+}
+
+async function sendClientConfirmationEmail(payload: {
+  bookingSummary: string;
+  clientEmail: string;
+  clientName: string;
+  date: string;
+  duration: number;
+  emailjs?: {
+    publicKey: string;
+    serviceId: string;
+    templateId: string;
+  };
+  meetLink: string;
+  personName: string;
+  time: string;
+}) {
+  if (!payload.emailjs) {
+    throw new Error("Email configuration missing.");
+  }
+
+  const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      service_id: payload.emailjs.serviceId,
+      template_id: payload.emailjs.templateId,
+      user_id: payload.emailjs.publicKey,
+      template_params: {
+        to_email: payload.clientEmail,
+        email: payload.clientEmail,
+        user_email: payload.clientEmail,
+        from_email: "support@teboatech.com",
+        from_name: "TeboaTech",
+        name: payload.clientName,
+        first_name: payload.clientName.split(" ")[0] ?? payload.clientName,
+        reply_to: "support@teboatech.com",
+        booking_summary: payload.bookingSummary,
+        booking_date: payload.date,
+        booking_time: `${payload.time} SAST`,
+        booking_duration: `${payload.duration} minutes`,
+        meeting_with: payload.personName,
+        meet_link: payload.meetLink,
+        support_email: "support@teboatech.com",
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Confirmation email could not be sent.");
+  }
 }
 
 export default function BookingForm({ person, personSlug, todayInSast }: BookingFormProps) {
@@ -167,7 +225,29 @@ export default function BookingForm({ person, personSlug, todayInSast }: Booking
         throw new Error(payload.error || "Booking failed. Please try again.");
       }
 
-      setSuccess(payload);
+      let confirmationWarning = "";
+
+      try {
+        await sendClientConfirmationEmail({
+          bookingSummary: payload.summary,
+          clientEmail: email,
+          clientName: fullName,
+          date,
+          duration: payload.duration,
+          emailjs: payload.emailjs,
+          meetLink: payload.meetLink,
+          personName: payload.person.name,
+          time: selectedTime,
+        });
+      } catch {
+        confirmationWarning =
+          "The meeting was booked, but the extra confirmation email could not be sent.";
+      }
+
+      setSuccess({
+        ...payload,
+        warning: confirmationWarning || payload.warning,
+      });
       setSelectedTime("");
       setMessage("");
       setCompanyName("");

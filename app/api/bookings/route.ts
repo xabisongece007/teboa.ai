@@ -28,57 +28,6 @@ function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-async function sendConfirmationEmail({
-  clientEmail,
-  clientName,
-  date,
-  duration,
-  meetLink,
-  personName,
-  time,
-}: {
-  clientEmail: string;
-  clientName: string;
-  date: string;
-  duration: number;
-  meetLink: string;
-  personName: string;
-  time: string;
-}) {
-  const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      service_id: EMAILJS_SERVICE_ID,
-      template_id: EMAILJS_TEMPLATE_ID,
-      user_id: EMAILJS_PUBLIC_KEY,
-      template_params: {
-        to_email: clientEmail,
-        email: clientEmail,
-        user_email: clientEmail,
-        from_email: "support@teboatech.com",
-        from_name: "TeboaTech",
-        name: clientName,
-        first_name: clientName.split(" ")[0] ?? clientName,
-        reply_to: "support@teboatech.com",
-        booking_summary: formatBookingSummary(date, time, duration),
-        booking_date: date,
-        booking_time: `${time} SAST`,
-        booking_duration: `${duration} minutes`,
-        meeting_with: personName,
-        meet_link: meetLink,
-        support_email: "support@teboatech.com",
-      },
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error("Confirmation email could not be sent.");
-  }
-}
-
 /**
  * Google Calendar setup:
  * The service account email in GOOGLE_SERVICE_ACCOUNT_EMAIL must be added to each
@@ -161,28 +110,16 @@ export async function POST(request: NextRequest) {
       time,
     });
 
-    let confirmationWarning = "";
-
-    try {
-      await sendConfirmationEmail({
-        clientEmail: email,
-        clientName: fullName,
-        date,
-        duration: person.meetingDuration,
-        meetLink: booking.meetLink,
-        personName: person.name,
-        time,
-      });
-    } catch {
-      confirmationWarning =
-        "The meeting was booked, but the extra confirmation email could not be sent.";
-    }
-
     return NextResponse.json({
       duration: person.meetingDuration,
       eventId: booking.eventId,
       htmlLink: booking.htmlLink,
       meetLink: booking.meetLink,
+      emailjs: {
+        publicKey: EMAILJS_PUBLIC_KEY,
+        serviceId: EMAILJS_SERVICE_ID,
+        templateId: EMAILJS_TEMPLATE_ID,
+      },
       person: {
         email: person.email,
         name: person.name,
@@ -190,7 +127,6 @@ export async function POST(request: NextRequest) {
       },
       summary: formatBookingSummary(date, time, person.meetingDuration),
       timeZone: BOOKING_TIME_ZONE,
-      warning: confirmationWarning,
     });
   } catch (error) {
     const message =
