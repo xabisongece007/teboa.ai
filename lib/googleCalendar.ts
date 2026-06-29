@@ -154,9 +154,6 @@ export async function createBookingEvent(input: CreateBookingEventInput) {
             /[^a-zA-Z0-9-]/g,
             "-"
           ),
-          conferenceSolutionKey: {
-            type: "hangoutsMeet",
-          },
         },
       },
     },
