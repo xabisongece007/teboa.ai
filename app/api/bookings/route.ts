@@ -8,10 +8,6 @@ import {
   isValidDateForBooking,
 } from "../../../lib/bookingUtils";
 
-const EMAILJS_PUBLIC_KEY = "lpQfXBJ7ggrYgNwOo";
-const EMAILJS_SERVICE_ID = "service_ut221yn";
-const EMAILJS_BOOKING_TEMPLATE_ID = process.env.EMAILJS_BOOKING_TEMPLATE_ID?.trim() ?? "";
-
 type BookingPayload = {
   companyName?: string;
   date: string;
@@ -110,23 +106,11 @@ export async function POST(request: NextRequest) {
       time,
     });
 
-    const bookingEmailConfigured = Boolean(EMAILJS_BOOKING_TEMPLATE_ID);
-    const bookingEmailWarning = bookingEmailConfigured
-      ? ""
-      : "The meeting was booked, but the dedicated booking confirmation email is not configured yet.";
-
     return NextResponse.json({
       duration: person.meetingDuration,
       eventId: booking.eventId,
       htmlLink: booking.htmlLink,
       meetLink: booking.meetLink,
-      emailjs: bookingEmailConfigured
-        ? {
-            publicKey: EMAILJS_PUBLIC_KEY,
-            serviceId: EMAILJS_SERVICE_ID,
-            templateId: EMAILJS_BOOKING_TEMPLATE_ID,
-          }
-        : undefined,
       person: {
         email: person.email,
         name: person.name,
@@ -134,7 +118,6 @@ export async function POST(request: NextRequest) {
       },
       summary: formatBookingSummary(date, time, person.meetingDuration),
       timeZone: BOOKING_TIME_ZONE,
-      warning: bookingEmailWarning || undefined,
     });
   } catch (error) {
     const message =

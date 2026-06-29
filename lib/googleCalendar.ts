@@ -19,7 +19,7 @@ function getPrivateKey() {
   return privateKey.replace(/\\n/g, "\n");
 }
 
-function getCalendarAuth() {
+function getCalendarAuth(subject?: string) {
   const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
 
   if (!clientEmail) {
@@ -30,13 +30,14 @@ function getCalendarAuth() {
     email: clientEmail,
     key: getPrivateKey(),
     scopes: ["https://www.googleapis.com/auth/calendar"],
+    subject,
   });
 }
 
-function getCalendarClient() {
+function getCalendarClient(subject?: string) {
   return google.calendar({
     version: "v3",
-    auth: getCalendarAuth(),
+    auth: getCalendarAuth(subject),
   });
 }
 
@@ -45,7 +46,7 @@ export async function getAvailableSlots(calendarId: string, date: string) {
     throw new Error("Invalid booking date.");
   }
 
-  const calendar = getCalendarClient();
+  const calendar = getCalendarClient(calendarId);
   const dayStart = toUtcDate(date, "00:00").toISOString();
   const dayEnd = toUtcDate(date, "23:59").toISOString();
 
@@ -119,7 +120,7 @@ type CreateBookingEventInput = {
 };
 
 export async function createBookingEvent(input: CreateBookingEventInput) {
-  const calendar = getCalendarClient();
+  const calendar = getCalendarClient(input.personEmail);
   const startDate = toUtcDate(input.date, input.time);
   const endDate = toUtcDate(input.date, addMinutesToTime(input.time, input.duration));
 
@@ -137,6 +138,7 @@ export async function createBookingEvent(input: CreateBookingEventInput) {
   const response = await calendar.events.insert({
     calendarId: input.calendarId,
     conferenceDataVersion: 1,
+    sendUpdates: "all",
     requestBody: {
       summary: `${input.meetingType} with ${input.clientName} - TeboaTech`,
       description: details,
@@ -148,6 +150,10 @@ export async function createBookingEvent(input: CreateBookingEventInput) {
         dateTime: endDate.toISOString(),
         timeZone: BOOKING_TIME_ZONE,
       },
+      attendees: [
+        { email: input.clientEmail, displayName: input.clientName },
+        { email: input.personEmail, displayName: input.personName },
+      ],
       conferenceData: {
         createRequest: {
           requestId: `teboatech-${input.calendarId}-${input.date}-${input.time}`.replace(
