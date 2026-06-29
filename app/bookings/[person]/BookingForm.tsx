@@ -225,23 +225,25 @@ export default function BookingForm({ person, personSlug, todayInSast }: Booking
         throw new Error(payload.error || "Booking failed. Please try again.");
       }
 
-      let confirmationWarning = "";
+      let confirmationWarning = payload.warning || "";
 
-      try {
-        await sendClientConfirmationEmail({
-          bookingSummary: payload.summary,
-          clientEmail: email,
-          clientName: fullName,
-          date,
-          duration: payload.duration,
-          emailjs: payload.emailjs,
-          meetLink: payload.meetLink,
-          personName: payload.person.name,
-          time: selectedTime,
-        });
-      } catch {
-        confirmationWarning =
-          "The meeting was booked, but the extra confirmation email could not be sent.";
+      if (payload.emailjs) {
+        try {
+          await sendClientConfirmationEmail({
+            bookingSummary: payload.summary,
+            clientEmail: email,
+            clientName: fullName,
+            date,
+            duration: payload.duration,
+            emailjs: payload.emailjs,
+            meetLink: payload.meetLink,
+            personName: payload.person.name,
+            time: selectedTime,
+          });
+        } catch {
+          confirmationWarning =
+            "The meeting was booked, but the booking confirmation email could not be sent.";
+        }
       }
 
       setSuccess({
