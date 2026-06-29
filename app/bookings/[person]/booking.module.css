@@ -199,7 +199,7 @@
 
 .formGrid {
   display: grid;
-  gap: 18px;
+  gap: 16px;
 }
 
 .rowTwo {
@@ -230,16 +230,30 @@
   border-radius: 12px;
   color: #0a0a0a;
   font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 15px;
-  min-height: 52px;
+  font-size: 14px;
+  min-height: 44px;
   outline: none;
-  padding: 14px 16px;
+  padding: 10px 14px;
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
 .field textarea {
-  min-height: 132px;
+  min-height: 112px;
   resize: vertical;
+}
+
+.phoneField {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 124px minmax(0, 1fr);
+}
+
+.countryCodeSelect {
+  font-weight: 600;
+}
+
+.phoneInput {
+  min-width: 0;
 }
 
 .field input:focus,
@@ -354,6 +368,10 @@
   }
 
   .rowTwo {
+    grid-template-columns: 1fr;
+  }
+
+  .phoneField {
     grid-template-columns: 1fr;
   }
 

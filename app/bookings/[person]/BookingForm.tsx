@@ -34,6 +34,14 @@ type BookingResponse = {
 };
 
 const MEETING_TYPES = ["Discovery Call", "Strategy Session", "Support"] as const;
+const COUNTRY_CODES = [
+  { code: "+27", label: "ZA (+27)" },
+  { code: "+1", label: "US (+1)" },
+  { code: "+44", label: "UK (+44)" },
+  { code: "+61", label: "AU (+61)" },
+  { code: "+91", label: "IN (+91)" },
+  { code: "+971", label: "UAE (+971)" },
+];
 
 function isWeekday(date: string) {
   const [year, month, day] = date.split("-").map(Number);
@@ -44,6 +52,7 @@ function isWeekday(date: string) {
 export default function BookingForm({ person, personSlug, todayInSast }: BookingFormProps) {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const [countryCode, setCountryCode] = useState("+27");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [meetingType, setMeetingType] =
@@ -147,7 +156,7 @@ export default function BookingForm({ person, personSlug, todayInSast }: Booking
           meetingType,
           message,
           person: personSlug,
-          phoneNumber,
+          phoneNumber: `${countryCode} ${phoneNumber}`.trim(),
           time: selectedTime,
         }),
       });
@@ -163,6 +172,7 @@ export default function BookingForm({ person, personSlug, todayInSast }: Booking
       setMessage("");
       setCompanyName("");
       setPhoneNumber("");
+      setCountryCode("+27");
       setEmail("");
       setFullName("");
     } catch (submitError) {
@@ -239,13 +249,30 @@ export default function BookingForm({ person, personSlug, todayInSast }: Booking
         <div className={styles.rowTwo}>
           <div className={styles.field}>
             <label htmlFor="booking-phone">Phone number</label>
-            <input
-              id="booking-phone"
-              required
-              type="tel"
-              value={phoneNumber}
-              onChange={(event) => setPhoneNumber(event.target.value)}
-            />
+            <div className={styles.phoneField}>
+              <select
+                aria-label="Country code"
+                className={styles.countryCodeSelect}
+                value={countryCode}
+                onChange={(event) => setCountryCode(event.target.value)}
+              >
+                {COUNTRY_CODES.map((item) => (
+                  <option key={item.code} value={item.code}>
+                    {item.label}
+                  </option>
+                ))}
+              </select>
+              <input
+                id="booking-phone"
+                className={styles.phoneInput}
+                required
+                type="tel"
+                inputMode="tel"
+                placeholder="83 744 0236"
+                value={phoneNumber}
+                onChange={(event) => setPhoneNumber(event.target.value)}
+              />
+            </div>
           </div>
 
           <div className={styles.field}>
@@ -253,6 +280,7 @@ export default function BookingForm({ person, personSlug, todayInSast }: Booking
             <input
               id="booking-company"
               type="text"
+              placeholder="Optional"
               value={companyName}
               onChange={(event) => setCompanyName(event.target.value)}
             />
