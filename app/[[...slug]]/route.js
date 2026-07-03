@@ -2,7 +2,7 @@ import { readFile, stat } from "fs/promises";
 import path from "path";
 
 const ROOT_DIR = process.cwd();
-const RESERVED_PREFIXES = ["_next", "api", "blog"];
+const RESERVED_PREFIXES = ["_next", "api", "blog", "robots.txt", "sitemap.xml"];
 const MIME_TYPES = {
   ".css": "text/css; charset=utf-8",
   ".html": "text/html; charset=utf-8",

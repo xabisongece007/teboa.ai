@@ -1,11 +1,22 @@
 export const metadata = {
   metadataBase: new URL("https://teboatech.com"),
   title: {
-    default: "TeboaTech",
-    template: "%s | TeboaTech",
+    default: "Teboa | AI-Powered Shopify Platform for eCommerce",
+    template: "%s | Teboa",
   },
   description:
-    "TeboaTech builds practical automation, Shopify systems, and AI-powered operations for eCommerce businesses.",
+    "An AI-powered eCommerce operating system that helps store owners automate operations, manage customers, and grow revenue without burning out.",
+  alternates: {
+    canonical: "https://teboatech.com",
+  },
+  openGraph: {
+    title: "Teboa | AI-Powered Shopify Platform for eCommerce",
+    description:
+      "An AI-powered eCommerce operating system that helps store owners automate operations, manage customers, and grow revenue without burning out.",
+    url: "https://teboatech.com",
+    siteName: "Teboa",
+    type: "website",
+  },
   robots: {
     index: true,
     follow: true,

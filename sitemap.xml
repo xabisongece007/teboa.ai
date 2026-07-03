@@ -2,75 +2,116 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://teboatech.com</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://teboatech.com/about</loc>
-    <lastmod>2026-06-25</lastmod>
-  </url>
-  <url>
-    <loc>https://teboatech.com/contact</loc>
-    <lastmod>2026-06-25</lastmod>
-  </url>
-  <url>
-    <loc>https://teboatech.com/docs</loc>
-    <lastmod>2026-06-25</lastmod>
-  </url>
-  <url>
-    <loc>https://teboatech.com/gdpr-compliance</loc>
-    <lastmod>2026-06-25</lastmod>
-  </url>
-  <url>
-    <loc>https://teboatech.com/help</loc>
-    <lastmod>2026-06-25</lastmod>
-  </url>
-  <url>
-    <loc>https://teboatech.com/login</loc>
-    <lastmod>2026-06-25</lastmod>
-  </url>
-  <url>
-    <loc>https://teboatech.com/popia-compliance</loc>
-    <lastmod>2026-06-25</lastmod>
-  </url>
-  <url>
-    <loc>https://teboatech.com/customer-data-compliance-checklist</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://teboatech.com/pricing</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://teboatech.com/blog</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://teboatech.com/contact</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://teboatech.com/help</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://teboatech.com/login</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://teboatech.com/privacy-policy</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://teboatech.com/docs</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://teboatech.com/gdpr-compliance</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://teboatech.com/popia-compliance</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://teboatech.com/customer-data-compliance-checklist</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://teboatech.com/shopify-automation</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://teboatech.com/shopify-automation-vs-apps</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://teboatech.com/shopify-store-launch-checklist</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://teboatech.com/shopify-customer-retention-automation</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://teboatech.com/shopify-customer-support-automation</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://teboatech.com/ecommerce-growth-context</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://teboatech.com/terms-of-service</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
 </urlset>

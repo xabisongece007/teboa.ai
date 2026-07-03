@@ -29,16 +29,19 @@ export async function generateMetadata({ params }) {
     };
   }
 
+  const canonicalUrl = `https://teboatech.com/blog/${post.slug}`;
+
   return {
     title: post.title,
     description: post.metaDescription,
     alternates: {
-      canonical: `https://teboatech.com/blog/${post.slug}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title: post.title,
       description: post.metaDescription,
-      url: `https://teboatech.com/blog/${post.slug}`,
+      url: canonicalUrl,
+      siteName: "Teboa",
       type: "article",
     },
     twitter: {

@@ -23,7 +23,7 @@ export async function generateMetadata({
     title: `Book with ${bookingPerson.name}`,
     description: `Book a ${bookingPerson.meetingDuration}-minute TeboaTech meeting with ${bookingPerson.name}, ${bookingPerson.role}.`,
     alternates: {
-      canonical: `https://www.teboatech.com/bookings/${person}`,
+      canonical: `https://teboatech.com/bookings/${person}`,
     },
     robots: {
       index: false,
