@@ -1,5 +1,7 @@
 import { cache } from "react";
 
+export const BLOG_POSTS_TAG = "blog-posts";
+
 const firebaseConfig = {
   apiKey: "AIzaSyB1buIPplZjwjfUsf8uHNe9JrtB0pcq_sM",
   projectId: "teboatech-mvp",
@@ -150,7 +152,7 @@ async function runBlogQuery(structuredQuery) {
       "content-type": "application/json",
     },
     body: JSON.stringify({ structuredQuery }),
-    next: { revalidate: 3600 },
+    next: { revalidate: 3600, tags: [BLOG_POSTS_TAG] },
   });
 
   if (!response.ok) {
