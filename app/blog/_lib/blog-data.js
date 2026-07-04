@@ -107,8 +107,10 @@ function normalizePost(id, rawData) {
 
   const createdAtDate = toDateValue(rawData?.createdAt);
   const updatedAtDate = toDateValue(rawData?.updatedAt);
-  const htmlContent = pickFirstString(rawData, ["contentHtml", "bodyHtml", "html"]);
-  const textContent = pickFirstString(rawData, ["content", "body", "markdown", "text"]);
+  const explicitHtmlContent = pickFirstString(rawData, ["contentHtml", "bodyHtml", "html"]);
+  const contentValue = pickFirstString(rawData, ["content", "body", "markdown", "text"]);
+  const htmlContent = explicitHtmlContent || (isHtmlContent(contentValue) ? contentValue : "");
+  const textContent = isHtmlContent(contentValue) ? "" : contentValue;
   const excerptSource =
     pickFirstString(rawData, ["excerpt", "summary", "description", "metaDescription"]) ||
     stripHtml(htmlContent || textContent);
