@@ -252,6 +252,7 @@
   margin: 0 0 1.4em;
 }
 
+.articleContent h1,
 .articleContent h2,
 .articleContent h3,
 .articleContent h4 {
@@ -261,6 +262,10 @@
   letter-spacing: -0.3px;
   line-height: 1.18;
   margin: 1.6em 0 0.55em;
+}
+
+.articleContent h1 {
+  font-size: clamp(32px, 4vw, 46px);
 }
 
 .articleContent h2 {
