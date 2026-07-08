@@ -209,13 +209,13 @@
 /* -- Tech strip marquee -- */
 .tech-strip{background:var(--off);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:48px 0;text-align:center;overflow:hidden}
 .tech-strip-label{font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--mid);margin-bottom:18px}
-.logo-marquee-wrap{overflow:hidden;width:100%;-webkit-mask:linear-gradient(90deg,transparent,#fff 8%,#fff 92%,transparent);mask:linear-gradient(90deg,transparent,#fff 8%,#fff 92%,transparent)}
-.logo-marquee-track{display:flex;align-items:center;width:max-content;animation:logoScroll 30s linear infinite;will-change:transform}
+.logo-marquee-wrap{overflow:hidden;width:100%}
+.logo-marquee-track{display:flex;align-items:center;width:max-content;animation:logoScroll 34s linear infinite;will-change:transform}
 .logo-marquee-track:hover{animation-play-state:paused}
-.logo-marquee-item{display:flex;align-items:center;justify-content:center;padding:0 108px;flex-shrink:0;height:144px}
-.logo-marquee-img{height:117px;width:auto;max-width:360px;object-fit:contain;opacity:0.6;filter:grayscale(1);transition:opacity .2s,filter .2s}
+.logo-marquee-item{display:flex;align-items:center;justify-content:center;padding:0 72px;flex-shrink:0;height:144px}
+.logo-marquee-img{display:block;height:117px;width:auto;max-width:360px;object-fit:contain;opacity:0.6;filter:grayscale(1);transition:opacity .2s,filter .2s}
 .logo-marquee-item:hover .logo-marquee-img{opacity:1;filter:grayscale(0)}
-@keyframes logoScroll{0%{transform:translateX(0)}100%{transform:translateX(-33.333%)}}
+@keyframes logoScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* -- Founders urgency badge -- */
 .pkg-urgency-badge{display:inline-block;background:#FF6B35;color:#fff;font-size:11px;font-weight:700;letter-spacing:0.5px;border-radius:6px;padding:5px 12px;margin-bottom:12px;text-transform:uppercase}
@@ -1283,21 +1283,20 @@
   <p class="tech-strip-label">Powered by the best in the business.</p>
   <div class="logo-marquee-wrap">
     <div class="logo-marquee-track">
-      <div class="logo-marquee-item"><img src="assets/logos/logo-1.svg" alt="Logo 1" class="logo-marquee-img"></div>
-      <div class="logo-marquee-item"><img src="assets/logos/logo-2.svg" alt="Logo 2" class="logo-marquee-img"></div>
-      <div class="logo-marquee-item"><img src="assets/logos/logo-3.svg" alt="Logo 3" class="logo-marquee-img"></div>
-      <div class="logo-marquee-item"><img src="assets/logos/logo-4.svg" alt="Logo 4" class="logo-marquee-img"></div>
-      <div class="logo-marquee-item"><img src="assets/logos/logo-5.svg" alt="Logo 5" class="logo-marquee-img"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-1.svg" alt="Client brand logo" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-2.svg" alt="Client brand logo" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-3.svg" alt="Client brand logo" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-4.svg" alt="Client brand logo" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-5.svg" alt="Client brand logo" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-1.svg" alt="Client brand logo" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-2.svg" alt="Client brand logo" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-3.svg" alt="Client brand logo" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-4.svg" alt="Client brand logo" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-5.svg" alt="Client brand logo" class="logo-marquee-img" loading="lazy" decoding="async"></div>
+      <div class="logo-marquee-item"><img src="assets/logos/logo-1.svg" alt="Startup program logo 1" class="logo-marquee-img"></div>
+      <div class="logo-marquee-item"><img src="assets/logos/logo-2.svg" alt="Startup program logo 2" class="logo-marquee-img"></div>
+      <div class="logo-marquee-item"><img src="assets/logos/logo-3.svg" alt="Startup program logo 3" class="logo-marquee-img"></div>
+      <div class="logo-marquee-item"><img src="assets/logos/logo-4.svg" alt="Startup program logo 4" class="logo-marquee-img"></div>
+      <div class="logo-marquee-item"><img src="assets/logos/logo-5.svg" alt="Startup program logo 5" class="logo-marquee-img"></div>
+      <div class="logo-marquee-item"><img src="assets/images/aws-startup-programs.png" alt="AWS Startup Programs" class="logo-marquee-img" loading="lazy" decoding="async"></div>
+      <div class="logo-marquee-item"><img src="assets/images/mongodb-startups-trimmed.png" alt="MongoDB for Startups" class="logo-marquee-img" loading="lazy" decoding="async"></div>
+      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-1.svg" alt="Startup program logo 1" class="logo-marquee-img" loading="lazy" decoding="async"></div>
+      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-2.svg" alt="Startup program logo 2" class="logo-marquee-img" loading="lazy" decoding="async"></div>
+      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-3.svg" alt="Startup program logo 3" class="logo-marquee-img" loading="lazy" decoding="async"></div>
+      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-4.svg" alt="Startup program logo 4" class="logo-marquee-img" loading="lazy" decoding="async"></div>
+      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-5.svg" alt="Startup program logo 5" class="logo-marquee-img" loading="lazy" decoding="async"></div>
+      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/images/aws-startup-programs.png" alt="AWS Startup Programs" class="logo-marquee-img" loading="lazy" decoding="async"></div>
+      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/images/mongodb-startups-trimmed.png" alt="MongoDB for Startups" class="logo-marquee-img" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </div>
