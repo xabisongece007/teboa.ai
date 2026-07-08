@@ -162,6 +162,8 @@
 .backed-strip-logo.google{height:54px}
 .backed-strip-logo.mongodb{height:78px}
 .backed-strip-logo.aws{height:62px}
+.backed-strip-logo.datadog{height:44px}
+.backed-strip-logo.sentry{height:42px}
 .backed-strip-logo.intercom{height:56px}
 .backed-strip-logo.miro{height:46px}
 @keyframes backedScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -172,6 +174,8 @@
   .backed-strip-logo.google{height:40px}
   .backed-strip-logo.mongodb{height:58px}
   .backed-strip-logo.aws{height:46px}
+  .backed-strip-logo.datadog{height:34px}
+  .backed-strip-logo.sentry{height:32px}
   .backed-strip-logo.intercom{height:42px}
   .backed-strip-logo.miro{height:34px}
 }
@@ -210,7 +214,7 @@
 .tech-strip{background:var(--off);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:48px 0;text-align:center;overflow:hidden}
 .tech-strip-label{font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--mid);margin-bottom:18px}
 .logo-marquee-wrap{overflow:hidden;width:100%}
-.logo-marquee-track{display:flex;align-items:center;width:max-content;animation:logoScroll 34s linear infinite;will-change:transform}
+.logo-marquee-track{display:flex;align-items:center;width:max-content;animation:logoScroll 40s linear infinite;will-change:transform}
 .logo-marquee-track:hover{animation-play-state:paused}
 .logo-marquee-item{display:flex;align-items:center;justify-content:center;padding:0 72px;flex-shrink:0;height:144px}
 .logo-marquee-img{display:block;height:117px;width:auto;max-width:360px;object-fit:contain;opacity:0.6;filter:grayscale(1);transition:opacity .2s,filter .2s}
@@ -506,11 +510,15 @@
         <div class="backed-strip-item"><img class="backed-strip-logo google" src="assets/images/Google_for_Startups_logo.png" alt="Google for Startups" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item"><img class="backed-strip-logo mongodb" src="assets/images/mongodb-startups-trimmed.png" alt="MongoDB for Startups" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item"><img class="backed-strip-logo aws" src="assets/images/aws-startup-programs.png" alt="AWS Startup Programs" loading="lazy" decoding="async"></div>
+        <div class="backed-strip-item"><img class="backed-strip-logo datadog" src="assets/images/datadog-logo.svg" alt="Datadog" loading="lazy" decoding="async"></div>
+        <div class="backed-strip-item"><img class="backed-strip-logo sentry" src="assets/images/sentry-logo.svg" alt="Sentry" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item"><img class="backed-strip-logo intercom" src="assets/images/intercom-engagement-os.png" alt="Intercom The Engagement OS" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item"><img class="backed-strip-logo miro" src="assets/images/miro.svg" alt="Miro" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo google" src="assets/images/Google_for_Startups_logo.png" alt="Startup program logo" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo mongodb" src="assets/images/mongodb-startups-trimmed.png" alt="Startup program logo" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo aws" src="assets/images/aws-startup-programs.png" alt="Startup program logo" loading="lazy" decoding="async"></div>
+        <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo datadog" src="assets/images/datadog-logo.svg" alt="Startup program logo" loading="lazy" decoding="async"></div>
+        <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo sentry" src="assets/images/sentry-logo.svg" alt="Startup program logo" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo intercom" src="assets/images/intercom-engagement-os.png" alt="Startup program logo" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo miro" src="assets/images/miro.svg" alt="Startup program logo" loading="lazy" decoding="async"></div>
       </div>
@@ -1288,15 +1296,11 @@
       <div class="logo-marquee-item"><img src="assets/logos/logo-3.svg" alt="Startup program logo 3" class="logo-marquee-img"></div>
       <div class="logo-marquee-item"><img src="assets/logos/logo-4.svg" alt="Startup program logo 4" class="logo-marquee-img"></div>
       <div class="logo-marquee-item"><img src="assets/logos/logo-5.svg" alt="Startup program logo 5" class="logo-marquee-img"></div>
-      <div class="logo-marquee-item"><img src="assets/images/aws-startup-programs.png" alt="AWS Startup Programs" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item"><img src="assets/images/mongodb-startups-trimmed.png" alt="MongoDB for Startups" class="logo-marquee-img" loading="lazy" decoding="async"></div>
       <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-1.svg" alt="Startup program logo 1" class="logo-marquee-img" loading="lazy" decoding="async"></div>
       <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-2.svg" alt="Startup program logo 2" class="logo-marquee-img" loading="lazy" decoding="async"></div>
       <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-3.svg" alt="Startup program logo 3" class="logo-marquee-img" loading="lazy" decoding="async"></div>
       <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-4.svg" alt="Startup program logo 4" class="logo-marquee-img" loading="lazy" decoding="async"></div>
       <div class="logo-marquee-item" aria-hidden="true"><img src="assets/logos/logo-5.svg" alt="Startup program logo 5" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/images/aws-startup-programs.png" alt="AWS Startup Programs" class="logo-marquee-img" loading="lazy" decoding="async"></div>
-      <div class="logo-marquee-item" aria-hidden="true"><img src="assets/images/mongodb-startups-trimmed.png" alt="MongoDB for Startups" class="logo-marquee-img" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </div>
