@@ -3,7 +3,7 @@ import { bookingPeople } from "./bookingConfig";
 export const BOOKING_TIME_ZONE = "Africa/Johannesburg";
 export const SLOT_INTERVAL_MINUTES = 30;
 export const BUSINESS_START_HOUR = 9;
-export const BUSINESS_END_HOUR = 17;
+export const BUSINESS_END_HOUR = 22;
 const SAST_OFFSET_HOURS = 2;
 
 export type BookingSlot = {
