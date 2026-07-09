@@ -113,8 +113,8 @@
 @media(max-width:480px){.agent-grid{grid-template-columns:1fr}}
 
 .backed-strip{
-  margin:22px auto -42px;
-  width:min(100%,960px);
+  margin:22px 0 -42px;
+  width:100%;
   text-align:center;
 }
 .backed-strip-label{
@@ -128,14 +128,12 @@
 .backed-strip-wrap{
   overflow:hidden;
   width:100%;
-  -webkit-mask:linear-gradient(90deg,transparent,#fff 10%,#fff 90%,transparent);
-  mask:linear-gradient(90deg,transparent,#fff 10%,#fff 90%,transparent);
 }
 .backed-strip-track{
   display:flex;
   align-items:center;
   width:max-content;
-  animation:backedScroll 24s linear infinite;
+  animation:backedScroll 30s linear infinite;
   will-change:transform;
 }
 .backed-strip-track:hover{animation-play-state:paused}
@@ -143,7 +141,7 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:0 72px;
+  padding:0 56px;
   flex-shrink:0;
   height:112px;
 }
@@ -162,20 +160,20 @@
 .backed-strip-logo.google{height:54px}
 .backed-strip-logo.mongodb{height:78px}
 .backed-strip-logo.aws{height:62px}
-.backed-strip-logo.datadog{height:54px}
-.backed-strip-logo.sentry{height:54px}
+.backed-strip-logo.datadog{height:86px}
+.backed-strip-logo.sentry{height:86px}
 .backed-strip-logo.intercom{height:56px}
 .backed-strip-logo.miro{height:46px}
 @keyframes backedScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(max-width:720px){
-  .backed-strip{margin:18px auto -28px}
+  .backed-strip{margin:18px 0 -28px}
   .backed-strip-label{font-size:10px;margin-bottom:14px}
-  .backed-strip-item{padding:0 38px;height:88px}
+  .backed-strip-item{padding:0 32px;height:88px}
   .backed-strip-logo.google{height:40px}
   .backed-strip-logo.mongodb{height:58px}
   .backed-strip-logo.aws{height:46px}
-  .backed-strip-logo.datadog{height:40px}
-  .backed-strip-logo.sentry{height:40px}
+  .backed-strip-logo.datadog{height:64px}
+  .backed-strip-logo.sentry{height:64px}
   .backed-strip-logo.intercom{height:42px}
   .backed-strip-logo.miro{height:34px}
 }
@@ -510,15 +508,15 @@
         <div class="backed-strip-item"><img class="backed-strip-logo google" src="assets/images/Google_for_Startups_logo.png" alt="Google for Startups" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item"><img class="backed-strip-logo mongodb" src="assets/images/mongodb-startups-trimmed.png" alt="MongoDB for Startups" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item"><img class="backed-strip-logo aws" src="assets/images/aws-startup-programs.png" alt="AWS Startup Programs" loading="lazy" decoding="async"></div>
-        <div class="backed-strip-item"><img class="backed-strip-logo datadog" src="assets/images/datadog-logo.svg" alt="Datadog" loading="lazy" decoding="async"></div>
-        <div class="backed-strip-item"><img class="backed-strip-logo sentry" src="assets/images/sentry-logo.svg" alt="Sentry" loading="lazy" decoding="async"></div>
+        <div class="backed-strip-item"><img class="backed-strip-logo datadog" src="assets/images/2.svg" alt="Datadog" loading="lazy" decoding="async"></div>
+        <div class="backed-strip-item"><img class="backed-strip-logo sentry" src="assets/images/3.svg" alt="Sentry" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item"><img class="backed-strip-logo intercom" src="assets/images/intercom-engagement-os.png" alt="Intercom The Engagement OS" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item"><img class="backed-strip-logo miro" src="assets/images/miro.svg" alt="Miro" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo google" src="assets/images/Google_for_Startups_logo.png" alt="Startup program logo" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo mongodb" src="assets/images/mongodb-startups-trimmed.png" alt="Startup program logo" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo aws" src="assets/images/aws-startup-programs.png" alt="Startup program logo" loading="lazy" decoding="async"></div>
-        <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo datadog" src="assets/images/datadog-logo.svg" alt="Startup program logo" loading="lazy" decoding="async"></div>
-        <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo sentry" src="assets/images/sentry-logo.svg" alt="Startup program logo" loading="lazy" decoding="async"></div>
+        <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo datadog" src="assets/images/2.svg" alt="Startup program logo" loading="lazy" decoding="async"></div>
+        <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo sentry" src="assets/images/3.svg" alt="Startup program logo" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo intercom" src="assets/images/intercom-engagement-os.png" alt="Startup program logo" loading="lazy" decoding="async"></div>
         <div class="backed-strip-item" aria-hidden="true"><img class="backed-strip-logo miro" src="assets/images/miro.svg" alt="Startup program logo" loading="lazy" decoding="async"></div>
       </div>
