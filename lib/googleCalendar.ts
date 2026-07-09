@@ -137,6 +137,7 @@ type CreateBookingEventInput = {
 type SendHostBookingNotificationInput = CreateBookingEventInput & {
   htmlLink?: string;
   meetLink?: string;
+  notificationSenderEmail?: string;
 };
 
 function encodeBase64Url(value: string) {
@@ -164,9 +165,9 @@ function buildHostNotificationEmail(input: SendHostBookingNotificationInput) {
   const endTime = addMinutesToTime(input.time, input.duration);
   const subject = sanitizeHeaderValue(`New booking: ${input.meetingType} with ${input.clientName}`);
   const clientName = sanitizeHeaderValue(input.clientName);
-  const personName = sanitizeHeaderValue(input.personName);
   const clientEmail = sanitizeHeaderValue(input.clientEmail);
   const personEmail = sanitizeHeaderValue(input.personEmail);
+  const senderEmail = sanitizeHeaderValue(input.notificationSenderEmail || input.personEmail);
   const safeMessage = input.message || "No message provided.";
   const safeCompany = input.companyName || "Not provided.";
   const details = [
@@ -214,7 +215,7 @@ function buildHostNotificationEmail(input: SendHostBookingNotificationInput) {
   `;
 
   const rawMessage = [
-    `From: ${personName} <${personEmail}>`,
+    `From: TeboaTech Bookings <${senderEmail}>`,
     `To: ${personEmail}`,
     `Reply-To: ${clientName} <${clientEmail}>`,
     `Subject: ${subject}`,
@@ -327,9 +328,10 @@ function buildClientConfirmationEmail(input: SendHostBookingNotificationInput) {
 export async function sendHostBookingNotificationEmail(
   input: SendHostBookingNotificationInput
 ) {
+  const senderEmail = input.notificationSenderEmail || input.personEmail;
   const gmail = google.gmail({
     version: "v1",
-    auth: getGmailAuth(input.personEmail),
+    auth: getGmailAuth(senderEmail),
   });
 
   await gmail.users.messages.send({

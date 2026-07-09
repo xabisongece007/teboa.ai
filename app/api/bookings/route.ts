@@ -125,6 +125,7 @@ export async function POST(request: NextRequest) {
       meetLink: booking.meetLink,
       meetingType,
       message,
+      notificationSenderEmail: person.notificationSenderEmail,
       personEmail: person.email,
       personName: person.name,
       phoneNumber,
