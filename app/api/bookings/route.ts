@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getBookingPerson } from "../../../lib/bookingConfig";
-import { createBookingEvent, isCalendarSlotAvailable } from "../../../lib/googleCalendar";
+import {
+  createBookingEvent,
+  isCalendarSlotAvailable,
+  sendHostBookingNotificationEmail,
+} from "../../../lib/googleCalendar";
 import {
   BOOKING_TIME_ZONE,
   ensureValidSlotTime,
@@ -29,6 +33,8 @@ function isValidEmail(value: string) {
  * The service account email in GOOGLE_SERVICE_ACCOUNT_EMAIL must be added to each
  * team member calendar with "Make changes to events" permission, otherwise
  * availability checks and event creation will fail.
+ * For immediate host booking notification emails, the same domain-wide delegation
+ * client also needs https://www.googleapis.com/auth/gmail.send.
  */
 export async function POST(request: NextRequest) {
   let payload: BookingPayload;
@@ -105,11 +111,35 @@ export async function POST(request: NextRequest) {
       phoneNumber,
       time,
     });
+    let hostNotificationSent = false;
+
+    try {
+      await sendHostBookingNotificationEmail({
+        calendarId: person.calendarId,
+        clientEmail: email,
+        clientName: fullName,
+        companyName,
+        date,
+        duration: person.meetingDuration,
+        htmlLink: booking.htmlLink,
+        meetLink: booking.meetLink,
+        meetingType,
+        message,
+        personEmail: person.email,
+        personName: person.name,
+        phoneNumber,
+        time,
+      });
+      hostNotificationSent = true;
+    } catch (notificationError) {
+      console.error("Host booking notification email failed", notificationError);
+    }
 
     return NextResponse.json({
       duration: person.meetingDuration,
       eventId: booking.eventId,
       htmlLink: booking.htmlLink,
+      hostNotificationSent,
       meetLink: booking.meetLink,
       person: {
         email: person.email,

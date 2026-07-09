@@ -34,6 +34,21 @@ function getCalendarAuth(subject?: string) {
   });
 }
 
+function getGmailAuth(subject: string) {
+  const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+
+  if (!clientEmail) {
+    throw new Error("Missing GOOGLE_SERVICE_ACCOUNT_EMAIL");
+  }
+
+  return new google.auth.JWT({
+    email: clientEmail,
+    key: getPrivateKey(),
+    scopes: ["https://www.googleapis.com/auth/gmail.send"],
+    subject,
+  });
+}
+
 function getCalendarClient(subject?: string) {
   return google.calendar({
     version: "v3",
@@ -118,6 +133,117 @@ type CreateBookingEventInput = {
   time: string;
   duration: number;
 };
+
+type SendHostBookingNotificationInput = CreateBookingEventInput & {
+  htmlLink?: string;
+  meetLink?: string;
+};
+
+function encodeBase64Url(value: string) {
+  return Buffer.from(value)
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/g, "");
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function buildHostNotificationEmail(input: SendHostBookingNotificationInput) {
+  const endTime = addMinutesToTime(input.time, input.duration);
+  const subject = `New booking: ${input.meetingType} with ${input.clientName}`;
+  const safeMessage = input.message || "No message provided.";
+  const safeCompany = input.companyName || "Not provided.";
+  const details = [
+    ["Client", input.clientName],
+    ["Email", input.clientEmail],
+    ["Phone", input.phoneNumber],
+    ["Company", safeCompany],
+    ["Meeting type", input.meetingType],
+    ["Meeting time", `${input.date} at ${input.time} - ${endTime} SAST`],
+    ["Google Meet", input.meetLink || "Google Meet link not available yet."],
+    ["Calendar event", input.htmlLink || "Calendar event link not available."],
+    ["Message", safeMessage],
+  ];
+
+  const htmlRows = details
+    .map(
+      ([label, value]) =>
+        `<tr><td style="padding:8px 12px;font-weight:700;color:#111827;border-bottom:1px solid #e5e7eb">${escapeHtml(
+          label
+        )}</td><td style="padding:8px 12px;color:#374151;border-bottom:1px solid #e5e7eb">${escapeHtml(
+          value
+        )}</td></tr>`
+    )
+    .join("");
+
+  const textBody = [
+    `New TeboaTech booking for ${input.personName}`,
+    "",
+    ...details.map(([label, value]) => `${label}: ${value}`),
+    "",
+    "This notification is sent immediately when a client books, even before they accept the calendar invite.",
+  ].join("\n");
+
+  const htmlBody = `
+    <div style="font-family:Arial,sans-serif;background:#f6f3ef;padding:24px">
+      <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:16px;padding:24px;border:1px solid #e5e7eb">
+        <p style="margin:0 0 8px;color:#1D7A4F;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">TeboaTech Booking</p>
+        <h1 style="margin:0 0 16px;font-size:24px;line-height:1.2;color:#050505">New booking received</h1>
+        <p style="margin:0 0 20px;color:#4b5563">A client booked a meeting with ${escapeHtml(
+          input.personName
+        )}. This is your immediate host notification.</p>
+        <table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden">${htmlRows}</table>
+      </div>
+    </div>
+  `;
+
+  const rawMessage = [
+    `From: ${input.personName} <${input.personEmail}>`,
+    `To: ${input.personEmail}`,
+    `Reply-To: ${input.clientName} <${input.clientEmail}>`,
+    `Subject: ${subject}`,
+    "MIME-Version: 1.0",
+    'Content-Type: multipart/alternative; boundary="teboatech-booking-boundary"',
+    "",
+    "--teboatech-booking-boundary",
+    "Content-Type: text/plain; charset=utf-8",
+    "",
+    textBody,
+    "",
+    "--teboatech-booking-boundary",
+    "Content-Type: text/html; charset=utf-8",
+    "",
+    htmlBody,
+    "",
+    "--teboatech-booking-boundary--",
+  ].join("\r\n");
+
+  return encodeBase64Url(rawMessage);
+}
+
+export async function sendHostBookingNotificationEmail(
+  input: SendHostBookingNotificationInput
+) {
+  const gmail = google.gmail({
+    version: "v1",
+    auth: getGmailAuth(input.personEmail),
+  });
+
+  await gmail.users.messages.send({
+    userId: "me",
+    requestBody: {
+      raw: buildHostNotificationEmail(input),
+    },
+  });
+}
 
 export async function createBookingEvent(input: CreateBookingEventInput) {
   const calendar = getCalendarClient(input.personEmail);
