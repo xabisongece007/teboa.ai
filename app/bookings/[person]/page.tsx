@@ -81,7 +81,7 @@ export default async function BookingPage({
               </div>
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>Timezone</span>
-                <span className={styles.metaValue}>09:00 - 17:00 SAST</span>
+                <span className={styles.metaValue}>09:00 - 21:30 SAST</span>
               </div>
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>Email</span>
