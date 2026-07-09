@@ -114,7 +114,9 @@
 
 .backed-strip{
   margin:22px 0 -42px;
-  width:100%;
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
   text-align:center;
 }
 .backed-strip-label{
@@ -132,6 +134,7 @@
 .backed-strip-track{
   display:flex;
   align-items:center;
+  gap:clamp(72px,7vw,132px);
   width:max-content;
   animation:backedScroll 42s linear infinite;
   will-change:transform;
@@ -141,9 +144,11 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:0 44px;
+  width:clamp(190px,14vw,300px);
+  padding:0;
   flex-shrink:0;
   height:112px;
+  overflow:visible;
 }
 .backed-strip-logo{
   display:block;
@@ -160,20 +165,21 @@
 .backed-strip-logo.google{height:54px}
 .backed-strip-logo.mongodb{height:78px}
 .backed-strip-logo.aws{height:62px}
-.backed-strip-logo.datadog{height:70px;transform:scale(3.2)}
-.backed-strip-logo.sentry{height:70px;transform:scale(3.2)}
+.backed-strip-logo.datadog{height:70px;transform:scale(2.7)}
+.backed-strip-logo.sentry{height:70px;transform:scale(2.7)}
 .backed-strip-logo.intercom{height:56px}
 .backed-strip-logo.miro{height:46px}
 @keyframes backedScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(max-width:720px){
   .backed-strip{margin:18px 0 -28px}
   .backed-strip-label{font-size:10px;margin-bottom:14px}
-  .backed-strip-item{padding:0 28px;height:88px}
+  .backed-strip-track{gap:52px}
+  .backed-strip-item{width:190px;padding:0;height:88px}
   .backed-strip-logo.google{height:40px}
   .backed-strip-logo.mongodb{height:58px}
   .backed-strip-logo.aws{height:46px}
-  .backed-strip-logo.datadog{height:50px;transform:scale(3)}
-  .backed-strip-logo.sentry{height:50px;transform:scale(3)}
+  .backed-strip-logo.datadog{height:50px;transform:scale(2.5)}
+  .backed-strip-logo.sentry{height:50px;transform:scale(2.5)}
   .backed-strip-logo.intercom{height:42px}
   .backed-strip-logo.miro{height:34px}
 }
