@@ -23,6 +23,7 @@ type BookingFormProps = {
 };
 
 type BookingResponse = {
+  clientConfirmationSent?: boolean;
   eventId: string;
   meetLink: string;
   person: {
@@ -203,6 +204,10 @@ export default function BookingForm({ person, personSlug, todayInSast }: Booking
           {success.summary}
           <br />
           Meeting with {success.person.name}.
+          <br />
+          {success.clientConfirmationSent
+            ? "A confirmation email was sent to the email address you entered."
+            : "Your meeting is confirmed. If the email does not arrive, save the Google Meet link below."}
           {success.meetLink ? (
             <>
               <br />

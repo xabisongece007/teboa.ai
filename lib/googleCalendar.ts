@@ -156,9 +156,17 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#039;");
 }
 
+function sanitizeHeaderValue(value: string) {
+  return value.replace(/[\r\n]+/g, " ").trim();
+}
+
 function buildHostNotificationEmail(input: SendHostBookingNotificationInput) {
   const endTime = addMinutesToTime(input.time, input.duration);
-  const subject = `New booking: ${input.meetingType} with ${input.clientName}`;
+  const subject = sanitizeHeaderValue(`New booking: ${input.meetingType} with ${input.clientName}`);
+  const clientName = sanitizeHeaderValue(input.clientName);
+  const personName = sanitizeHeaderValue(input.personName);
+  const clientEmail = sanitizeHeaderValue(input.clientEmail);
+  const personEmail = sanitizeHeaderValue(input.personEmail);
   const safeMessage = input.message || "No message provided.";
   const safeCompany = input.companyName || "Not provided.";
   const details = [
@@ -206,9 +214,9 @@ function buildHostNotificationEmail(input: SendHostBookingNotificationInput) {
   `;
 
   const rawMessage = [
-    `From: ${input.personName} <${input.personEmail}>`,
-    `To: ${input.personEmail}`,
-    `Reply-To: ${input.clientName} <${input.clientEmail}>`,
+    `From: ${personName} <${personEmail}>`,
+    `To: ${personEmail}`,
+    `Reply-To: ${clientName} <${clientEmail}>`,
     `Subject: ${subject}`,
     "MIME-Version: 1.0",
     'Content-Type: multipart/alternative; boundary="teboatech-booking-boundary"',
@@ -229,6 +237,93 @@ function buildHostNotificationEmail(input: SendHostBookingNotificationInput) {
   return encodeBase64Url(rawMessage);
 }
 
+function buildClientConfirmationEmail(input: SendHostBookingNotificationInput) {
+  const endTime = addMinutesToTime(input.time, input.duration);
+  const subject = sanitizeHeaderValue(
+    `Booking confirmed: ${input.meetingType} with ${input.personName}`
+  );
+  const clientName = sanitizeHeaderValue(input.clientName);
+  const personName = sanitizeHeaderValue(input.personName);
+  const clientEmail = sanitizeHeaderValue(input.clientEmail);
+  const personEmail = sanitizeHeaderValue(input.personEmail);
+  const safeMessage = input.message || "No message provided.";
+  const safeCompany = input.companyName || "Not provided.";
+  const details = [
+    ["Host", `${input.personName} (${input.personEmail})`],
+    ["Meeting type", input.meetingType],
+    ["Meeting time", `${input.date} at ${input.time} - ${endTime} SAST`],
+    ["Google Meet", input.meetLink || "Google Meet link not available yet."],
+    ["Calendar event", input.htmlLink || "Calendar event link not available."],
+    ["Company", safeCompany],
+    ["Message", safeMessage],
+  ];
+
+  const htmlRows = details
+    .map(
+      ([label, value]) =>
+        `<tr><td style="padding:8px 12px;font-weight:700;color:#111827;border-bottom:1px solid #e5e7eb">${escapeHtml(
+          label
+        )}</td><td style="padding:8px 12px;color:#374151;border-bottom:1px solid #e5e7eb">${escapeHtml(
+          value
+        )}</td></tr>`
+    )
+    .join("");
+
+  const textBody = [
+    `Hi ${input.clientName},`,
+    "",
+    "Your TeboaTech meeting is confirmed.",
+    "",
+    ...details.map(([label, value]) => `${label}: ${value}`),
+    "",
+    "If the Google Calendar invite does not appear in your inbox, you can still use the Google Meet link above at the scheduled time.",
+  ].join("\n");
+
+  const meetButton = input.meetLink
+    ? `<p style="margin:24px 0 0"><a href="${escapeHtml(
+        input.meetLink
+      )}" style="display:inline-block;background:#1D7A4F;color:#ffffff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:800">Join Google Meet</a></p>`
+    : "";
+
+  const htmlBody = `
+    <div style="font-family:Arial,sans-serif;background:#f6f3ef;padding:24px">
+      <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:16px;padding:24px;border:1px solid #e5e7eb">
+        <p style="margin:0 0 8px;color:#1D7A4F;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">TeboaTech Booking</p>
+        <h1 style="margin:0 0 16px;font-size:24px;line-height:1.2;color:#050505">Your meeting is confirmed</h1>
+        <p style="margin:0 0 20px;color:#4b5563">Hi ${escapeHtml(
+          input.clientName
+        )}, your booking with ${escapeHtml(input.personName)} is confirmed.</p>
+        <table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden">${htmlRows}</table>
+        ${meetButton}
+        <p style="margin:20px 0 0;color:#6b7280;font-size:13px">A Google Calendar invite may also arrive separately. If it does not, this email is your confirmation.</p>
+      </div>
+    </div>
+  `;
+
+  const rawMessage = [
+    `From: ${personName} <${personEmail}>`,
+    `To: ${clientName} <${clientEmail}>`,
+    `Reply-To: ${personName} <${personEmail}>`,
+    `Subject: ${subject}`,
+    "MIME-Version: 1.0",
+    'Content-Type: multipart/alternative; boundary="teboatech-client-booking-boundary"',
+    "",
+    "--teboatech-client-booking-boundary",
+    "Content-Type: text/plain; charset=utf-8",
+    "",
+    textBody,
+    "",
+    "--teboatech-client-booking-boundary",
+    "Content-Type: text/html; charset=utf-8",
+    "",
+    htmlBody,
+    "",
+    "--teboatech-client-booking-boundary--",
+  ].join("\r\n");
+
+  return encodeBase64Url(rawMessage);
+}
+
 export async function sendHostBookingNotificationEmail(
   input: SendHostBookingNotificationInput
 ) {
@@ -241,6 +336,22 @@ export async function sendHostBookingNotificationEmail(
     userId: "me",
     requestBody: {
       raw: buildHostNotificationEmail(input),
+    },
+  });
+}
+
+export async function sendClientBookingConfirmationEmail(
+  input: SendHostBookingNotificationInput
+) {
+  const gmail = google.gmail({
+    version: "v1",
+    auth: getGmailAuth(input.personEmail),
+  });
+
+  await gmail.users.messages.send({
+    userId: "me",
+    requestBody: {
+      raw: buildClientConfirmationEmail(input),
     },
   });
 }

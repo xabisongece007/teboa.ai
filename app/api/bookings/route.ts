@@ -3,6 +3,7 @@ import { getBookingPerson } from "../../../lib/bookingConfig";
 import {
   createBookingEvent,
   isCalendarSlotAvailable,
+  sendClientBookingConfirmationEmail,
   sendHostBookingNotificationEmail,
 } from "../../../lib/googleCalendar";
 import {
@@ -111,31 +112,41 @@ export async function POST(request: NextRequest) {
       phoneNumber,
       time,
     });
+    let clientConfirmationSent = false;
     let hostNotificationSent = false;
+    const emailPayload = {
+      calendarId: person.calendarId,
+      clientEmail: email,
+      clientName: fullName,
+      companyName,
+      date,
+      duration: person.meetingDuration,
+      htmlLink: booking.htmlLink,
+      meetLink: booking.meetLink,
+      meetingType,
+      message,
+      personEmail: person.email,
+      personName: person.name,
+      phoneNumber,
+      time,
+    };
 
     try {
-      await sendHostBookingNotificationEmail({
-        calendarId: person.calendarId,
-        clientEmail: email,
-        clientName: fullName,
-        companyName,
-        date,
-        duration: person.meetingDuration,
-        htmlLink: booking.htmlLink,
-        meetLink: booking.meetLink,
-        meetingType,
-        message,
-        personEmail: person.email,
-        personName: person.name,
-        phoneNumber,
-        time,
-      });
+      await sendClientBookingConfirmationEmail(emailPayload);
+      clientConfirmationSent = true;
+    } catch (confirmationError) {
+      console.error("Client booking confirmation email failed", confirmationError);
+    }
+
+    try {
+      await sendHostBookingNotificationEmail(emailPayload);
       hostNotificationSent = true;
     } catch (notificationError) {
       console.error("Host booking notification email failed", notificationError);
     }
 
     return NextResponse.json({
+      clientConfirmationSent,
       duration: person.meetingDuration,
       eventId: booking.eventId,
       htmlLink: booking.htmlLink,
