@@ -18,6 +18,7 @@ const MIME_TYPES = {
   ".webp": "image/webp",
   ".xml": "application/xml; charset=utf-8",
 };
+const INTERCOM_SCRIPT_TAG = '<script src="/intercom.js" defer></script>';
 
 function getContentType(filePath) {
   return MIME_TYPES[path.extname(filePath).toLowerCase()] || "application/octet-stream";
@@ -109,6 +110,18 @@ async function serveStaticFile(slugSegments, method) {
   }
 
   const fileBuffer = await readFile(resolved.absolutePath);
+
+  if (path.extname(resolved.absolutePath).toLowerCase() === ".html") {
+    const html = fileBuffer.toString("utf-8");
+    const bodyCloseIndex = html.lastIndexOf("</body>");
+    const htmlWithIntercom =
+      bodyCloseIndex === -1 || html.includes(INTERCOM_SCRIPT_TAG)
+        ? html
+        : `${html.slice(0, bodyCloseIndex)}${INTERCOM_SCRIPT_TAG}${html.slice(bodyCloseIndex)}`;
+
+    return new Response(htmlWithIntercom, { status: 200, headers });
+  }
+
   return new Response(fileBuffer, { status: 200, headers });
 }
 

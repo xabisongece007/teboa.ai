@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 export const metadata = {
   metadataBase: new URL("https://teboatech.com"),
   title: {
@@ -55,6 +57,7 @@ export default function RootLayout({ children }) {
           fontFamily: "'Inter', system-ui, sans-serif",
         }}
       >
+        <Script src="/intercom.js" strategy="afterInteractive" />
         {children}
       </body>
     </html>
