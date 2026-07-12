@@ -9,7 +9,7 @@
 <meta name="color-scheme" content="light only">
 <meta name="supported-color-schemes" content="light">
 <meta name="theme-color" content="#EEEAE6">
-<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="icon" type="image/png" href="/assets/images/teboa-logo.png">
 <link rel="apple-touch-icon" href="/assets/images/teboa-logo.png">
@@ -1412,11 +1412,11 @@ const EMAILJS_SERVICE_ID   = 'service_ut221yn';
 const EMAILJS_TEMPLATE_ID  = 'template_7nd73kp';
 const EMAILJS_AUTOREPLY_ID = 'template_6ps8xqd';
 
-// Tracking IDs. Google and TikTok stay as placeholders until those accounts are ready.
+// Tracking IDs. Leave unavailable platforms blank so they remain inactive quietly.
 const FACEBOOK_PIXEL_ID    = '2139617380105220';
-const GOOGLE_TAG_ID        = 'GOOGLE_TAG_ID';
+const GOOGLE_TAG_ID        = 'G-LD58M8QSJM';
 const LINKEDIN_PARTNER_ID  = '10261521';
-const TIKTOK_PIXEL_ID      = 'TIKTOK_PIXEL_ID';
+const TIKTOK_PIXEL_ID      = '';
 // ---------------------------------------------
 
 // ---------------------------------------------
@@ -1485,7 +1485,6 @@ function loadLinkedInTag(){
 
 function loadTikTokPixel(){
   if(!isRealTrackingId(TIKTOK_PIXEL_ID, 'TIKTOK_PIXEL_ID')){
-    console.warn('[Teboa] TikTok Pixel ID missing. Replace TIKTOK_PIXEL_ID.');
     return;
   }
   if(window.ttq) return;

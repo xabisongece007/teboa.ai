@@ -11,6 +11,7 @@
 
   window.__teboIntercomInitialized = true;
   window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
     app_id: APP_ID,
   };
 
