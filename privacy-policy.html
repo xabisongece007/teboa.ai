@@ -83,7 +83,7 @@
   <p>We believe privacy is a right, not a checkbox. This policy explains exactly what data we collect, why we collect it, how we use it, and how you can control it.</p>
   <div class="page-meta">
     <span>Effective Date: 17 May 2026</span>
-    <span>Last Updated: 17 May 2026</span>
+    <span>Last Updated: 15 July 2026</span>
     <span>TeboaTech (Pty) Ltd</span>
   </div>
 </div>
@@ -127,12 +127,13 @@
       <li>Session data and usage patterns to improve platform performance</li>
     </ul>
     <h3>2.4 AI Interaction Data</h3>
-    <p>When you interact with our AI agents (Amy, Sino, Sessy, and JJ), the content of your conversations may be processed to generate responses. These interactions are used to provide the service and, in anonymised form, to improve AI accuracy. We never use your specific store data to train public AI models.</p>
+    <p>When AI agents process conversation data in Teboa, there are two separate categories. First, this includes conversations between a Teboa account holder and Teboa agents (Amy, Sino, Sessy, and JJ) about that account holder's own store or business. Second, this includes conversations handled by Teboa agents on behalf of a Teboa client's Shopify store, such as that client's end-customers speaking to Sessy for support. Category (b) data is used only to deliver the immediate support or automation response requested at that moment and is never used to improve AI models, even in anonymised form. Category (a) data may be used only if the account holder has explicitly opted in, and then only in anonymised, aggregated form to improve the platform. We never use your specific store data to train public AI models.</p>
   </div>
 
   <div class="section">
     <h2>3. How We Use Your Information</h2>
     <p>We use your personal information only for the following purposes:</p>
+    <p>For clarity, Google Analytics on teboatech.com is configured with Google Signals disabled and restricted data sharing settings, so we do not collect advertising or cross-device tracking data.</p>
     <ul>
       <li><strong>Delivering the service:</strong> Running your dashboard, AI agents, automations, and store integrations</li>
       <li><strong>Account management:</strong> Creating and managing your workspace, billing, and plan</li>
@@ -151,7 +152,7 @@
     <h3>Firebase (Google LLC)</h3>
     <p>We use Firebase for database storage, user authentication, and file storage. Your workspace data is stored in Firebase. Google's infrastructure operates under GDPR and global privacy standards. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy Policy</a></p>
     <h3>Anthropic (Claude AI)</h3>
-    <p>Our AI agents are powered by Claude AI from Anthropic. Queries sent to AI agents may be processed by Anthropic's API. We do not share personally identifiable information with Anthropic beyond what is necessary to process your request. <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener">Anthropic Privacy Policy</a></p>
+    <p>Our AI agents are powered by Claude AI from Anthropic. Queries sent to AI agents may be processed by Anthropic's API. We do not share personally identifiable information with Anthropic beyond what is necessary to process your request. Under our Anthropic API arrangement, request and response data is retained according to the following terms: [CONFIRM RETENTION PERIOD]. <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener">Anthropic Privacy Policy</a></p>
     <h3>Vercel Inc.</h3>
     <p>Our platform and website are hosted on Vercel. Vercel may process request metadata (IP addresses, headers) as part of serving the application. <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel Privacy Policy</a></p>
     <h3>Shopify Inc.</h3>
@@ -160,6 +161,8 @@
     <p>We use EmailJS to process contact form submissions. Data submitted through our contact form is transmitted through EmailJS to our inbox. <a href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener">EmailJS Privacy Policy</a></p>
     <h3>Google Analytics</h3>
     <p>We use Google Analytics to understand how visitors use teboatech.com. This includes page views, session duration, and general usage patterns. Analytics data is anonymised and aggregated. You can opt out using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+    <h3>4.7 Subprocessor Updates</h3>
+    <p>We maintain an up-to-date list of subprocessors above. If we add a new subprocessor that will process personal information, we will update this page and notify active users via email at least 14 days before the change takes effect.</p>
   </div>
 
   <div class="section">
@@ -168,7 +171,7 @@
     <ul>
       <li>All data is encrypted in transit using TLS 1.2 or higher</li>
       <li>Data at rest is encrypted by Firebase's default encryption</li>
-      <li>Each business workspace is fully isolated. no data is shared between workspaces</li>
+      <li>Each business workspace is logically isolated through strict per-tenant access controls enforced at the database level, so one workspace cannot access another's data</li>
       <li>Access to production data is restricted to authorised TeboaTech personnel only</li>
       <li>Regular security reviews and access audits are performed</li>
     </ul>
@@ -218,7 +221,7 @@
     <p>Because we use services from Google (Firebase), Anthropic, and Vercel, your data may be processed in countries outside South Africa, including the United States. We ensure these transfers are protected through:</p>
     <ul>
       <li>Standard Contractual Clauses (SCCs) approved by relevant data protection authorities</li>
-      <li>Data Processing Agreements (DPAs) with each third-party provider</li>
+      <li>Data Processing Agreements (DPAs) with our infrastructure providers where such agreements are available, and Standard Contractual Clauses plus each provider's own compliance frameworks otherwise</li>
       <li>The adequacy decisions and privacy frameworks applicable to each provider</li>
     </ul>
   </div>
