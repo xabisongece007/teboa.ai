@@ -47,6 +47,31 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Inter:wght@300;400;500;600&display=swap"
         />
         <link rel="stylesheet" href="/shared-footer.css" />
+        <style
+          id="teboa-intercom-position-styles"
+          dangerouslySetInnerHTML={{
+            __html: `
+iframe[name="intercom-messenger-frame"],
+iframe[name="intercom-notification-stack-frame"] {
+  position: fixed !important;
+  right: 24px !important;
+  left: auto !important;
+  bottom: 96px !important;
+  top: auto !important;
+  transform: none !important;
+}
+
+@media (max-width: 640px) {
+  iframe[name="intercom-messenger-frame"],
+  iframe[name="intercom-notification-stack-frame"] {
+    right: 16px !important;
+    bottom: 80px !important;
+    max-width: calc(100vw - 32px) !important;
+  }
+}
+`,
+          }}
+        />
       </head>
       <body
         suppressHydrationWarning

@@ -19,6 +19,26 @@ const MIME_TYPES = {
   ".webp": "image/webp",
   ".xml": "application/xml; charset=utf-8",
 };
+const INTERCOM_POSITION_STYLE_TAG = `<style id="teboa-intercom-position-styles">
+iframe[name="intercom-messenger-frame"],
+iframe[name="intercom-notification-stack-frame"] {
+  position: fixed !important;
+  right: 24px !important;
+  left: auto !important;
+  bottom: 96px !important;
+  top: auto !important;
+  transform: none !important;
+}
+
+@media (max-width: 640px) {
+  iframe[name="intercom-messenger-frame"],
+  iframe[name="intercom-notification-stack-frame"] {
+    right: 16px !important;
+    bottom: 80px !important;
+    max-width: calc(100vw - 32px) !important;
+  }
+}
+</style>`;
 const INTERCOM_SCRIPT_TAG = '<script src="/intercom.js" defer></script>';
 
 function getContentType(filePath) {
@@ -115,10 +135,11 @@ async function serveStaticFile(slugSegments, method) {
   if (path.extname(resolved.absolutePath).toLowerCase() === ".html") {
     const html = fileBuffer.toString("utf-8");
     const bodyCloseIndex = html.lastIndexOf("</body>");
+    const intercomTags = `${html.includes(INTERCOM_POSITION_STYLE_TAG) ? "" : INTERCOM_POSITION_STYLE_TAG}${html.includes(INTERCOM_SCRIPT_TAG) ? "" : INTERCOM_SCRIPT_TAG}`;
     const htmlWithIntercom =
-      bodyCloseIndex === -1 || html.includes(INTERCOM_SCRIPT_TAG)
+      bodyCloseIndex === -1 || intercomTags.length === 0
         ? html
-        : `${html.slice(0, bodyCloseIndex)}${INTERCOM_SCRIPT_TAG}${html.slice(bodyCloseIndex)}`;
+        : `${html.slice(0, bodyCloseIndex)}${intercomTags}${html.slice(bodyCloseIndex)}`;
 
     return new Response(htmlWithIntercom, { status: 200, headers });
   }
