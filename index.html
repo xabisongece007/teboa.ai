@@ -79,6 +79,29 @@
 .sound-btn{position:absolute;bottom:14px;right:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(10,10,10,0.72);color:#fff;border:none;border-radius:100px;padding:7px 14px;font-size:12px;font-weight:500;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);letter-spacing:0.3px;z-index:10;transition:opacity .25s,transform .2s;font-family:var(--sans)}
 .sound-btn:hover{opacity:.88;transform:scale(1.04)}
 .sound-btn.hidden{opacity:0;pointer-events:none;visibility:hidden}
+/* Mobile/viewport guardrails */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{position:relative}
+.site-nav,.black-ticker,.hero,.product-showcase-section,.showcase-section,.tech-strip,footer{max-width:100vw}
+.backed-strip{width:100%;margin-left:0;margin-right:0}
+.hero,.showcase-section,.product-showcase-section,.services-section,.packages-section,.faq-section,.contact-form-section{overflow-x:clip}
+@media(max-width:720px){
+  .site-nav{width:100%;padding:0 16px;height:64px;justify-content:center}
+  .site-nav-cta{max-width:calc(100vw - 32px);white-space:nowrap}
+  .black-ticker{width:100%;height:40px}
+  .black-ticker-track{min-width:max-content}
+  .btick-item{padding:0 18px;font-size:11px;letter-spacing:1.2px}
+  .hero{padding-left:18px;padding-right:18px}
+  .hero h1{max-width:100%;overflow-wrap:normal}
+  .hero-sub{max-width:100%;font-size:17px}
+  .hero-video-wrap{width:100%;max-width:100%;border-radius:14px}
+  .backed-strip{margin-top:18px;margin-bottom:-28px}
+  .showcase-section{padding-left:18px;padding-right:18px}
+  .showcase-img-wrap{max-width:100%;overflow:hidden;border-radius:16px}
+  .showcase-img-3d,.showcase-img-3d:hover,.showcase-img-wrap:hover.showcase-img-3d{transform:perspective(800px) rotateX(2deg) scale(0.98)}
+  .logo-marquee-item{padding:0 34px}
+  .wa-float{right:18px;bottom:18px}
+}
 /* -- Black ticker strip -- */
 .black-ticker{background:var(--black);overflow:hidden;width:100%;height:40px;display:flex;align-items:center}
 .black-ticker-track{display:flex;align-items:center;width:max-content;animation:blackTicker 30s linear infinite;white-space:nowrap}

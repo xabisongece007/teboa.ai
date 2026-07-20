@@ -30,7 +30,7 @@
     var style = document.createElement("style");
     style.id = "teboa-intercom-position-styles";
     style.textContent =
-      'iframe[name="intercom-messenger-frame"], iframe[name="intercom-notification-stack-frame"] {' +
+      'iframe[name="intercom-notification-stack-frame"] {' +
       "position: fixed !important;" +
       "right: 24px !important;" +
       "left: auto !important;" +
@@ -39,18 +39,18 @@
       "transform: none !important;" +
       "}" +
       'iframe[name="intercom-messenger-frame"] {' +
-      "width: 400px !important;" +
-      "max-width: calc(100vw - 48px) !important;" +
-      "max-height: calc(100vh - 128px) !important;" +
+      "max-width: calc(100vw - 32px) !important;" +
+      "max-height: calc(100dvh - 96px) !important;" +
       "}" +
       "@media (max-width: 640px) {" +
-      'iframe[name="intercom-messenger-frame"], iframe[name="intercom-notification-stack-frame"] {' +
+      'iframe[name="intercom-notification-stack-frame"] {' +
       "right: 16px !important;" +
       "bottom: 80px !important;" +
       "max-width: calc(100vw - 32px) !important;" +
       "}" +
       'iframe[name="intercom-messenger-frame"] {' +
       "width: calc(100vw - 32px) !important;" +
+      "max-height: calc(100dvh - 96px) !important;" +
       "}" +
       "}";
 
@@ -63,9 +63,7 @@
     var rightOffset = window.matchMedia("(max-width: 640px)").matches ? "16px" : "24px";
     var bottomOffset = window.matchMedia("(max-width: 640px)").matches ? "80px" : "96px";
     var maxWidth = window.matchMedia("(max-width: 640px)").matches ? "calc(100vw - 32px)" : "";
-    var frames = document.querySelectorAll(
-      'iframe[name="intercom-messenger-frame"], iframe[name="intercom-notification-stack-frame"]'
-    );
+    var frames = document.querySelectorAll('iframe[name="intercom-notification-stack-frame"]');
 
     frames.forEach(function (frame) {
       frame.style.setProperty("position", "fixed", "important");
@@ -79,14 +77,6 @@
         frame.style.setProperty("max-width", maxWidth, "important");
       }
 
-      if (frame.getAttribute("name") === "intercom-messenger-frame") {
-        frame.style.setProperty(
-          "width",
-          window.matchMedia("(max-width: 640px)").matches ? "calc(100vw - 32px)" : "400px",
-          "important"
-        );
-        frame.style.setProperty("max-height", "calc(100vh - 128px)", "important");
-      }
     });
   }
 

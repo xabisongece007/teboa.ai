@@ -20,7 +20,6 @@ const MIME_TYPES = {
   ".xml": "application/xml; charset=utf-8",
 };
 const INTERCOM_POSITION_STYLE_TAG = `<style id="teboa-intercom-position-styles">
-iframe[name="intercom-messenger-frame"],
 iframe[name="intercom-notification-stack-frame"] {
   position: fixed !important;
   right: 24px !important;
@@ -31,13 +30,11 @@ iframe[name="intercom-notification-stack-frame"] {
 }
 
 iframe[name="intercom-messenger-frame"] {
-  width: 400px !important;
-  max-width: calc(100vw - 48px) !important;
-  max-height: calc(100vh - 128px) !important;
+  max-width: calc(100vw - 32px) !important;
+  max-height: calc(100dvh - 96px) !important;
 }
 
 @media (max-width: 640px) {
-  iframe[name="intercom-messenger-frame"],
   iframe[name="intercom-notification-stack-frame"] {
     right: 16px !important;
     bottom: 80px !important;
@@ -46,6 +43,7 @@ iframe[name="intercom-messenger-frame"] {
 
   iframe[name="intercom-messenger-frame"] {
     width: calc(100vw - 32px) !important;
+    max-height: calc(100dvh - 96px) !important;
   }
 }
 </style>`;
