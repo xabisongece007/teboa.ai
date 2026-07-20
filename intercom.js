@@ -22,49 +22,10 @@
   var w = window;
   var existingIntercom = w.Intercom;
 
-  function suppressExternalNotifications() {
-    if (document.getElementById("teboa-intercom-notification-guard")) {
-      return;
-    }
-
-    var style = document.createElement("style");
-    style.id = "teboa-intercom-notification-guard";
-    style.textContent =
-      'iframe[name="intercom-notification-stack-frame"],' +
-      'iframe[name="intercom-notifications-frame"] {' +
-      "display: none !important;" +
-      "visibility: hidden !important;" +
-      "pointer-events: none !important;" +
-      "}";
-    document.head.appendChild(style);
-  }
-
-  function openMessengerOnce() {
-    suppressExternalNotifications();
-
-    try {
-      if (sessionStorage.getItem("teboa_intercom_opened_v3") === "1") {
-        return;
-      }
-
-      sessionStorage.setItem("teboa_intercom_opened_v3", "1");
-    } catch {
-      return;
-    }
-
-    window.setTimeout(function () {
-      if (typeof w.Intercom === "function") {
-        w.Intercom("hideNotifications", true);
-        w.Intercom("show");
-      }
-    }, 4500);
-  }
-
   if (typeof existingIntercom === "function") {
     existingIntercom("reattach_activator");
     existingIntercom("update", w.intercomSettings);
     existingIntercom("hideNotifications", true);
-    openMessengerOnce();
     return;
   }
 
@@ -78,8 +39,6 @@
   };
 
   w.Intercom = queue;
-  suppressExternalNotifications();
-  openMessengerOnce();
 
   function loadWidget() {
     if (document.getElementById("teboa-intercom-widget")) {
