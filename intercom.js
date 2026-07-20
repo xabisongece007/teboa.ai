@@ -21,9 +21,46 @@
   var w = window;
   var existingIntercom = w.Intercom;
 
+  function positionIntercomFrames() {
+    var rightOffset = window.matchMedia("(max-width: 640px)").matches ? "16px" : "24px";
+    var bottomOffset = window.matchMedia("(max-width: 640px)").matches ? "80px" : "96px";
+    var maxWidth = window.matchMedia("(max-width: 640px)").matches ? "calc(100vw - 32px)" : "";
+    var frames = document.querySelectorAll(
+      'iframe[name="intercom-messenger-frame"], iframe[name="intercom-notification-stack-frame"]'
+    );
+
+    frames.forEach(function (frame) {
+      frame.style.setProperty("position", "fixed", "important");
+      frame.style.setProperty("right", rightOffset, "important");
+      frame.style.setProperty("left", "auto", "important");
+      frame.style.setProperty("bottom", bottomOffset, "important");
+      frame.style.setProperty("top", "auto", "important");
+      frame.style.setProperty("transform", "none", "important");
+
+      if (maxWidth) {
+        frame.style.setProperty("max-width", maxWidth, "important");
+      }
+    });
+  }
+
+  function watchIntercomFrames() {
+    positionIntercomFrames();
+
+    var observer = new MutationObserver(positionIntercomFrames);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+    });
+
+    window.addEventListener("resize", positionIntercomFrames);
+    window.setInterval(positionIntercomFrames, 1000);
+  }
+
   if (typeof existingIntercom === "function") {
     existingIntercom("reattach_activator");
     existingIntercom("update", w.intercomSettings);
+    watchIntercomFrames();
     return;
   }
 
@@ -48,6 +85,7 @@
     script.type = "text/javascript";
     script.async = true;
     script.src = "https://widget.intercom.io/widget/" + APP_ID;
+    script.onload = watchIntercomFrames;
 
     var firstScript = document.getElementsByTagName("script")[0];
 
