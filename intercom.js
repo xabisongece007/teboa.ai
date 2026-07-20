@@ -17,10 +17,30 @@
 
   var w = window;
   var existingIntercom = w.Intercom;
+  var AUTO_SHOW_KEY = "teboa_intercom_auto_shown";
+
+  function scheduleAutoShow() {
+    try {
+      if (window.sessionStorage.getItem(AUTO_SHOW_KEY) === "1") {
+        return;
+      }
+
+      window.sessionStorage.setItem(AUTO_SHOW_KEY, "1");
+    } catch {
+      return;
+    }
+
+    window.setTimeout(function () {
+      if (typeof w.Intercom === "function") {
+        w.Intercom("show");
+      }
+    }, 6500);
+  }
 
   if (typeof existingIntercom === "function") {
     existingIntercom("reattach_activator");
     existingIntercom("update", w.intercomSettings);
+    scheduleAutoShow();
     return;
   }
 
@@ -45,6 +65,7 @@
     script.type = "text/javascript";
     script.async = true;
     script.src = "https://widget.intercom.io/widget/" + APP_ID;
+    script.onload = scheduleAutoShow;
 
     var firstScript = document.getElementsByTagName("script")[0];
 
