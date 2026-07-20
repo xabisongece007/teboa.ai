@@ -65,6 +65,12 @@ iframe[name="intercom-messenger-frame"] {
   max-height: calc(100dvh - 96px) !important;
 }
 
+@media (min-width: 900px) {
+  iframe[name="intercom-messenger-frame"] {
+    transform: translate(calc(50vw - 288px), 72px) !important;
+  }
+}
+
 @media (max-width: 640px) {
   iframe[name="intercom-notification-stack-frame"] {
     right: 16px !important;
