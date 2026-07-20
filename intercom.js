@@ -39,15 +39,15 @@
     document.head.appendChild(style);
   }
 
-  function openMessengerHomeOnce() {
+  function openMessengerOnce() {
     suppressExternalNotifications();
 
     try {
-      if (sessionStorage.getItem("teboa_intercom_home_opened_v2") === "1") {
+      if (sessionStorage.getItem("teboa_intercom_opened_v3") === "1") {
         return;
       }
 
-      sessionStorage.setItem("teboa_intercom_home_opened_v2", "1");
+      sessionStorage.setItem("teboa_intercom_opened_v3", "1");
     } catch {
       return;
     }
@@ -55,7 +55,7 @@
     window.setTimeout(function () {
       if (typeof w.Intercom === "function") {
         w.Intercom("hideNotifications", true);
-        w.Intercom("showSpace", "home");
+        w.Intercom("show");
       }
     }, 4500);
   }
@@ -64,7 +64,7 @@
     existingIntercom("reattach_activator");
     existingIntercom("update", w.intercomSettings);
     existingIntercom("hideNotifications", true);
-    openMessengerHomeOnce();
+    openMessengerOnce();
     return;
   }
 
@@ -79,7 +79,7 @@
 
   w.Intercom = queue;
   suppressExternalNotifications();
-  openMessengerHomeOnce();
+  openMessengerOnce();
 
   function loadWidget() {
     if (document.getElementById("teboa-intercom-widget")) {
