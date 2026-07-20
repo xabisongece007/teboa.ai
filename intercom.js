@@ -20,94 +20,29 @@
 
   var w = window;
   var existingIntercom = w.Intercom;
-  var framesWatchStarted = false;
 
-  function injectIntercomPositionStyles() {
-    if (document.getElementById("teboa-intercom-position-styles")) {
-      return;
-    }
-
-    var style = document.createElement("style");
-    style.id = "teboa-intercom-position-styles";
-    style.textContent =
-      'iframe[name="intercom-notification-stack-frame"] {' +
-      "position: fixed !important;" +
-      "right: 24px !important;" +
-      "left: auto !important;" +
-      "bottom: 96px !important;" +
-      "top: auto !important;" +
-      "transform: none !important;" +
-      "}" +
-      'iframe[name="intercom-messenger-frame"] {' +
-      "max-width: calc(100vw - 32px) !important;" +
-      "max-height: calc(100dvh - 96px) !important;" +
-      "}" +
-      "@media (min-width: 900px) {" +
-      'iframe[name="intercom-messenger-frame"] {' +
-      "transform: translate(calc(50vw - 288px), 72px) !important;" +
-      "}" +
-      "}" +
-      "@media (max-width: 640px) {" +
-      'iframe[name="intercom-notification-stack-frame"] {' +
-      "right: 16px !important;" +
-      "bottom: 80px !important;" +
-      "max-width: calc(100vw - 32px) !important;" +
-      "}" +
-      'iframe[name="intercom-messenger-frame"] {' +
-      "width: calc(100vw - 32px) !important;" +
-      "max-height: calc(100dvh - 96px) !important;" +
-      "}" +
-      "}";
-
-    document.head.appendChild(style);
-  }
-
-  function positionIntercomFrames() {
-    injectIntercomPositionStyles();
-
-    var rightOffset = window.matchMedia("(max-width: 640px)").matches ? "16px" : "24px";
-    var bottomOffset = window.matchMedia("(max-width: 640px)").matches ? "80px" : "96px";
-    var maxWidth = window.matchMedia("(max-width: 640px)").matches ? "calc(100vw - 32px)" : "";
-    var frames = document.querySelectorAll('iframe[name="intercom-notification-stack-frame"]');
-
-    frames.forEach(function (frame) {
-      frame.style.setProperty("position", "fixed", "important");
-      frame.style.setProperty("right", rightOffset, "important");
-      frame.style.setProperty("left", "auto", "important");
-      frame.style.setProperty("bottom", bottomOffset, "important");
-      frame.style.setProperty("top", "auto", "important");
-      frame.style.setProperty("transform", "none", "important");
-
-      if (maxWidth) {
-        frame.style.setProperty("max-width", maxWidth, "important");
+  function openMessengerHomeOnce() {
+    try {
+      if (sessionStorage.getItem("teboa_intercom_home_opened") === "1") {
+        return;
       }
 
-    });
-  }
-
-  function watchIntercomFrames() {
-    if (framesWatchStarted) {
+      sessionStorage.setItem("teboa_intercom_home_opened", "1");
+    } catch {
       return;
     }
 
-    framesWatchStarted = true;
-    positionIntercomFrames();
-
-    var observer = new MutationObserver(positionIntercomFrames);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      childList: true,
-      subtree: true,
-    });
-
-    window.addEventListener("resize", positionIntercomFrames);
-    window.setInterval(positionIntercomFrames, 1000);
+    window.setTimeout(function () {
+      if (typeof w.Intercom === "function") {
+        w.Intercom("showSpace", "home");
+      }
+    }, 4500);
   }
 
   if (typeof existingIntercom === "function") {
     existingIntercom("reattach_activator");
     existingIntercom("update", w.intercomSettings);
-    watchIntercomFrames();
+    openMessengerHomeOnce();
     return;
   }
 
@@ -121,7 +56,7 @@
   };
 
   w.Intercom = queue;
-  watchIntercomFrames();
+  openMessengerHomeOnce();
 
   function loadWidget() {
     if (document.getElementById("teboa-intercom-widget")) {
@@ -133,7 +68,6 @@
     script.type = "text/javascript";
     script.async = true;
     script.src = "https://widget.intercom.io/widget/" + APP_ID;
-    script.onload = watchIntercomFrames;
 
     var firstScript = document.getElementsByTagName("script")[0];
 
