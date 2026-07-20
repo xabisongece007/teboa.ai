@@ -20,6 +20,7 @@
 
   var w = window;
   var existingIntercom = w.Intercom;
+  var framesWatchStarted = false;
 
   function positionIntercomFrames() {
     var rightOffset = window.matchMedia("(max-width: 640px)").matches ? "16px" : "24px";
@@ -44,6 +45,11 @@
   }
 
   function watchIntercomFrames() {
+    if (framesWatchStarted) {
+      return;
+    }
+
+    framesWatchStarted = true;
     positionIntercomFrames();
 
     var observer = new MutationObserver(positionIntercomFrames);
@@ -74,6 +80,7 @@
   };
 
   w.Intercom = queue;
+  watchIntercomFrames();
 
   function loadWidget() {
     if (document.getElementById("teboa-intercom-widget")) {
