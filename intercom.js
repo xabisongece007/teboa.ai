@@ -16,7 +16,6 @@
     alignment: "right",
     horizontal_padding: 24,
     vertical_padding: 24,
-    hide_notifications: true,
   };
 
   var w = window;
@@ -25,7 +24,6 @@
   if (typeof existingIntercom === "function") {
     existingIntercom("reattach_activator");
     existingIntercom("update", w.intercomSettings);
-    existingIntercom("hideNotifications", true);
     return;
   }
 
