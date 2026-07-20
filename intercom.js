@@ -22,7 +22,36 @@
   var existingIntercom = w.Intercom;
   var framesWatchStarted = false;
 
+  function injectIntercomPositionStyles() {
+    if (document.getElementById("teboa-intercom-position-styles")) {
+      return;
+    }
+
+    var style = document.createElement("style");
+    style.id = "teboa-intercom-position-styles";
+    style.textContent =
+      'iframe[name="intercom-messenger-frame"], iframe[name="intercom-notification-stack-frame"] {' +
+      "position: fixed !important;" +
+      "right: 24px !important;" +
+      "left: auto !important;" +
+      "bottom: 96px !important;" +
+      "top: auto !important;" +
+      "transform: none !important;" +
+      "}" +
+      "@media (max-width: 640px) {" +
+      'iframe[name="intercom-messenger-frame"], iframe[name="intercom-notification-stack-frame"] {' +
+      "right: 16px !important;" +
+      "bottom: 80px !important;" +
+      "max-width: calc(100vw - 32px) !important;" +
+      "}" +
+      "}";
+
+    document.head.appendChild(style);
+  }
+
   function positionIntercomFrames() {
+    injectIntercomPositionStyles();
+
     var rightOffset = window.matchMedia("(max-width: 640px)").matches ? "16px" : "24px";
     var bottomOffset = window.matchMedia("(max-width: 640px)").matches ? "80px" : "96px";
     var maxWidth = window.matchMedia("(max-width: 640px)").matches ? "calc(100vw - 32px)" : "";
