@@ -16,6 +16,34 @@ export const metadata = {
 
 export default async function BlogIndexPage() {
   const posts = await getPublishedPosts();
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "TeboaTech Blog",
+    url: "https://teboatech.com/blog",
+    description:
+      "TeboaTech articles on Shopify automation, eCommerce operations, customer support systems, and practical growth workflows.",
+    publisher: {
+      "@type": "Organization",
+      name: "TeboaTech",
+      url: "https://teboatech.com/",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://teboatech.com/assets/images/teboa-logo.png",
+      },
+    },
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      url: `https://teboatech.com/blog/${post.slug}`,
+      datePublished: post.createdAtIso || undefined,
+      dateModified: post.updatedAtIso || post.createdAtIso || undefined,
+      author: {
+        "@type": post.author ? "Person" : "Organization",
+        name: post.author || "TeboaTech",
+      },
+    })),
+  };
 
   return (
     <BlogShell
@@ -23,6 +51,10 @@ export default async function BlogIndexPage() {
       title="Practical systems for Shopify growth and smoother operations."
       description="Read what we are learning about automation, support workflows, customer retention, and building a cleaner operating system for eCommerce teams."
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
       <section className={styles.section}>
         <div className={styles.sectionInner}>
           {posts.length === 0 ? (

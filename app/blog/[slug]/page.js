@@ -81,12 +81,70 @@ export default async function BlogPostPage({ params }) {
     notFound();
   }
 
+  const canonicalUrl = `https://teboatech.com/blog/${post.slug}`;
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.metaDescription,
+    url: canonicalUrl,
+    mainEntityOfPage: canonicalUrl,
+    datePublished: post.createdAtIso || undefined,
+    dateModified: post.updatedAtIso || post.createdAtIso || undefined,
+    author: {
+      "@type": post.author ? "Person" : "Organization",
+      name: post.author || "TeboaTech",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "TeboaTech",
+      url: "https://teboatech.com/",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://teboatech.com/assets/images/teboa-logo.png",
+      },
+    },
+    image: post.coverImage || undefined,
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://teboatech.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://teboatech.com/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: canonicalUrl,
+      },
+    ],
+  };
+
   return (
     <BlogShell
       eyebrow="TeboaTech Blog"
       title="Ideas, systems, and operating notes from the TeboaTech team."
       description="Deep dives on eCommerce workflows, support automation, and how to make store operations easier to run."
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <section className={styles.articleWrap}>
         <article className={styles.article}>
           <Link href="/blog" className={styles.backLink}>

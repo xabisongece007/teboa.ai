@@ -8,6 +8,8 @@ export default function BlogShell({ eyebrow, title, description, children }) {
         <div className={styles.navLinks}>
           <Link href="/about">About</Link>
           <Link href="/pricing">Pricing</Link>
+          <Link href="/docs">Docs</Link>
+          <Link href="/help">Help</Link>
           <Link href="/blog">Blog</Link>
           <Link href="/contact">Contact</Link>
           <Link className={styles.navCta} href="https://app.teboatech.com">
