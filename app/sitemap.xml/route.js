@@ -3,10 +3,29 @@ import { getPublishedPosts } from "../blog/_lib/blog-data";
 const SITE_URL = "https://teboatech.com";
 const STATIC_ROUTES = [
   { path: "/", changefreq: "monthly", priority: "1.0" },
-  { path: "/blog", changefreq: "monthly", priority: "0.8" },
-  { path: "/about", changefreq: "monthly", priority: "0.6" },
-  { path: "/pricing", changefreq: "monthly", priority: "0.6" },
-  { path: "/contact", changefreq: "monthly", priority: "0.6" },
+
+  // Core business pages
+  { path: "/about", changefreq: "monthly", priority: "0.8" },
+  { path: "/pricing", changefreq: "monthly", priority: "0.8" },
+  { path: "/contact", changefreq: "monthly", priority: "0.8" },
+  { path: "/blog", changefreq: "weekly", priority: "0.8" },
+  { path: "/docs", changefreq: "monthly", priority: "0.7" },
+  { path: "/help", changefreq: "monthly", priority: "0.6" },
+
+  // Main SEO/resource pages
+  { path: "/shopify-automation", changefreq: "monthly", priority: "0.7" },
+  { path: "/shopify-automation-vs-apps", changefreq: "monthly", priority: "0.6" },
+  { path: "/shopify-store-launch-checklist", changefreq: "monthly", priority: "0.6" },
+  { path: "/shopify-customer-retention-automation", changefreq: "monthly", priority: "0.6" },
+  { path: "/shopify-customer-support-automation", changefreq: "monthly", priority: "0.6" },
+  { path: "/customer-data-compliance-checklist", changefreq: "monthly", priority: "0.6" },
+  { path: "/ecommerce-growth-context", changefreq: "monthly", priority: "0.5" },
+
+  // Trust/legal pages
+  { path: "/privacy-policy", changefreq: "monthly", priority: "0.4" },
+  { path: "/terms-of-service", changefreq: "monthly", priority: "0.4" },
+  { path: "/popia-compliance", changefreq: "monthly", priority: "0.4" },
+  { path: "/gdpr-compliance", changefreq: "monthly", priority: "0.4" },
 ];
 
 function escapeXml(value) {
