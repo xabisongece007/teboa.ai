@@ -5,13 +5,17 @@
   ]);
 
   function linkShopifyMentions() {
+    let hasLinkedShopifyMention = false;
+
     document.querySelectorAll("a").forEach(link => {
       if (link.textContent.trim() !== "Shopify") return;
+      if (hasLinkedShopifyMention) return;
       link.classList.add("shopify-link");
       link.href = "https://www.shopify.com/";
       link.target = "_blank";
       link.rel = "noopener noreferrer";
       link.setAttribute("aria-label", "Visit Shopify");
+      hasLinkedShopifyMention = true;
     });
 
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
@@ -34,6 +38,11 @@
       parts.forEach((part, index) => {
         if (part) fragment.appendChild(document.createTextNode(part));
         if (index < parts.length - 1) {
+          if (hasLinkedShopifyMention) {
+            fragment.appendChild(document.createTextNode("Shopify"));
+            return;
+          }
+
           const link = document.createElement("a");
           link.className = "shopify-link";
           link.href = "https://www.shopify.com/";
@@ -42,6 +51,7 @@
           link.textContent = "Shopify";
           link.setAttribute("aria-label", "Visit Shopify");
           fragment.appendChild(link);
+          hasLinkedShopifyMention = true;
         }
       });
 
