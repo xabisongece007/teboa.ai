@@ -2,30 +2,30 @@ import { getPublishedPosts } from "../blog/_lib/blog-data";
 
 const SITE_URL = "https://teboatech.com";
 const STATIC_ROUTES = [
-  { path: "/", changefreq: "monthly", priority: "1.0" },
+  { path: "/", lastmod: "2026-08-20", changefreq: "monthly", priority: "1.0" },
 
   // Core business pages
-  { path: "/about", changefreq: "monthly", priority: "0.8" },
-  { path: "/pricing", changefreq: "monthly", priority: "0.8" },
-  { path: "/contact", changefreq: "monthly", priority: "0.8" },
-  { path: "/blog", changefreq: "weekly", priority: "0.8" },
-  { path: "/docs", changefreq: "monthly", priority: "0.7" },
-  { path: "/help", changefreq: "monthly", priority: "0.6" },
+  { path: "/about", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.8" },
+  { path: "/pricing", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.8" },
+  { path: "/contact", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.8" },
+  { path: "/blog", lastmod: "2026-08-20", changefreq: "weekly", priority: "0.8" },
+  { path: "/docs", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.7" },
+  { path: "/help", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.6" },
 
   // Main SEO/resource pages
-  { path: "/shopify-automation", changefreq: "monthly", priority: "0.7" },
-  { path: "/shopify-automation-vs-apps", changefreq: "monthly", priority: "0.6" },
-  { path: "/shopify-store-launch-checklist", changefreq: "monthly", priority: "0.6" },
-  { path: "/shopify-customer-retention-automation", changefreq: "monthly", priority: "0.6" },
-  { path: "/shopify-customer-support-automation", changefreq: "monthly", priority: "0.6" },
-  { path: "/customer-data-compliance-checklist", changefreq: "monthly", priority: "0.6" },
-  { path: "/ecommerce-growth-context", changefreq: "monthly", priority: "0.5" },
+  { path: "/shopify-automation", lastmod: "2026-09-01", changefreq: "monthly", priority: "0.8" },
+  { path: "/shopify-automation-vs-apps", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.6" },
+  { path: "/shopify-store-launch-checklist", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.6" },
+  { path: "/shopify-customer-retention-automation", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.6" },
+  { path: "/shopify-customer-support-automation", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.6" },
+  { path: "/customer-data-compliance-checklist", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.6" },
+  { path: "/ecommerce-growth-context", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.5" },
 
   // Trust/legal pages
-  { path: "/privacy-policy", changefreq: "monthly", priority: "0.4" },
-  { path: "/terms-of-service", changefreq: "monthly", priority: "0.4" },
-  { path: "/popia-compliance", changefreq: "monthly", priority: "0.4" },
-  { path: "/gdpr-compliance", changefreq: "monthly", priority: "0.4" },
+  { path: "/privacy-policy", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.4" },
+  { path: "/terms-of-service", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.4" },
+  { path: "/popia-compliance", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.4" },
+  { path: "/gdpr-compliance", lastmod: "2026-08-20", changefreq: "monthly", priority: "0.4" },
 ];
 
 function escapeXml(value) {
@@ -62,11 +62,9 @@ export const revalidate = 3600;
 
 export async function GET() {
   const posts = await getPublishedPosts();
-  const now = new Date().toISOString();
-
   const staticEntries = STATIC_ROUTES.map((route) => ({
     loc: `${SITE_URL}${route.path === "/" ? "" : route.path}`,
-    lastmod: now,
+    lastmod: toIsoDate(route.lastmod),
     changefreq: route.changefreq,
     priority: route.priority,
   }));

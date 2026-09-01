@@ -20,6 +20,15 @@ const MIME_TYPES = {
   ".xml": "application/xml; charset=utf-8",
 };
 const INTERCOM_SCRIPT_TAG = '<script src="/intercom.js" defer></script>';
+const HTML_LAST_MODIFIED = {
+  "shopify-automation.html": "2026-09-01T00:00:00.000Z",
+  "shopify-automation-vs-apps.html": "2026-08-20T00:00:00.000Z",
+  "shopify-store-launch-checklist.html": "2026-08-20T00:00:00.000Z",
+  "shopify-customer-retention-automation.html": "2026-08-20T00:00:00.000Z",
+  "shopify-customer-support-automation.html": "2026-08-20T00:00:00.000Z",
+  "customer-data-compliance-checklist.html": "2026-08-20T00:00:00.000Z",
+  "ecommerce-growth-context.html": "2026-08-20T00:00:00.000Z",
+};
 
 function getContentType(filePath) {
   return MIME_TYPES[path.extname(filePath).toLowerCase()] || "application/octet-stream";
@@ -37,6 +46,17 @@ function getCacheControl(filePath) {
   }
 
   return "public, max-age=31536000, immutable";
+}
+
+function getLastModified(filePath, fallbackDate) {
+  const fileName = path.basename(filePath);
+  const explicitDate = HTML_LAST_MODIFIED[fileName];
+
+  if (explicitDate) {
+    return new Date(explicitDate).toUTCString();
+  }
+
+  return fallbackDate.toUTCString();
 }
 
 function isSafePath(relativePath) {
@@ -103,7 +123,7 @@ async function serveStaticFile(slugSegments, method) {
   const headers = new Headers();
   headers.set("Content-Type", getContentType(resolved.absolutePath));
   headers.set("Cache-Control", getCacheControl(resolved.absolutePath));
-  headers.set("Last-Modified", resolved.fileStat.mtime.toUTCString());
+  headers.set("Last-Modified", getLastModified(resolved.absolutePath, resolved.fileStat.mtime));
   headers.set("X-Content-Type-Options", "nosniff");
 
   if (method === "HEAD") {
