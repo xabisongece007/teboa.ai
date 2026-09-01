@@ -12,8 +12,8 @@ export default function BlogShell({ eyebrow, title, description, children }) {
           <Link href="/help">Help</Link>
           <Link href="/blog">Blog</Link>
           <Link href="/contact">Contact</Link>
-          <Link className={styles.navCta} href="https://app.teboatech.com">
-            Get Started
+          <Link className={styles.navCta} href="/pricing">
+            Subscribe
           </Link>
         </div>
       </nav>
